@@ -20,7 +20,7 @@ function collatz(num) {
     }
   }
 
-  console.log('1');
+  console.log(num);
 
   osc.type = 'square';
   osc.connect(audioCtx.destination);
