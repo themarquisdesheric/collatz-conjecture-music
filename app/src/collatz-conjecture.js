@@ -1,4 +1,4 @@
-function collatz(num) {
+export default function collatz(num) {
   var sequence = [num];
   var counter = 0;
 
