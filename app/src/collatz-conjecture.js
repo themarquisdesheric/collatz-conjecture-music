@@ -38,5 +38,3 @@ function collatz(num) {
     }
   }, 300);
 }
-
-collatz(15);
