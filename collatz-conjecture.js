@@ -28,12 +28,12 @@ function collatz(num) {
   osc.stop(sequence.length);
 
   var intervalID = setInterval(function() {
-    if (counter === sequence.length) {
+    if (counter === sequence.length - 1) {
       clearInterval(intervalID);
       osc.disconnect(audioCtx.destination);
     } else {
-      // multiplying frequency by ten so we can hear better
-      osc.frequency.value = sequence[counter] * 10;
+      // multiplying frequency by 110 to hear better, and by 1.05946 for the semitones step
+      osc.frequency.value = sequence[counter] * 110 * 1.05946;
       counter++;
     }
   }, 300);
