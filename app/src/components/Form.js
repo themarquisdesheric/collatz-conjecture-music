@@ -10,21 +10,22 @@ export default class Form extends Component {
     };
 
     this.handleCollatzChange = this.handleCollatzChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   handleCollatzChange({ target }) {
     this.setState({ collatz: target.value });
   }
 
+  handleSubmit(e) {
+    e.preventDefault();
+    collatz(this.state.collatz);
+  }
+
   render() {
     return (
       <div>
-        <form onSubmit={
-          e => {
-            e.preventDefault();
-            collatz(this.state.collatz);
-          }
-        }>
+        <form onSubmit={this.handleSubmit}>
           <label>
             Choose a number to begin<br />
             <input 
