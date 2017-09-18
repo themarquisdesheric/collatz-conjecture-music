@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import collatz from '../collatz-conjecture';
 
 export default class Form extends Component {
   constructor(props) {
@@ -17,9 +16,26 @@ export default class Form extends Component {
     this.setState({ collatz: target.value });
   }
 
+  calculateCollatz(startVal) {
+    var num = Number(startVal);
+    var sequence = [ num ];
+  
+    while (num > 1) {
+      if (num % 2 === 0) {
+        num /= 2;
+        sequence.push(num);
+      } else {
+        num = num * 3 + 1;
+        sequence.push(num);
+      }
+    }
+
+    return sequence;
+  }
+
   handleSubmit(e) {
     e.preventDefault();
-    collatz(this.state.collatz);
+    this.props.renderCollatz(this.calculateCollatz(this.state.collatz));
   }
 
   render() {
