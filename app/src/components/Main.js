@@ -15,7 +15,7 @@ export default class Main extends Component {
 
   collatz(sequence) {
     this.setState({ sequence });
-    this.playCollatz(sequence);
+    // this.playCollatz(sequence);
   }
 
   playCollatz(sequence) {

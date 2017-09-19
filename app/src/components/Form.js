@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Input from './Input';
 
 export default class Form extends Component {
   constructor(props) {
@@ -42,14 +43,12 @@ export default class Form extends Component {
     return (
       <div>
         <form onSubmit={this.handleSubmit}>
-          <label>
-            Choose a number to begin<br />
-            <input 
-              type="number"
-              value={this.state.collatz}
-              onChange={this.handleCollatzChange}
-            />
-          </label>
+          <Input
+            label="Choose a number to begin"
+            type="number"
+            value={this.state.collatz}
+            onChange={this.handleCollatzChange}
+          />
           <button type="submit">
             Let's hear it!
           </button>
