@@ -18,7 +18,7 @@ export default class Form extends Component {
 
   calculateCollatz(startVal) {
     var num = Number(startVal);
-    var sequence = [ num ];
+    var sequence = [num];
   
     while (num > 1) {
       if (num % 2 === 0) {
