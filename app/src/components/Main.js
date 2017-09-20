@@ -7,15 +7,22 @@ export default class Main extends Component {
     super(props);
 
     this.state = {
-      sequence: null
+      sequence: null,
+      wave: 'sine'
     };
 
     this.collatz = this.collatz.bind(this);
+    this.handleWave = this.handleWave.bind(this);
   }
 
   collatz(sequence) {
     this.setState({ sequence });
-    // this.playCollatz(sequence);
+    this.playCollatz(sequence);
+  }
+
+  handleWave({ target }) {
+    console.log(target.value);
+    this.setState({ wave: target.value });
   }
 
   playCollatz(sequence) {
@@ -25,7 +32,7 @@ export default class Main extends Component {
     var audioCtx = new AudioContext();
     var osc = audioCtx.createOscillator();
 
-    osc.type = 'square';
+    osc.type = this.state.wave;
     osc.connect(audioCtx.destination);
     osc.start();
     osc.stop(sequence.length);
@@ -48,7 +55,11 @@ export default class Main extends Component {
     return (
       <div>
         {sequence && <List sequence={sequence} />}
-        <Form renderCollatz={this.collatz}/>
+        <Form 
+          renderCollatz={this.collatz}
+          selected={this.state.wave}
+          handleWave={this.handleWave} 
+        />
       </div>
     );
   }

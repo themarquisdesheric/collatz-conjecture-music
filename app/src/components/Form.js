@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import SelectInput from './SelectInput';
 import Input from './Input';
 
 export default class Form extends Component {
@@ -6,7 +7,7 @@ export default class Form extends Component {
     super(props);
 
     this.state = {
-      collatz: 0
+      collatz: 16
     };
 
     this.handleCollatzChange = this.handleCollatzChange.bind(this);
@@ -30,19 +31,30 @@ export default class Form extends Component {
         sequence.push(num);
       }
     }
-
+    
     return sequence;
   }
 
   handleSubmit(e) {
+    var { renderCollatz } = this.props;
+    var { collatz } = this.state;
+    
     e.preventDefault();
-    this.props.renderCollatz(this.calculateCollatz(this.state.collatz));
+    renderCollatz(this.calculateCollatz(collatz));
   }
 
   render() {
+    var waveTypes = ['sine', 'sawtooth', 'triangle', 'square'];
+
     return (
       <div>
         <form onSubmit={this.handleSubmit}>
+          <SelectInput 
+            label="Wave type"
+            selected={this.props.selected}
+            waveTypes={waveTypes}
+            onChange={this.props.handleWave}
+          />
           <Input
             label="Choose a number to begin"
             type="number"
