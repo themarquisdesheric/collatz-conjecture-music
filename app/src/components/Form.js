@@ -1,6 +1,17 @@
 import React, { Component } from 'react';
 import SelectInput from './SelectInput';
 import Input from './Input';
+import styled from 'styled-components';
+
+var Fieldset = styled.fieldset`
+  width: 50%;
+  margin: auto;
+  border-radius: 5px;
+`;
+
+var Legend = styled.legend`
+  padding: 0 .75em;
+`;
 
 export default class Form extends Component {
   constructor(props) {
@@ -31,7 +42,7 @@ export default class Form extends Component {
         sequence.push(num);
       }
     }
-    
+
     return sequence;
   }
 
@@ -49,21 +60,26 @@ export default class Form extends Component {
     return (
       <div>
         <form onSubmit={this.handleSubmit}>
-          <SelectInput 
-            label="Wave type"
-            selected={this.props.selected}
-            waveTypes={waveTypes}
-            onChange={this.props.handleWave}
-          />
-          <Input
-            label="Choose a number to begin"
-            type="number"
-            value={this.state.collatz}
-            onChange={this.handleCollatzChange}
-          />
-          <button type="submit">
-            Let's hear it!
-          </button>
+          <Fieldset>
+            <Legend>
+              Calculate Collatz
+            </Legend>
+            <SelectInput 
+              label="Wave type"
+              selected={this.props.selected}
+              waveTypes={waveTypes}
+              onChange={this.props.handleWave}
+            />
+            <Input
+              label="Choose a number to begin"
+              type="number"
+              value={this.state.collatz}
+              onChange={this.handleCollatzChange}
+            />
+            <button type="submit">
+              Let's hear it!
+            </button>
+          </Fieldset>
         </form>
       </div>
     );

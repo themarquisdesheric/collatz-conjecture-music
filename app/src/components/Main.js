@@ -21,17 +21,15 @@ export default class Main extends Component {
   }
 
   handleWave({ target }) {
-    console.log(target.value);
     this.setState({ wave: target.value });
   }
 
   playCollatz(sequence) {
-    var counter = 0;
-    
     var AudioContext = window.AudioContext || window.webkitAudioContext;
     var audioCtx = new AudioContext();
     var osc = audioCtx.createOscillator();
-
+    var counter = 0;
+    
     osc.type = this.state.wave;
     osc.connect(audioCtx.destination);
     osc.start();
@@ -55,10 +53,10 @@ export default class Main extends Component {
     return (
       <div>
         {sequence && <List sequence={sequence} />}
-        <Form 
+        <Form
           renderCollatz={this.collatz}
           selected={this.state.wave}
-          handleWave={this.handleWave} 
+          handleWave={this.handleWave}
         />
       </div>
     );

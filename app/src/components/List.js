@@ -20,7 +20,7 @@ export default function List({ sequence = [] }) {
       <Ul>
         {sequence.map(function(num, i) {
           if (i === sequence.length - 1) return <Li key={i}><Span>{num}</Span></Li>;
-
+          
           return (num % 2 === 0)
             ? <Li key={i}><Span>{num}</Span> is even so we divide by 2</Li>
             : <Li key={i}><Span>{num}</Span> is odd so we multiply by 3, then add 1</Li>;
