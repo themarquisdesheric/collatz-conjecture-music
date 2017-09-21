@@ -1,10 +1,5 @@
 function collatz(num) {
   var sequence = [num];
-  var counter = 0;
-
-  var AudioContext = window.AudioContext || window.webkitAudioContext;
-  var audioCtx = new AudioContext();
-  var osc = audioCtx.createOscillator();
 
   while (num > 1) {
     if (num % 2 === 0) {
@@ -22,7 +17,16 @@ function collatz(num) {
 
   console.log(num);
 
-  osc.type = 'square';
+  playCollatz(sequence);
+}
+
+function playCollatz(sequence) {
+  var AudioContext = window.AudioContext || window.webkitAudioContext;
+  var audioCtx = new AudioContext();
+  var osc = audioCtx.createOscillator();
+  var counter = 0;
+
+  osc.type = 'sine';
   osc.connect(audioCtx.destination);
   osc.start();
   osc.stop(sequence.length);
@@ -38,5 +42,3 @@ function collatz(num) {
     }
   }, 300);
 }
-
-collatz(15);
