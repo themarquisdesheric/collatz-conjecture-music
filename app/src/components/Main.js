@@ -26,17 +26,27 @@ export default class Main extends Component {
 
   playCollatz(sequence) {
     var AudioContext = window.AudioContext || window.webkitAudioContext;
-    var audioCtx = new AudioContext();
+    var audioCtx;
+
+    // TODO: make this nicer
+    if (!this.state.audio) {
+      audioCtx = new AudioContext();
+  
+      this.setState({ audio: audioCtx });
+    } else {
+      audioCtx = this.state.audio;
+    }
+
     var osc = audioCtx.createOscillator();
     var counter = 0;
     
     osc.type = this.state.wave;
     osc.connect(audioCtx.destination);
     osc.start();
-    osc.stop(sequence.length);
+    osc.frequency.value = 0;
   
     var intervalID = setInterval(function() {
-      if (counter === sequence.length - 1) {
+      if (counter === sequence.length) {
         clearInterval(intervalID);
         osc.disconnect(audioCtx.destination);
       } else {
