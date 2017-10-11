@@ -8,10 +8,15 @@ var Ul = styled.ul`
 
 var Li = styled.li`
   padding: .3em 0;
+  font-family: 'Oswald', sans-serif; 
 `;
 
-var Span = styled.span`
-  font-weight: bold;
+var Even = styled.span`
+  color: #f0f;
+`;
+
+var Odd = styled.span`
+  color: #0ff;
 `;
 
 export default function List({ sequence = [] }) {
@@ -19,11 +24,11 @@ export default function List({ sequence = [] }) {
     <div>
       <Ul>
         {sequence.map(function(num, i) {
-          if (i === sequence.length - 1) return <Li key={i}><Span>{num}</Span></Li>;
+          if (i === sequence.length - 1) return <Li key={i}><Odd>{num} has been reached</Odd></Li>;
           
           return (num % 2 === 0)
-            ? <Li key={i}><Span>{num}</Span> is even so we divide by 2</Li>
-            : <Li key={i}><Span>{num}</Span> is odd so we multiply by 3, then add 1</Li>;
+            ? <Li key={i}><Even>{num} is even</Even> so we divide by 2</Li>
+            : <Li key={i}><Odd>{num} is odd</Odd> so we multiply by 3, then add 1</Li>;
         })}
       </Ul>
     </div>

@@ -6,15 +6,19 @@ var SpacedInput = styled.input`
   width: 55px;
 `;
 
+var Label = styled.label`
+  font-family: 'Oswald', sans-serif;  
+`;
+
 export default function Input({ label, type, value, onChange }) {
   return (
-    <label>
+    <Label>
       {label}
       <SpacedInput 
         type={type}
         value={value}
         onChange={onChange}
       />
-    </label>
+    </Label>
   );
 }
