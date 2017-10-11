@@ -1,16 +1,13 @@
 import React, { Component } from 'react';
 import './App.css';
+import Header from './components/Header';
 import Main from './components/Main';
 
 class App extends Component {
   render() {
     return (
       <div className="App">
-        <div className="App-header">
-          <h2>
-            The Collatz Conjecture
-          </h2>
-        </div>
+        <Header />
         <Main />
       </div>
     );
