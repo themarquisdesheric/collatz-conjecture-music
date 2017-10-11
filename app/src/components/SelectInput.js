@@ -6,7 +6,8 @@ var Select = styled.select`
 `;
 
 var Label = styled.label`
-  font-family: 'Oswald', sans-serif;  
+  padding-right: 1em;
+  font-family: 'Oswald', sans-serif;
 `;
 
 export default function SelectInput({ label, selected, waveTypes = [], onChange }) {

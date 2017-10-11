@@ -4,7 +4,7 @@ import Input from './Input';
 import styled from 'styled-components';
 
 var Fieldset = styled.fieldset`
-  width: 50%;
+  width: 46%;
   margin: auto;
   border-radius: 5px;
 `;
@@ -18,7 +18,7 @@ export default class Form extends Component {
     super(props);
 
     this.state = {
-      collatz: 16
+      collatz: 15
     };
 
     this.handleCollatzChange = this.handleCollatzChange.bind(this);
@@ -76,6 +76,7 @@ export default class Form extends Component {
               value={this.state.collatz}
               onChange={this.handleCollatzChange}
             />
+            <br />
             <button type="submit">
               Let's hear it!
             </button>

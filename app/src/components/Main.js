@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import IntroBlurb from './IntroBlurb';
 import Form from './Form';
 import List from './List';
 
@@ -61,7 +62,10 @@ export default class Main extends Component {
 
     return (
       <div>
-        <List sequence={sequence} />
+        {sequence.length === 0
+          ? <IntroBlurb />
+          : <List sequence={sequence} />
+        }
         <Form
           renderCollatz={this.collatz}
           selected={this.state.wave}
