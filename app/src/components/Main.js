@@ -7,7 +7,7 @@ export default class Main extends Component {
     super(props);
 
     this.state = {
-      sequence: null,
+      sequence: [],
       wave: 'sine'
     };
 
@@ -28,7 +28,6 @@ export default class Main extends Component {
     var AudioContext = window.AudioContext || window.webkitAudioContext;
     var audioCtx;
 
-    // TODO: make this nicer
     if (!this.state.audio) {
       audioCtx = new AudioContext();
   
@@ -62,7 +61,7 @@ export default class Main extends Component {
 
     return (
       <div>
-        {sequence && <List sequence={sequence} />}
+        <List sequence={sequence} />
         <Form
           renderCollatz={this.collatz}
           selected={this.state.wave}
