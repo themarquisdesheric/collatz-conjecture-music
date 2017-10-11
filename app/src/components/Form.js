@@ -3,13 +3,13 @@ import SelectInput from './SelectInput';
 import Input from './Input';
 import styled from 'styled-components';
 
-var Fieldset = styled.fieldset`
+const Fieldset = styled.fieldset`
   width: 46%;
-  margin: auto;
+  margin: 0 auto 1em;
   border-radius: 5px;
 `;
 
-var Legend = styled.legend`
+const Legend = styled.legend`
   padding: 0 .75em;
 `;
 
@@ -30,8 +30,8 @@ export default class Form extends Component {
   }
 
   calculateCollatz(startVal) {
-    var num = Number(startVal);
-    var sequence = [num];
+    let num = Number(startVal);
+    const sequence = [num];
   
     while (num > 1) {
       if (num % 2 === 0) {
@@ -47,15 +47,15 @@ export default class Form extends Component {
   }
 
   handleSubmit(e) {
-    var { renderCollatz } = this.props;
-    var { collatz } = this.state;
+    const { renderCollatz } = this.props;
+    const { collatz } = this.state;
     
     e.preventDefault();
     renderCollatz(this.calculateCollatz(collatz));
   }
 
   render() {
-    var waveTypes = ['sine', 'sawtooth', 'triangle', 'square'];
+    const waveTypes = ['sine', 'sawtooth', 'triangle', 'square'];
 
     return (
       <div>
