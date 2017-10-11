@@ -5,7 +5,7 @@ import styled from 'styled-components';
 
 var Fieldset = styled.fieldset`
   width: 46%;
-  margin: auto;
+  margin: 0 auto 1em;
   border-radius: 5px;
 `;
 
