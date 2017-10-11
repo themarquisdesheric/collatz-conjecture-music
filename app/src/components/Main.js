@@ -3,6 +3,8 @@ import IntroBlurb from './IntroBlurb';
 import Form from './Form';
 import List from './List';
 
+// TODO: set page at top of sequence
+
 export default class Main extends Component {
   constructor(props) {
     super(props);
@@ -26,8 +28,8 @@ export default class Main extends Component {
   }
 
   playCollatz(sequence) {
-    var AudioContext = window.AudioContext || window.webkitAudioContext;
-    var audioCtx;
+    const AudioContext = window.AudioContext || window.webkitAudioContext;
+    let audioCtx;
 
     if (!this.state.audio) {
       audioCtx = new AudioContext();
@@ -37,28 +39,31 @@ export default class Main extends Component {
       audioCtx = this.state.audio;
     }
 
-    var osc = audioCtx.createOscillator();
-    var counter = 0;
+    const osc = audioCtx.createOscillator();
+    let counter = 0;
     
     osc.type = this.state.wave;
     osc.connect(audioCtx.destination);
     osc.start();
     osc.frequency.value = 0;
   
-    var intervalID = setInterval(function() {
+    const intervalID = setInterval(() => {
       if (counter === sequence.length) {
         clearInterval(intervalID);
         osc.disconnect(audioCtx.destination);
       } else {
+        // TODO: use logarithmic step, keep working on normalizing audio to human hearing range
+        
         // multiplying frequency by 110 to hear better, and by 1.05946 for the semitones step
         osc.frequency.value = sequence[counter] * 110 * 1.05946;
+
         counter++;
       }
     }, 300);
   }
 
   render() {
-    var { sequence } = this.state;
+    const { sequence } = this.state;
 
     return (
       <div>

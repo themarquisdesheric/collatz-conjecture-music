@@ -1,28 +1,27 @@
 import React from 'react';
 import styled from 'styled-components';
 
-var Select = styled.select`
+const Select = styled.select`
   margin: 1em .5em .5em;
 `;
 
-var Label = styled.label`
+const Label = styled.label`
   padding-right: 1em;
   font-family: 'Oswald', sans-serif;
 `;
 
-export default function SelectInput({ label, selected, waveTypes = [], onChange }) {
-  return (
-    <Label>
-      {label}
-      <Select value={selected} onChange={onChange}>
-        {waveTypes.map(function(wave, i) {
-          return (
-            <option key={i} value={wave}>
-              {wave}
-            </option>
-          );
-        })}
-      </Select>
-    </Label>
-  );
-}
+const SelectInput = ({ label, selected, waveTypes = [], onChange }) => (
+  <Label>
+    {label}
+    <Select value={selected} onChange={onChange}>
+      {waveTypes.map((wave, i) => (
+        <option key={i} value={wave}>
+          {wave}
+        </option>
+      )
+      )}
+    </Select>
+  </Label>
+);
+
+export default SelectInput;
