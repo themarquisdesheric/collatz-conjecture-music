@@ -2,8 +2,8 @@ import React from 'react';
 import styled from 'styled-components';
 
 var H2 = styled.h2`
-  height: 50px;
-  padding: 10px;
+  color: #fff;
+  font-size: 3em;
 `;
 
 export default function Header() {

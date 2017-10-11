@@ -62,7 +62,7 @@ export default class Form extends Component {
         <form onSubmit={this.handleSubmit}>
           <Fieldset>
             <Legend>
-              Calculate Collatz
+              Enter a number to calculate and listen
             </Legend>
             <SelectInput 
               label="Wave type"
