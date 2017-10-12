@@ -11,22 +11,15 @@ const Li = styled.li`
   font-family: 'Oswald', sans-serif; 
 `;
 
-const Even = styled.span`
-  color: #f0f;
-`;
+const Even = styled.span` color: #f0f; `;
 
-const Odd = styled.span`
-  color: #0ff;
-`;
+const Odd = styled.span` color: #0ff; `;
 
 export default class List extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      audio: null
-    };
-  }
+  state = {
+    audio: null
+  };
+  
   playTone(num) {
     const AudioContext = window.AudioContext || window.webkitAudioContext;
     let audioCtx;
@@ -35,9 +28,8 @@ export default class List extends Component {
       audioCtx = new AudioContext();
   
       this.setState({ audio: audioCtx });
-    } else {
-      audioCtx = this.state.audio;
-    }
+    } 
+    else audioCtx = this.state.audio;
 
     const osc = audioCtx.createOscillator();
     this.setState({ osc });
@@ -47,7 +39,7 @@ export default class List extends Component {
     osc.start();
     osc.frequency.value = num * 110 * 1.05946;
 
-    setTimeout(() => {
+    setTimeout( () => {
       osc.disconnect(audioCtx.destination);
     }, 300);
   }
@@ -58,11 +50,11 @@ export default class List extends Component {
     return (
       <div>
         <Ul>
-          {sequence.map((num, i) => {
+          {sequence.map( (num, i) => {
             if (i === sequence.length - 1) return (
               <Li 
                 key={i} 
-                onMouseEnter={() => this.playTone(num)}
+                onMouseEnter={ () => this.playTone(num) }
               >
                 <Odd>{num} has been reached</Odd>
               </Li>
@@ -74,7 +66,7 @@ export default class List extends Component {
             
               <Li 
                 key={i} 
-                onMouseEnter={() => this.playTone(num)}
+                onMouseEnter={ () => this.playTone(num) }
               >
                 <Even>{num} is even</Even> so we divide by 2
               </Li>
@@ -83,7 +75,7 @@ export default class List extends Component {
             
               <Li 
                 key={i}
-                onMouseEnter={() => this.playTone(num)}
+                onMouseEnter={ () => this.playTone(num) }
               >
                 <Odd>{num} is odd</Odd> so we multiply by 3, then add 1
               </Li>;

@@ -6,19 +6,12 @@ import List from './List';
 // TODO: set page at top of sequence
 
 export default class Main extends Component {
-  constructor(props) {
-    super(props);
+  state = {
+    sequence: [],
+    wave: 'sine'
+  };
 
-    this.state = {
-      sequence: [],
-      wave: 'sine'
-    };
-
-    this.collatz = this.collatz.bind(this);
-    this.handleWave = this.handleWave.bind(this);
-  }
-
-  collatz(sequence) {
+  renderCollatz(sequence) {
     this.setState({ sequence });
     this.playCollatz(sequence);
   }
@@ -35,9 +28,8 @@ export default class Main extends Component {
       audioCtx = new AudioContext();
   
       this.setState({ audio: audioCtx });
-    } else {
-      audioCtx = this.state.audio;
-    }
+    } 
+    else audioCtx = this.state.audio;
 
     const osc = audioCtx.createOscillator();
     let counter = 0;
@@ -47,13 +39,13 @@ export default class Main extends Component {
     osc.start();
     osc.frequency.value = 0;
   
-    const intervalID = setInterval(() => {
+    const intervalID = setInterval( () => {
       if (counter === sequence.length) {
         clearInterval(intervalID);
         osc.disconnect(audioCtx.destination);
       } else {
         // TODO: use logarithmic step, keep working on normalizing audio to human hearing range
-        
+
         // multiplying frequency by 110 to hear better, and by 1.05946 for the semitones step
         osc.frequency.value = sequence[counter] * 110 * 1.05946;
 
@@ -72,9 +64,9 @@ export default class Main extends Component {
           : <List sequence={sequence} />
         }
         <Form
-          renderCollatz={this.collatz}
+          renderCollatz={this.renderCollatz.bind(this)}
           selected={this.state.wave}
-          handleWave={this.handleWave}
+          handleWave={this.handleWave.bind(this)}
         />
       </div>
     );

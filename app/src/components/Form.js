@@ -9,21 +9,12 @@ const Fieldset = styled.fieldset`
   border-radius: 5px;
 `;
 
-const Legend = styled.legend`
-  padding: 0 .75em;
-`;
+const Legend = styled.legend` padding: 0 .75em; `;
 
 export default class Form extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      collatz: 15
-    };
-
-    this.handleCollatzChange = this.handleCollatzChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
-  }
+  state = {
+    collatz: 15
+  };
 
   handleCollatzChange({ target }) {
     this.setState({ collatz: target.value });
@@ -55,26 +46,27 @@ export default class Form extends Component {
   }
 
   render() {
+    const { selected, handleWave } = this.props;
     const waveTypes = ['sine', 'sawtooth', 'triangle', 'square'];
 
     return (
       <div>
-        <form onSubmit={this.handleSubmit}>
+        <form onSubmit={this.handleSubmit.bind(this)}>
           <Fieldset>
             <Legend>
               Enter a number to calculate and listen
             </Legend>
             <SelectInput 
               label="Wave type"
-              selected={this.props.selected}
+              selected={selected}
               waveTypes={waveTypes}
-              onChange={this.props.handleWave}
+              onChange={handleWave}
             />
             <Input
               label="Choose a number to begin"
               type="number"
               value={this.state.collatz}
-              onChange={this.handleCollatzChange}
+              onChange={this.handleCollatzChange.bind(this)}
             />
             <button type="submit">
               Let's hear it!
