@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import styled from 'styled-components';
 
 const Ul = styled.ul`
@@ -11,28 +11,77 @@ const Li = styled.li`
   font-family: 'Oswald', sans-serif; 
 `;
 
-const Even = styled.span`
-  color: #f0f;
-`;
+const Even = styled.span` color: #f0f; `;
 
-const Odd = styled.span`
-  color: #0ff;
-`;
+const Odd = styled.span` color: #0ff; `;
 
-// TODO: make tone handler
+export default class List extends Component {
+  state = {
+    audio: null
+  };
+  
+  playTone(num) {
+    const AudioContext = window.AudioContext || window.webkitAudioContext;
+    let audioCtx;
 
-const List = ({ sequence = [] }) => (
-  <div>
-    <Ul>
-      {sequence.map((num, i) => {
-        if (i === sequence.length - 1) return <Li key={i}><Odd>{num} has been reached</Odd></Li>;
-        
-        return (num % 2 === 0)
-          ? <Li key={i}><Even>{num} is even</Even> so we divide by 2</Li>
-          : <Li key={i}><Odd>{num} is odd</Odd> so we multiply by 3, then add 1</Li>;
-      })}
-    </Ul>
-  </div>
-);
+    if (!this.state.audio) {
+      audioCtx = new AudioContext();
+  
+      this.setState({ audio: audioCtx });
+    } 
+    else audioCtx = this.state.audio;
 
-export default List;
+    const osc = audioCtx.createOscillator();
+    this.setState({ osc });
+  
+    osc.type = 'sine';
+    osc.connect(audioCtx.destination);
+    osc.start();
+    osc.frequency.value = num * 110 * 1.05946;
+
+    setTimeout( () => {
+      osc.disconnect(audioCtx.destination);
+    }, 300);
+  }
+
+  render() {
+    const { sequence } = this.props;
+
+    return (
+      <div>
+        <Ul>
+          {sequence.map( (num, i) => {
+            if (i === sequence.length - 1) return (
+              <Li 
+                key={i} 
+                onMouseEnter={ () => this.playTone(num) }
+              >
+                <Odd>{num} has been reached</Odd>
+              </Li>
+            );
+            
+            return (num % 2 === 0)
+
+              ? 
+            
+              <Li 
+                key={i} 
+                onMouseEnter={ () => this.playTone(num) }
+              >
+                <Even>{num} is even</Even> so we divide by 2
+              </Li>
+            
+              :
+            
+              <Li 
+                key={i}
+                onMouseEnter={ () => this.playTone(num) }
+              >
+                <Odd>{num} is odd</Odd> so we multiply by 3, then add 1
+              </Li>;
+          })}
+        </Ul>
+      </div>
+    );
+  }
+}
