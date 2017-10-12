@@ -6,11 +6,11 @@ const Select = styled.select`
 `;
 
 const Label = styled.label`
-  padding-right: 1em;
+  padding-right: 1em; 
   font-family: 'Oswald', sans-serif;
 `;
 
-const SelectInput = ({ label, selected, waveTypes = [], onChange }) => (
+const SelectInput = ({ label, selected, waveTypes, onChange }) => (
   <Label>
     {label}
     <Select value={selected} onChange={onChange}>
@@ -18,8 +18,7 @@ const SelectInput = ({ label, selected, waveTypes = [], onChange }) => (
         <option key={i} value={wave}>
           {wave}
         </option>
-      )
-      )}
+      ))}
     </Select>
   </Label>
 );

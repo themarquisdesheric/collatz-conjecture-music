@@ -48,10 +48,10 @@ export default class Form extends Component {
 
   handleSubmit(e) {
     const { renderCollatz } = this.props;
-    const { collatz } = this.state;
+    const { collatz: startVal } = this.state;
     
     e.preventDefault();
-    renderCollatz(this.calculateCollatz(collatz));
+    renderCollatz(this.calculateCollatz(startVal));
   }
 
   render() {
@@ -76,7 +76,6 @@ export default class Form extends Component {
               value={this.state.collatz}
               onChange={this.handleCollatzChange}
             />
-            <br />
             <button type="submit">
               Let's hear it!
             </button>

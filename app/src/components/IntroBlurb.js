@@ -3,6 +3,7 @@ import styled from 'styled-components';
 
 const Div = styled.div`
   width: 45%;
+  padding: 0 2em;
   margin: 4em auto;
   font-family: 'Oswald', sans-serif;
   font-size: 1.1em;
@@ -18,7 +19,8 @@ const IntroBlurb = () => (
   <Div>
     <p>
       The Collatz Conjecture is an unsolved problem in mathematics.
-
+    </p>
+    <p>
       It states that given any positive integer <em>n</em>, the sequence will always reach 1 by following two simple rules:
     </p>
     <Ul>

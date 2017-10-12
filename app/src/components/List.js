@@ -21,7 +21,7 @@ const Odd = styled.span`
 
 // TODO: make tone handler
 
-const List = ({ sequence = [] }) => (
+const List = ({ sequence }) => (
   <div>
     <Ul>
       {sequence.map((num, i) => {

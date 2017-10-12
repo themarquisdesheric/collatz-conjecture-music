@@ -7,7 +7,8 @@ const SpacedInput = styled.input`
 `;
 
 const Label = styled.label`
-  font-family: 'Oswald', sans-serif;  
+  padding-right: 1em;
+  font-family: 'Oswald', sans-serif;
 `;
 
 const Input = ({ label, type, value, onChange }) => (
