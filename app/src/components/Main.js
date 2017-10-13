@@ -55,13 +55,13 @@ export default class Main extends Component {
   }
 
   render() {
-    const { sequence } = this.state;
+    const { sequence, wave } = this.state;
 
     return (
       <div>
         {sequence.length === 0
           ? <IntroBlurb />
-          : <List sequence={sequence} />
+          : <List sequence={sequence} wave={wave}/>
         }
         <Form
           renderCollatz={this.renderCollatz.bind(this)}

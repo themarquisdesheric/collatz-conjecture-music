@@ -20,7 +20,7 @@ export default class List extends Component {
     audio: null
   };
   
-  playTone(num) {
+  playTone(num, wave) {
     const AudioContext = window.AudioContext || window.webkitAudioContext;
     let audioCtx;
 
@@ -34,7 +34,7 @@ export default class List extends Component {
     const osc = audioCtx.createOscillator();
     this.setState({ osc });
   
-    osc.type = 'sine';
+    osc.type = wave;
     osc.connect(audioCtx.destination);
     osc.start();
     osc.frequency.value = num * 110 * 1.05946;
@@ -45,7 +45,7 @@ export default class List extends Component {
   }
 
   render() {
-    const { sequence } = this.props;
+    const { sequence, wave } = this.props;
 
     return (
       <div>
@@ -54,7 +54,7 @@ export default class List extends Component {
             if (i === sequence.length - 1) return (
               <Li 
                 key={i} 
-                onMouseEnter={ () => this.playTone(num) }
+                onMouseEnter={ () => this.playTone(num, wave) }
               >
                 <Odd>{num} has been reached</Odd>
               </Li>
@@ -66,7 +66,7 @@ export default class List extends Component {
             
               <Li 
                 key={i} 
-                onMouseEnter={ () => this.playTone(num) }
+                onMouseEnter={ () => this.playTone(num, wave) }
               >
                 <Even>{num} is even</Even> so we divide by 2
               </Li>
@@ -75,7 +75,7 @@ export default class List extends Component {
             
               <Li 
                 key={i}
-                onMouseEnter={ () => this.playTone(num) }
+                onMouseEnter={ () => this.playTone(num, wave) }
               >
                 <Odd>{num} is odd</Odd> so we multiply by 3, then add 1
               </Li>;
