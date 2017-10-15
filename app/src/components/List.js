@@ -2,8 +2,10 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 
 const Ul = styled.ul`
-  list-style-type: none;
+  width: 50%;
+  margin: 1em auto;
   padding-left: 0;
+  list-style-type: none;
 `;
 
 const Li = styled.li`
@@ -28,8 +30,7 @@ export default class List extends Component {
       audioCtx = new AudioContext();
   
       this.setState({ audio: audioCtx });
-    } 
-    else audioCtx = this.state.audio;
+    } else audioCtx = this.state.audio;
 
     const osc = audioCtx.createOscillator();
     this.setState({ osc });

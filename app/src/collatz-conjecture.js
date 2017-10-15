@@ -1,6 +1,15 @@
 function collatz(num) {
   var sequence = [num];
 
+  function scaleBetween(unscaled, floor, ceiling) {
+    const min = Math.min(...unscaled);
+    const max = Math.max(...unscaled);
+  
+    return unscaled.map( 
+      (num) => (ceiling - floor) * (num - min) / (max - min) + floor
+    );
+  }
+
   function playCollatz(sequence) {
     var AudioContext = window.AudioContext || window.webkitAudioContext;
     var audioCtx = new AudioContext();
