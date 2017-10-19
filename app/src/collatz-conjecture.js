@@ -1,13 +1,26 @@
 function collatz(num) {
   var sequence = [num];
 
-  function playCollatz(sequence) {
+  function scaleBetween(unscaled, floor, ceiling) {
+    const min = Math.min(...unscaled);
+    const max = Math.max(...unscaled);
+  
+    return unscaled.map( 
+      (num) => (ceiling - floor) * (num - min) / (max - min) + floor
+    );
+  }
+
+  function logarithmify(num, step = 1.05946, start = 880) {
+    return start * Math.pow(step, num - 1);
+  }
+
+  function playCollatz(sequence, wave = 'sine') {
     var AudioContext = window.AudioContext || window.webkitAudioContext;
     var audioCtx = new AudioContext();
     var osc = audioCtx.createOscillator();
     var counter = 0;
   
-    osc.type = 'sine';
+    osc.type = wave;
     osc.connect(audioCtx.destination);
     osc.start();
     osc.frequency.value = 0;
@@ -18,8 +31,7 @@ function collatz(num) {
         clearInterval(intervalID);
         osc.disconnect(audioCtx.destination);
       } else {
-        // logarithmic step for the semitones, like a fretboard
-        osc.frequency.value = 880 * Math.pow(1.05946, sequence[counter] - 1);
+        osc.frequency.value = logarithmify(sequence[counter]);
 
         counter++;
       }

@@ -43,6 +43,7 @@ export default class Form extends Component {
     
     e.preventDefault();
     renderCollatz(this.calculateCollatz(startVal));
+    window.scrollTo(0, 0);
   }
 
   render() {
