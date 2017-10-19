@@ -9,7 +9,7 @@ const Li = styled.li`
 `;
 
 const MusicIcon = styled(FaMusic)`
-  color: #fff;
+  color: #0ff;
   position: absolute;
   right: 0;
 `;

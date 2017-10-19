@@ -50,6 +50,7 @@ export default class List extends Component {
           {sequence.map( (num, i) => {
             if (i === sequence.length - 1) return (
               <ListItem key={i}>
+                {/* TODO: not happy with how hacky this is, but am crashing everything when passing playTones as a prop to ListItem */}
                 <span onMouseEnter={() => this.playTone(num, wave)}>
                   <Odd>{num} has been reached</Odd>
                 </span>
