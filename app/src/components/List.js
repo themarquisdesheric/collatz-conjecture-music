@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 import ListItem from './ListItem';
+import Chart from './Chart';
 
 const Ul = styled.ul`
   width: 40%;
@@ -76,6 +77,8 @@ export default class List extends Component {
               </ListItem>;
           })}
         </Ul>
+
+        <Chart data={sequence} />
       </div>
     );
   }
