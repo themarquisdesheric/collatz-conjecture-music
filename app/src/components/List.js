@@ -47,6 +47,8 @@ export default class List extends Component {
 
     return (
       <div>
+        <Chart data={sequence} />
+        
         <Ul>
           {sequence.map( (num, i) => {
             if (i === sequence.length - 1) return (
@@ -77,8 +79,6 @@ export default class List extends Component {
               </ListItem>;
           })}
         </Ul>
-
-        <Chart data={sequence} />
       </div>
     );
   }

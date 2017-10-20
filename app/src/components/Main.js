@@ -5,18 +5,7 @@ import List from './List';
 
 export default class Main extends Component {
   state = {
-    sequence: [
-        80,
-        40,
-        20,
-        10,
-        5,
-        16,
-        8,
-        4,
-        2,
-        1
-      ],
+    sequence: [],
     wave: 'sine'
   };
 

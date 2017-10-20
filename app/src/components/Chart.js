@@ -9,25 +9,35 @@ const Div = styled.div`
 `;
 
 export default class LineChart extends Component {
-  componentDidMount () {
+  componentDidMount() {
     let { data: sequence } = this.props;
+    let evens = sequence.map( (num) => (num % 2 === 0) ? num : 0);
+    let odds = sequence.map( (num) => (num % 2 === 0) ? 0 : num);
+
     let data = {
       labels: sequence,
       datasets: [{
-        label: 'sequence',
-        data: sequence,
-        backgroundColor: 'rgba(255, 99, 132, 0.2)',
-        borderColor: 'rgba(255,99,132,1)',
+        label: 'odd',
+        data: odds,
+        backgroundColor: 'rgba(255, 0, 255, .6)',
+        borderColor: 'rgba(255, 0, 255, 1)',
+        borderWidth: 1
+      },
+      {
+        label: 'even',
+        data: evens,
+        backgroundColor: 'rgba(0, 255, 255, .6)',
+        borderColor: 'rgba(0, 255, 255, 1)',
         borderWidth: 1
       }]
     };
   
-    let myChart = new Chart(this.refs.chart, {
+    let chart = new Chart(this.canvas, {
       type: 'line',
       data
     });
   
-    this.setState({ chart: myChart });
+    this.setState({ chart });
   }
 
   componentWillUnmount() {
@@ -37,7 +47,7 @@ export default class LineChart extends Component {
   render () {
     return (
       <Div>
-        <canvas ref={'chart'}></canvas>
+        <canvas ref={(canvas) => this.canvas = canvas}></canvas>
       </Div>
     );
   }
