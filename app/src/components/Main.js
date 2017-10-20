@@ -3,11 +3,20 @@ import IntroBlurb from './IntroBlurb';
 import Form from './Form';
 import List from './List';
 
-// TODO: set page at top of sequence
-
 export default class Main extends Component {
   state = {
-    sequence: [],
+    sequence: [
+        80,
+        40,
+        20,
+        10,
+        5,
+        16,
+        8,
+        4,
+        2,
+        1
+      ],
     wave: 'sine'
   };
 
@@ -61,8 +70,9 @@ export default class Main extends Component {
       <div>
         {sequence.length === 0
           ? <IntroBlurb />
-          : <List sequence={sequence} wave={wave}/>
+          : <List sequence={sequence} wave={wave} />
         }
+
         <Form
           renderCollatz={this.renderCollatz.bind(this)}
           selected={this.state.wave}
