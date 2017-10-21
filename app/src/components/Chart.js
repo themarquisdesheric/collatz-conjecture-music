@@ -3,12 +3,14 @@ import styled from 'styled-components';
 import Chart from 'chart.js';
 
 const Div = styled.div`
-  width: 600px;
-  height: 600px;
-  margin: 0 auto;
+  max-width: 600px;
+  height: 100%;
+  margin: 2em auto;
 `;
 
 export default class LineChart extends Component {
+  static displayName = 'Chart';
+
   componentDidMount() {
     let { data: sequence } = this.props;
     let evens = sequence.map( (num) => (num % 2 === 0) ? num : 0);
@@ -17,31 +19,57 @@ export default class LineChart extends Component {
     let data = {
       labels: sequence,
       datasets: [{
-        label: 'odd',
-        data: odds,
-        backgroundColor: 'rgba(255, 0, 255, .6)',
-        borderColor: 'rgba(255, 0, 255, 1)',
-        borderWidth: 1
-      },
-      {
         label: 'even',
         data: evens,
         backgroundColor: 'rgba(0, 255, 255, .6)',
         borderColor: 'rgba(0, 255, 255, 1)',
         borderWidth: 1
+      }, 
+      {
+        label: 'odd',
+        data: odds,
+        backgroundColor: 'rgba(255, 0, 255, .6)',
+        borderColor: 'rgba(255, 0, 255, 1)',
+        borderWidth: 1
       }]
     };
-  
+
+    let options = {
+      title: {
+        display: true,
+        text: 'Distribution of even and odd numbers',
+        fontFamily: 'Oswald',
+        fontSize: 14,
+        fontColor: '#eee'
+      },
+      legend: {
+        labels: {
+          fontFamily: 'Oswald',
+          fontSize: 14,
+          fontColor: '#eee'
+        }
+      }
+    };
+
     let chart = new Chart(this.canvas, {
       type: 'line',
-      data
+      data,
+      options
     });
   
-    this.setState({ chart });
+    this.chart = chart;
   }
 
+  // componentDidUpdate() {
+  //   const { chart } = this;
+  //   const { data } = this.props;
+
+  //   Object.assign(chart.data, data);
+  //   chart.update();
+  // }
+
   componentWillUnmount() {
-    this.state.chart.destroy();
+    this.chart.destroy();
   }
 
   render () {
