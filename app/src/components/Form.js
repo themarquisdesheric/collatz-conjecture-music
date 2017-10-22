@@ -9,7 +9,7 @@ const Fieldset = styled.fieldset`
   border-radius: 5px;
 `;
 
-const Legend = styled.legend` padding: 0 .75em; `;
+const Legend = styled.legend` padding: 0 .75em; `; 
 
 export default class Form extends Component {
   state = {
@@ -22,7 +22,6 @@ export default class Form extends Component {
     
   handleSubmit(e) {
     const { renderCollatz } = this.props;
-    // TODO: use a placeholder value instead? 
     const { startVal } = this.state;
     
     e.preventDefault();
@@ -51,18 +50,16 @@ export default class Form extends Component {
     let { renderCollatz } = this.props;
     let counter = 2;
 
-    // do while? 
-    renderCollatz(this.calculateCollatz(counter));
-    counter++;
+    renderCollatz(this.calculateCollatz(counter++));
 
     const interval = setInterval(
       () => {
-        if (counter === 8) clearInterval(interval);
+        if (counter === 7) clearInterval(interval);
 
         renderCollatz(this.calculateCollatz(counter));
         counter++;
       },
-      5000
+      5500
     );
   }
 
@@ -84,7 +81,7 @@ export default class Form extends Component {
               onChange={handleWave}
             />
             <Input
-              label="Choose a number to begin"
+              label="Start value"
               type="number"
               value={this.state.startVal}
               onChange={this.handleCollatzChange.bind(this)}
@@ -96,7 +93,7 @@ export default class Form extends Component {
         </form>
 
         <button onClick={this.animateSequence.bind(this)}>
-          Show me 2-8
+          Show me 2-7
         </button>
       </div>
     );

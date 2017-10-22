@@ -9,6 +9,8 @@ const SpacedInput = styled.input`
 const Label = styled.label`
   padding-right: 1em;
   font-family: 'Oswald', sans-serif;
+  text-transform: lowercase;
+  font-size: .9em;
 `;
 
 const Input = ({ label, type, value, onChange }) => (
