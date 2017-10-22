@@ -10,15 +10,15 @@ const LeftArrow = styled(TiArrowLeftOutline)`
   position: fixed;
   top: 50%;
   left: 8%;
-  color: rgba(238, 238, 238, .1);
-`;
-
+  color: ${({ rel }) => rel ? 'rgba(0, 255, 255, .6)' : 'rgba(238, 238, 238, .1)'};
+  `;
+  
 const RightArrow = styled(TiArrowRightOutline)`
   font-size: 3em;
   position: fixed;
   top: 50%;
   right: 8%;
-  color: rgba(238, 238, 238, .1);
+  color: ${({ rel }) => rel ? 'rgba(0, 255, 255, .6)' : 'rgba(238, 238, 238, .1)'};
   `;
   
 const Fieldset = styled.fieldset`
@@ -31,7 +31,8 @@ const Legend = styled.legend` padding: 0 .75em; `;
 
 export default class Form extends Component {
   state = {
-    startVal: 15
+    startVal: 15,
+    mouseOverLeft: false
   };
 
   handleCollatzChange({ target }) {
@@ -48,11 +49,11 @@ export default class Form extends Component {
   }
 
   handleKeyDown({ key }) {
-    if (key === 'ArrowLeft') this.decrementStartVal();
-    else if (key === 'ArrowRight') this.incrementStartVal();
+    if (key === 'ArrowLeft') this.handleDecrement();
+    else if (key === 'ArrowRight') this.handleIncrement();
   }
 
-  decrementStartVal() {
+  handleDecrement() {
     let { renderCollatz } = this.props;
     let { startVal } = this.state;
 
@@ -60,12 +61,22 @@ export default class Form extends Component {
     this.setState( (prevState) => ({ startVal: prevState.startVal - 1 }));
   }
   
-  incrementStartVal() {
+  handleIncrement() {
     let { renderCollatz } = this.props;
     let { startVal } = this.state;
 
     renderCollatz(startVal + 1);
     this.setState( (prevState) => ({ startVal: prevState.startVal + 1 }));
+  }
+
+  handleMouseOver(side) {
+    if (side === 'left') this.setState( (prevState) => ({ mouseOverLeft: true }));
+    else if (side === 'right') this.setState( (prevState) => ({ mouseOverRight: true }));
+  }
+  
+  handleMouseOut(side) {
+    if (side === 'left') this.setState( (prevState) => ({ mouseOverLeft: false }));
+    else if (side === 'right') this.setState( (prevState) => ({ mouseOverRight: false }));
   }
 
   render() {
@@ -77,8 +88,22 @@ export default class Form extends Component {
     return (
       <div onKeyDown={this.handleKeyDown.bind(this)}>
 
-        {sequence.length !== 0 && <LeftArrow />}
-        {sequence.length !== 0 && <RightArrow />}
+        {sequence.length !== 0 && 
+          <LeftArrow 
+            onClick={this.handleDecrement.bind(this)}
+            onMouseOver={() => this.handleMouseOver('left')}
+            onMouseOut={() => this.handleMouseOut('left')}
+            rel={this.state.mouseOverLeft}
+          />
+        }
+        {sequence.length !== 0 && 
+          <RightArrow 
+            onClick={this.handleIncrement.bind(this)}
+            onMouseOver={() => this.handleMouseOver('right')}
+            onMouseOut={() => this.handleMouseOut('right')}
+            rel={this.state.mouseOverRight}
+          />
+        }
 
         <form onSubmit={this.handleSubmit.bind(this)}>
           <Fieldset>
