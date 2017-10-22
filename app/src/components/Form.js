@@ -1,7 +1,23 @@
 import React, { Component } from 'react';
+import styled from 'styled-components';
 import SelectInput from './SelectInput';
 import Input from './Input';
-import styled from 'styled-components';
+import TiArrowLeftOutline from 'react-icons/lib/ti/arrow-left-outline';
+import TiArrowRightOutline from 'react-icons/lib/ti/arrow-right-outline';
+
+const LeftArrow = styled(TiArrowLeftOutline)`
+  font-size: 3em;
+  position: fixed;
+  top: 50%;
+  left: 8%;
+`;
+
+const RightArrow = styled(TiArrowRightOutline)`
+  font-size: 3em;
+  position: fixed;
+  top: 50%;
+  right: 8%;
+`;
 
 const Fieldset = styled.fieldset`
   width: 46%;
@@ -43,11 +59,15 @@ export default class Form extends Component {
   }
 
   render() {
-    const { selected, handleWave } = this.props;
+    const { selected, handleWave, sequence } = this.props;
     const waveTypes = ['sine', 'sawtooth', 'triangle', 'square'];
 
     return (
       <div onKeyDown={this.handleKeyDown.bind(this)}>
+
+        {sequence.length !== 0 && <LeftArrow />}
+        {sequence.length !== 0 && <RightArrow />}
+
         <form onSubmit={this.handleSubmit.bind(this)}>
           <Fieldset>
             <Legend>

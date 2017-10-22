@@ -87,6 +87,7 @@ export default class Main extends Component {
           renderCollatz={this.renderCollatz.bind(this)}
           selected={this.state.wave}
           handleWave={this.handleWave.bind(this)}
+          sequence={sequence}
         />
       </div>
     );
