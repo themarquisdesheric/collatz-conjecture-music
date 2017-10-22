@@ -10,6 +10,7 @@ const LeftArrow = styled(TiArrowLeftOutline)`
   position: fixed;
   top: 50%;
   left: 8%;
+  color: rgba(238, 238, 238, .1);
 `;
 
 const RightArrow = styled(TiArrowRightOutline)`
@@ -17,8 +18,9 @@ const RightArrow = styled(TiArrowRightOutline)`
   position: fixed;
   top: 50%;
   right: 8%;
-`;
-
+  color: rgba(238, 238, 238, .1);
+  `;
+  
 const Fieldset = styled.fieldset`
   width: 46%;
   margin: 0 auto 1em;
@@ -46,21 +48,31 @@ export default class Form extends Component {
   }
 
   handleKeyDown({ key }) {
+    if (key === 'ArrowLeft') this.decrementStartVal();
+    else if (key === 'ArrowRight') this.incrementStartVal();
+  }
+
+  decrementStartVal() {
     let { renderCollatz } = this.props;
     let { startVal } = this.state;
 
-    if (key === 'ArrowLeft') {
-      renderCollatz(startVal - 1);
-      this.setState( (prevState) => ({ startVal: prevState.startVal - 1 }));
-    } else if (key === 'ArrowRight') {
-      renderCollatz(startVal + 1);
-      this.setState( (prevState) => ({ startVal: prevState.startVal + 1 }));
-    }
+    renderCollatz(startVal - 1);
+    this.setState( (prevState) => ({ startVal: prevState.startVal - 1 }));
+  }
+  
+  incrementStartVal() {
+    let { renderCollatz } = this.props;
+    let { startVal } = this.state;
+
+    renderCollatz(startVal + 1);
+    this.setState( (prevState) => ({ startVal: prevState.startVal + 1 }));
   }
 
   render() {
-    const { selected, handleWave, sequence } = this.props;
+    const { selected, handleWave } = this.props;
     const waveTypes = ['sine', 'sawtooth', 'triangle', 'square'];
+   
+    const sequence = true; // testing UI
 
     return (
       <div onKeyDown={this.handleKeyDown.bind(this)}>
