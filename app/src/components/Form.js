@@ -43,6 +43,7 @@ export default class Form extends Component {
       }
     }
 
+    // setState here? 
     return sequence;
   }
 
@@ -67,8 +68,14 @@ export default class Form extends Component {
     let { renderCollatz } = this.props;
     let { startVal } = this.state;
 
-    renderCollatz(this.calculateCollatz(startVal - 1));
-    this.setState( (prevState) => ({ startVal: prevState.startVal - 1 }));
+    if (e.key === 'ArrowLeft') {
+      renderCollatz(this.calculateCollatz(startVal - 1));
+      this.setState( (prevState) => ({ startVal: prevState.startVal - 1 }));
+    } else if (e.key === 'ArrowRight') {
+      renderCollatz(this.calculateCollatz(startVal + 1));
+      this.setState( (prevState) => ({ startVal: prevState.startVal + 1 }));
+    }
+
   }
 
   render() {
