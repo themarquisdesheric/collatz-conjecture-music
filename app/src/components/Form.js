@@ -25,57 +25,38 @@ export default class Form extends Component {
     const { startVal } = this.state;
     
     e.preventDefault();
-    renderCollatz(this.calculateCollatz(startVal));
+    renderCollatz(startVal);
     window.scrollTo(0, 0);
   }
-  
-  calculateCollatz(n) {
-    let num = Number(n);
-    const sequence = [num];
-  
-    while (num > 1) {
-      if (num % 2 === 0) {
-        num /= 2;
-        sequence.push(num);
-      } else {
-        num = num * 3 + 1;
-        sequence.push(num);
-      }
-    }
 
-    // setState here? 
-    return sequence;
+  handleKeyDown({ key }) {
+    let { renderCollatz } = this.props;
+    let { startVal } = this.state;
+
+    if (key === 'ArrowLeft') {
+      renderCollatz(startVal - 1);
+      this.setState( (prevState) => ({ startVal: prevState.startVal - 1 }));
+    } else if (key === 'ArrowRight') {
+      renderCollatz(startVal + 1);
+      this.setState( (prevState) => ({ startVal: prevState.startVal + 1 }));
+    }
   }
 
   animateSequence() {
     let { renderCollatz } = this.props;
     let counter = 2;
 
-    renderCollatz(this.calculateCollatz(counter++));
+    renderCollatz(counter++);
 
     const interval = setInterval(
       () => {
         if (counter === 7) clearInterval(interval);
 
-        renderCollatz(this.calculateCollatz(counter));
+        renderCollatz(counter);
         counter++;
       },
       5500
     );
-  }
-
-  handleKeyDown(e) {
-    let { renderCollatz } = this.props;
-    let { startVal } = this.state;
-
-    if (e.key === 'ArrowLeft') {
-      renderCollatz(this.calculateCollatz(startVal - 1));
-      this.setState( (prevState) => ({ startVal: prevState.startVal - 1 }));
-    } else if (e.key === 'ArrowRight') {
-      renderCollatz(this.calculateCollatz(startVal + 1));
-      this.setState( (prevState) => ({ startVal: prevState.startVal + 1 }));
-    }
-
   }
 
   render() {

@@ -11,9 +11,28 @@ export default class Main extends Component {
     wave: 'sine'
   };
 
-  renderCollatz(sequence) {
+  renderCollatz(startVal) {
+    const sequence = this.calculateCollatz(startVal);
+
     this.setState({ sequence });
     this.playCollatz(sequence);
+  }
+
+  calculateCollatz(n) {
+    let num = Number(n);
+    const sequence = [num];
+  
+    while (num > 1) {
+      if (num % 2 === 0) {
+        num /= 2;
+        sequence.push(num);
+      } else {
+        num = num * 3 + 1;
+        sequence.push(num);
+      }
+    }
+
+    return sequence;
   }
 
   handleWave({ target }) {
