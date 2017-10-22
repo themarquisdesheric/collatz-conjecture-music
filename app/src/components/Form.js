@@ -63,12 +63,20 @@ export default class Form extends Component {
     );
   }
 
+  handleKeyDown(e) {
+    let { renderCollatz } = this.props;
+    let { startVal } = this.state;
+
+    renderCollatz(this.calculateCollatz(startVal - 1));
+    this.setState( (prevState) => ({ startVal: prevState.startVal - 1 }));
+  }
+
   render() {
     const { selected, handleWave } = this.props;
     const waveTypes = ['sine', 'sawtooth', 'triangle', 'square'];
 
     return (
-      <div>
+      <div onKeyDown={this.handleKeyDown.bind(this)}>
         <form onSubmit={this.handleSubmit.bind(this)}>
           <Fieldset>
             <Legend>
