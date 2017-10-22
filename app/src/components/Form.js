@@ -9,19 +9,28 @@ const Fieldset = styled.fieldset`
   border-radius: 5px;
 `;
 
-const Legend = styled.legend` padding: 0 .75em; `;
+const Legend = styled.legend` padding: 0 .75em; `; 
 
 export default class Form extends Component {
   state = {
-    collatz: 15
+    startVal: 15
   };
 
   handleCollatzChange({ target }) {
-    this.setState({ collatz: target.value });
+    this.setState({ startVal: target.value });
   }
-
-  calculateCollatz(startVal) {
-    let num = Number(startVal);
+    
+  handleSubmit(e) {
+    const { renderCollatz } = this.props;
+    const { startVal } = this.state;
+    
+    e.preventDefault();
+    renderCollatz(this.calculateCollatz(startVal));
+    window.scrollTo(0, 0);
+  }
+  
+  calculateCollatz(n) {
+    let num = Number(n);
     const sequence = [num];
   
     while (num > 1) {
@@ -37,13 +46,21 @@ export default class Form extends Component {
     return sequence;
   }
 
-  handleSubmit(e) {
-    const { renderCollatz } = this.props;
-    const { collatz: startVal } = this.state;
-    
-    e.preventDefault();
-    renderCollatz(this.calculateCollatz(startVal));
-    window.scrollTo(0, 0);
+  animateSequence() {
+    let { renderCollatz } = this.props;
+    let counter = 2;
+
+    renderCollatz(this.calculateCollatz(counter++));
+
+    const interval = setInterval(
+      () => {
+        if (counter === 7) clearInterval(interval);
+
+        renderCollatz(this.calculateCollatz(counter));
+        counter++;
+      },
+      5500
+    );
   }
 
   render() {
@@ -64,9 +81,9 @@ export default class Form extends Component {
               onChange={handleWave}
             />
             <Input
-              label="Choose a number to begin"
+              label="Start value"
               type="number"
-              value={this.state.collatz}
+              value={this.state.startVal}
               onChange={this.handleCollatzChange.bind(this)}
             />
             <button type="submit">
@@ -74,6 +91,10 @@ export default class Form extends Component {
             </button>
           </Fieldset>
         </form>
+
+        <button onClick={this.animateSequence.bind(this)}>
+          Show me 2-7
+        </button>
       </div>
     );
   }
