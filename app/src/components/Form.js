@@ -42,23 +42,6 @@ export default class Form extends Component {
     }
   }
 
-  animateSequence() {
-    let { renderCollatz } = this.props;
-    let counter = 2;
-
-    renderCollatz(counter++);
-
-    const interval = setInterval(
-      () => {
-        if (counter === 7) clearInterval(interval);
-
-        renderCollatz(counter);
-        counter++;
-      },
-      5500
-    );
-  }
-
   render() {
     const { selected, handleWave } = this.props;
     const waveTypes = ['sine', 'sawtooth', 'triangle', 'square'];
@@ -87,10 +70,6 @@ export default class Form extends Component {
             </button>
           </Fieldset>
         </form>
-
-        <button onClick={this.animateSequence.bind(this)}>
-          Show me 2-7
-        </button>
       </div>
     );
   }
