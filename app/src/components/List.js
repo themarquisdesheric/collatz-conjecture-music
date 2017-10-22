@@ -10,11 +10,13 @@ const Ul = styled.ul`
   list-style-type: none;
 `;
 
-const Even = styled.span` color: #f0f; `;
+const Even = styled.span` color: #0ff; `;
 
-const Odd = styled.span` color: #0ff; `;
+const Odd = styled.span` color: #f0f; `;
 
 export default class List extends Component {
+  static displayName = 'List';
+
   state = {
     audio: null
   };

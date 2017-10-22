@@ -4,6 +4,8 @@ import Form from './Form';
 import List from './List';
 
 export default class Main extends Component {
+  static displayName = 'Main';
+
   state = {
     sequence: [],
     wave: 'sine'

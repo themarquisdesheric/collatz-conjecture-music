@@ -3,38 +3,20 @@ import styled from 'styled-components';
 import Chart from 'chart.js';
 
 const Div = styled.div`
-  max-width: 600px;
+  max-width: 43%;
   height: 100%;
-  margin: 2em auto;
+  margin: 1.5em auto;
 `;
 
 export default class LineChart extends Component {
   static displayName = 'Chart';
 
   componentDidMount() {
-    let { data: sequence } = this.props;
-    let evens = sequence.map( (num) => (num % 2 === 0) ? num : 0);
-    let odds = sequence.map( (num) => (num % 2 === 0) ? 0 : num);
+    const { data: sequence } = this.props;
 
-    let data = {
-      labels: sequence,
-      datasets: [{
-        label: 'even',
-        data: evens,
-        backgroundColor: 'rgba(0, 255, 255, .6)',
-        borderColor: 'rgba(0, 255, 255, 1)',
-        borderWidth: 1
-      }, 
-      {
-        label: 'odd',
-        data: odds,
-        backgroundColor: 'rgba(255, 0, 255, .6)',
-        borderColor: 'rgba(255, 0, 255, 1)',
-        borderWidth: 1
-      }]
-    };
+    const data = this.updateChart(sequence);
 
-    let options = {
+    const options = {
       title: {
         display: true,
         text: 'Distribution of even and odd numbers',
@@ -51,7 +33,7 @@ export default class LineChart extends Component {
       }
     };
 
-    let chart = new Chart(this.canvas, {
+    const chart = new Chart(this.canvas, {
       type: 'line',
       data,
       options
@@ -60,16 +42,43 @@ export default class LineChart extends Component {
     this.chart = chart;
   }
 
-  // componentDidUpdate() {
-  //   const { chart } = this;
-  //   const { data } = this.props;
+  shouldComponentUpdate(nextProps) {
+    return this.props.data !== nextProps.data;
+  }
 
-  //   Object.assign(chart.data, data);
-  //   chart.update();
-  // }
+  componentDidUpdate() {
+    const { chart } = this;
+    const { data: sequence } = this.props;
+
+    chart.data = this.updateChart(sequence);
+    chart.update();
+  }
 
   componentWillUnmount() {
     this.chart.destroy();
+  }
+
+  updateChart(sequence) {
+    const evens = sequence.map( (num) => (num % 2 === 0) ? num : 0);
+    const odds = sequence.map( (num) => (num % 2 === 0) ? 0 : num);
+  
+    return {
+      labels: sequence,
+      datasets: [{
+        label: 'even',
+        data: evens,
+        backgroundColor: 'rgba(0, 255, 255, .6)',
+        borderColor: 'rgba(0, 255, 255, 1)',
+        borderWidth: 1
+      }, 
+      {
+        label: 'odd',
+        data: odds,
+        backgroundColor: 'rgba(255, 0, 255, .6)',
+        borderColor: 'rgba(255, 0, 255, 1)',
+        borderWidth: 1
+      }]
+    };
   }
 
   render () {
