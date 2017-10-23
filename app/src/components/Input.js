@@ -6,7 +6,7 @@ const SpacedInput = styled.input`
   width: 55px;
 `;
 
-const Label = styled.label`
+export const Label = styled.label`
   padding-right: 1em;
   font-family: 'Oswald', sans-serif;
   text-transform: lowercase;

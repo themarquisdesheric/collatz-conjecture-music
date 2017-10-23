@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const Div = styled.div`
-  border-bottom: 1px solid white;
+const StyledHeader = styled.header`
+  border-bottom: 1px solid #fff;
   background-color: #111;
 `;
 
@@ -14,9 +14,9 @@ const H2 = styled.h2`
 `;
 
 const Header = () => (
-  <Div>
+  <StyledHeader>
     <H2>The Collatz Conjecture</H2>
-  </Div>
+  </StyledHeader>
 );
 
 export default Header;

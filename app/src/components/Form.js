@@ -1,8 +1,26 @@
 import React, { Component } from 'react';
+import styled from 'styled-components';
 import SelectInput from './SelectInput';
 import Input from './Input';
-import styled from 'styled-components';
+import TiArrowLeftOutline from 'react-icons/lib/ti/arrow-left-outline';
+import TiArrowRightOutline from 'react-icons/lib/ti/arrow-right-outline';
 
+const LeftArrow = styled(TiArrowLeftOutline)`
+  font-size: 3em;
+  position: fixed;
+  top: 50%;
+  left: 8%;
+  color: ${({ rel }) => rel ? '#eee' : 'rgba(238, 238, 238, .1)'};
+  `;
+  
+const RightArrow = styled(TiArrowRightOutline)`
+  font-size: 3em;
+  position: fixed;
+  top: 50%;
+  right: 8%;
+  color: ${({ rel }) => rel ? '#eee' : 'rgba(238, 238, 238, .1)'};
+  `;
+  
 const Fieldset = styled.fieldset`
   width: 46%;
   margin: 0 auto 1em;
@@ -25,50 +43,75 @@ export default class Form extends Component {
     const { startVal } = this.state;
     
     e.preventDefault();
-    renderCollatz(this.calculateCollatz(startVal));
+    renderCollatz(startVal);
     window.scrollTo(0, 0);
   }
-  
-  calculateCollatz(n) {
-    let num = Number(n);
-    const sequence = [num];
-  
-    while (num > 1) {
-      if (num % 2 === 0) {
-        num /= 2;
-        sequence.push(num);
-      } else {
-        num = num * 3 + 1;
-        sequence.push(num);
-      }
-    }
 
-    return sequence;
+  handleKeyDown({ key }) {
+    if (key === 'ArrowLeft') this.handleDecrement();
+    else if (key === 'ArrowRight') this.handleIncrement();
   }
 
-  animateSequence() {
+  handleDecrement() {
     let { renderCollatz } = this.props;
-    let counter = 2;
+    let { startVal } = this.state;
 
-    renderCollatz(this.calculateCollatz(counter++));
+    renderCollatz(startVal - 1);
+    this.setState( (prevState) => ({ startVal: prevState.startVal - 1 }));
+  }
+  
+  handleIncrement() {
+    let { renderCollatz } = this.props;
+    let { startVal } = this.state;
 
-    const interval = setInterval(
-      () => {
-        if (counter === 7) clearInterval(interval);
+    renderCollatz(startVal + 1);
+    this.setState( (prevState) => ({ startVal: prevState.startVal + 1 }));
+  }
 
-        renderCollatz(this.calculateCollatz(counter));
-        counter++;
-      },
-      5500
-    );
+  handleMouseOver(side) {
+    if (side === 'left') this.setState( (prevState) => ({ mouseOverLeft: true }));
+    else if (side === 'right') this.setState( (prevState) => ({ mouseOverRight: true }));
+  }
+  
+  handleMouseOut() {
+    this.setState({ 
+      mouseOverLeft: false,
+      mouseOverRight: false
+    });
+  }
+
+  componentDidMount() {
+    window.addEventListener('keydown', this.handleKeyDown.bind(this));
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('keydown', this.handleKeyDown.bind(this));
   }
 
   render() {
-    const { selected, handleWave } = this.props;
+    const { selected, handleWave, sequence } = this.props;
     const waveTypes = ['sine', 'sawtooth', 'triangle', 'square'];
 
     return (
       <div>
+
+        {sequence.length !== 0 && 
+          <LeftArrow 
+            onClick={this.handleDecrement.bind(this)}
+            onMouseOver={() => this.handleMouseOver('left')}
+            onMouseOut={this.handleMouseOut.bind(this)}
+            rel={this.state.mouseOverLeft}
+          />
+        }
+        {sequence.length !== 0 && 
+          <RightArrow 
+            onClick={this.handleIncrement.bind(this)}
+            onMouseOver={() => this.handleMouseOver('right')}
+            onMouseOut={this.handleMouseOut.bind(this)}
+            rel={this.state.mouseOverRight}
+          />
+        }
+
         <form onSubmit={this.handleSubmit.bind(this)}>
           <Fieldset>
             <Legend>
@@ -91,10 +134,6 @@ export default class Form extends Component {
             </button>
           </Fieldset>
         </form>
-
-        <button onClick={this.animateSequence.bind(this)}>
-          Show me 2-7
-        </button>
       </div>
     );
   }
