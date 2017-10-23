@@ -10,7 +10,7 @@ const LeftArrow = styled(TiArrowLeftOutline)`
   position: fixed;
   top: 50%;
   left: 8%;
-  color: ${({ rel }) => rel ? 'rgba(0, 255, 255, .6)' : 'rgba(238, 238, 238, .1)'};
+  color: ${({ rel }) => rel ? '#eee' : 'rgba(238, 238, 238, .1)'};
   `;
   
 const RightArrow = styled(TiArrowRightOutline)`
@@ -18,7 +18,7 @@ const RightArrow = styled(TiArrowRightOutline)`
   position: fixed;
   top: 50%;
   right: 8%;
-  color: ${({ rel }) => rel ? 'rgba(0, 255, 255, .6)' : 'rgba(238, 238, 238, .1)'};
+  color: ${({ rel }) => rel ? '#eee' : 'rgba(238, 238, 238, .1)'};
   `;
   
 const Fieldset = styled.fieldset`
@@ -31,8 +31,7 @@ const Legend = styled.legend` padding: 0 .75em; `;
 
 export default class Form extends Component {
   state = {
-    startVal: 15,
-    mouseOverLeft: false
+    startVal: 15
   };
 
   handleCollatzChange({ target }) {
@@ -74,25 +73,33 @@ export default class Form extends Component {
     else if (side === 'right') this.setState( (prevState) => ({ mouseOverRight: true }));
   }
   
-  handleMouseOut(side) {
-    if (side === 'left') this.setState( (prevState) => ({ mouseOverLeft: false }));
-    else if (side === 'right') this.setState( (prevState) => ({ mouseOverRight: false }));
+  handleMouseOut() {
+    this.setState({ 
+      mouseOverLeft: false,
+      mouseOverRight: false
+    });
+  }
+
+  componentDidMount() {
+    window.addEventListener('keydown', this.handleKeyDown.bind(this));
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('keydown', this.handleKeyDown.bind(this));
   }
 
   render() {
-    const { selected, handleWave } = this.props;
+    const { selected, handleWave, sequence } = this.props;
     const waveTypes = ['sine', 'sawtooth', 'triangle', 'square'];
-   
-    const sequence = true; // testing UI
 
     return (
-      <div onKeyDown={this.handleKeyDown.bind(this)}>
+      <div>
 
         {sequence.length !== 0 && 
           <LeftArrow 
             onClick={this.handleDecrement.bind(this)}
             onMouseOver={() => this.handleMouseOver('left')}
-            onMouseOut={() => this.handleMouseOut('left')}
+            onMouseOut={this.handleMouseOut.bind(this)}
             rel={this.state.mouseOverLeft}
           />
         }
@@ -100,7 +107,7 @@ export default class Form extends Component {
           <RightArrow 
             onClick={this.handleIncrement.bind(this)}
             onMouseOver={() => this.handleMouseOver('right')}
-            onMouseOut={() => this.handleMouseOut('right')}
+            onMouseOut={this.handleMouseOut.bind(this)}
             rel={this.state.mouseOverRight}
           />
         }
