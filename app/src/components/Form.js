@@ -27,7 +27,14 @@ const Fieldset = styled.fieldset`
   border-radius: 5px;
 `;
 
-const Legend = styled.legend` padding: 0 .75em; `; 
+const Button = styled.button`
+  font-family: Oswald;
+  font-weight: bold;
+  font-size: .7em;
+  cursor: pointer;
+`;
+
+const Legend = styled.legend` padding: 0 .75em; `;
 
 export default class Form extends Component {
   state = {
@@ -129,9 +136,9 @@ export default class Form extends Component {
               value={this.state.startVal}
               onChange={this.handleCollatzChange.bind(this)}
             />
-            <button type="submit">
+            <Button type="submit">
               Let's hear it!
-            </button>
+            </Button>
           </Fieldset>
         </form>
       </div>
