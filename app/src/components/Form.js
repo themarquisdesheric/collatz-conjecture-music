@@ -71,8 +71,8 @@ export default class Form extends Component {
     let { renderCollatz } = this.props;
     let { startVal } = this.state;
 
-    renderCollatz(startVal + 1);
-    this.setState( (prevState) => ({ startVal: prevState.startVal + 1 }));
+    renderCollatz(Number(startVal) + 1);
+    this.setState( (prevState) => ({ startVal: Number(prevState.startVal) + 1 }));
   }
 
   handleMouseOver(side) {
