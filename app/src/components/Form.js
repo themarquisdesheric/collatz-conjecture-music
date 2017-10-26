@@ -48,10 +48,14 @@ export default class Form extends Component {
   handleSubmit(e) {
     const { renderCollatz } = this.props;
     const { startVal } = this.state;
-    
-    e.preventDefault();
-    renderCollatz(startVal);
-    window.scrollTo(0, 0);
+
+    if (startVal < 2) {
+      alert('You must enter a number greater than 1');
+    } else {
+      e.preventDefault();
+      renderCollatz(startVal);
+      window.scrollTo(0, 0);
+    }
   }
 
   handleKeyDown({ key }) {
@@ -63,6 +67,11 @@ export default class Form extends Component {
     let { renderCollatz } = this.props;
     let { startVal } = this.state;
 
+    if (startVal <= 2) {
+      alert('You must enter a number greater than 1');
+      return;
+    } 
+
     renderCollatz(startVal - 1);
     this.setState( (prevState) => ({ startVal: prevState.startVal - 1 }));
   }
@@ -71,8 +80,8 @@ export default class Form extends Component {
     let { renderCollatz } = this.props;
     let { startVal } = this.state;
 
-    renderCollatz(startVal + 1);
-    this.setState( (prevState) => ({ startVal: prevState.startVal + 1 }));
+    renderCollatz(Number(startVal) + 1);
+    this.setState( (prevState) => ({ startVal: Number(prevState.startVal) + 1 }));
   }
 
   handleMouseOver(side) {
