@@ -1,25 +1,24 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
-import SelectInput from './SelectInput';
-import Input from './Input';
 import TiArrowLeftOutline from 'react-icons/lib/ti/arrow-left-outline';
 import TiArrowRightOutline from 'react-icons/lib/ti/arrow-right-outline';
+import Hoverable from './Hoverable';
+import SelectInput from './SelectInput';
+import Input from './Input';
 
 const LeftArrow = styled(TiArrowLeftOutline)`
   font-size: 3em;
   position: fixed;
   top: 50%;
   left: 8%;
-  color: ${({ rel }) => rel ? '#eee' : 'rgba(238, 238, 238, .1)'};
-  `;
+`;
   
 const RightArrow = styled(TiArrowRightOutline)`
   font-size: 3em;
   position: fixed;
   top: 50%;
   right: 8%;
-  color: ${({ rel }) => rel ? '#eee' : 'rgba(238, 238, 238, .1)'};
-  `;
+`;
   
 const Fieldset = styled.fieldset`
   width: 46%;
@@ -84,18 +83,6 @@ export default class Form extends Component {
     this.setState( (prevState) => ({ startVal: Number(prevState.startVal) + 1 }));
   }
 
-  handleMouseOver(side) {
-    if (side === 'left') this.setState( (prevState) => ({ mouseOverLeft: true }));
-    else if (side === 'right') this.setState( (prevState) => ({ mouseOverRight: true }));
-  }
-  
-  handleMouseOut() {
-    this.setState({ 
-      mouseOverLeft: false,
-      mouseOverRight: false
-    });
-  }
-
   componentDidMount() {
     window.addEventListener('keydown', this.handleKeyDown.bind(this));
   }
@@ -112,20 +99,14 @@ export default class Form extends Component {
       <div>
 
         {sequence.length !== 0 && 
-          <LeftArrow 
-            onClick={this.handleDecrement.bind(this)}
-            onMouseOver={() => this.handleMouseOver('left')}
-            onMouseOut={this.handleMouseOut.bind(this)}
-            rel={this.state.mouseOverLeft}
-          />
+          <Hoverable>
+            <LeftArrow onClick={this.handleDecrement.bind(this)}/>
+          </Hoverable>
         }
         {sequence.length !== 0 && 
-          <RightArrow 
-            onClick={this.handleIncrement.bind(this)}
-            onMouseOver={() => this.handleMouseOver('right')}
-            onMouseOut={this.handleMouseOut.bind(this)}
-            rel={this.state.mouseOverRight}
-          />
+          <Hoverable>
+            <RightArrow onClick={this.handleIncrement.bind(this)}/>
+          </Hoverable>
         }
 
         <form onSubmit={this.handleSubmit.bind(this)}>
