@@ -5,26 +5,33 @@ import FaMusic from 'react-icons/lib/fa/music';
 const Li = styled.li`
   padding: .3em 0;
   font-family: 'Oswald', sans-serif;
-  position: relative;
 `;
 
 const MusicIcon = styled(FaMusic)`
   color: #0ff;
   position: absolute;
-  right: 0;
+  left: ${({ coords }) => `${coords.clientX}px` };
+  top: ${({ coords }) => `${coords.clientY}px` };
 `;
 
 export default class ListItem extends Component {
   state = {
-    mouseOver: false
+    clientX: null,
+    clientY: null
   }
 
-  mouseIn() {
-    this.setState({ mouseOver: true });
+  mouseIn({ clientX, clientY }) {
+    this.setState({ 
+      clientX,
+      clientY
+    });
   }
 
   mouseOut() {
-    this.setState({ mouseOver: false });
+    this.setState({ 
+      clientX: null,
+      clientY: null
+    });
   }
 
   render() {
@@ -34,7 +41,7 @@ export default class ListItem extends Component {
         onMouseLeave={this.mouseOut.bind(this)}
       >
         {this.props.children}
-        {this.state.mouseOver ? <MusicIcon /> : null}
+        {this.state.clientX ? <MusicIcon coords={this.state} /> : null}
       </Li>
     );
   }
