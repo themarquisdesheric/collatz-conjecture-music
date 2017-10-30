@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import IntroBlurb from './IntroBlurb';
+import Chart from './Chart';
 import Form from './Form';
 import List from './List';
 
@@ -78,6 +79,10 @@ export default class Main extends Component {
 
     return (
       <div>
+        {sequence.length !== 0 &&
+           <Chart data={sequence} />
+        }
+        
         {sequence.length === 0
           ? <IntroBlurb />
           : <List sequence={sequence} wave={wave} />
