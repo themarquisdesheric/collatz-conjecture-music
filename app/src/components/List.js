@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 import ListItem from './ListItem';
-import Chart from './Chart';
 
 const Ul = styled.ul`
   width: 40%;
@@ -49,8 +48,6 @@ export default class List extends Component {
 
     return (
       <div>
-        <Chart data={sequence} />
-        
         <Ul>
           {sequence.map( (num, i) => {
             if (i === sequence.length - 1) return (

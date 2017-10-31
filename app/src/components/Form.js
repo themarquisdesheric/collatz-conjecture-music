@@ -48,10 +48,11 @@ export default class Form extends Component {
     const { renderCollatz } = this.props;
     const { startVal } = this.state;
 
+    e.preventDefault();
+
     if (startVal < 2) {
       alert('You must enter a number greater than 1');
     } else {
-      e.preventDefault();
       renderCollatz(startVal);
       window.scrollTo(0, 0);
     }
@@ -97,12 +98,12 @@ export default class Form extends Component {
 
     return (
       <div>
-
         {sequence.length !== 0 && 
           <Hoverable>
             <LeftArrow onClick={this.handleDecrement.bind(this)}/>
           </Hoverable>
         }
+        
         {sequence.length !== 0 && 
           <Hoverable>
             <RightArrow onClick={this.handleIncrement.bind(this)}/>
