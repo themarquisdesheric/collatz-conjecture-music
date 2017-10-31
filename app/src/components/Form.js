@@ -22,7 +22,7 @@ const RightArrow = styled(TiArrowRightOutline)`
   
 const Fieldset = styled.fieldset`
   width: 46%;
-  margin: 0 auto 1em;
+  margin: 0 auto 5em;
   border-radius: 5px;
 `;
 

@@ -2,9 +2,11 @@ import React from 'react';
 import styled from 'styled-components';
 
 const StyledFooter = styled.footer`
+  height: 30px;
+  width: 100%;
   position: absolute;
-  bottom: 0;
   left: 0;
+  bottom: 0;
 `;
 
 export default function Footer() {
