@@ -2,10 +2,7 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 import FaMusic from 'react-icons/lib/fa/music';
 
-const Li = styled.li`
-  padding: .3em 0;
-  font-family: 'Oswald', sans-serif;
-`;
+const Li = styled.li` padding: .3em 0; `;
 
 const MusicIcon = styled(FaMusic)`
   color: #0ff;
