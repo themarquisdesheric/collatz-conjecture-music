@@ -5,7 +5,6 @@ const Div = styled.div`
   width: 45%;
   padding: 0 2em;
   margin: 4em auto;
-  font-family: 'Oswald', sans-serif;
   font-size: 1.1em;
 `;
 

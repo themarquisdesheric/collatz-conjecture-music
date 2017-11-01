@@ -22,7 +22,7 @@ const RightArrow = styled(TiArrowRightOutline)`
   
 const Fieldset = styled.fieldset`
   width: 46%;
-  margin: 0 auto 1em;
+  margin: 0 auto 5em;
   border-radius: 5px;
 `;
 
@@ -31,9 +31,13 @@ const Button = styled.button`
   font-weight: bold;
   font-size: .7em;
   cursor: pointer;
+  letter-spacing: .4px;
 `;
 
-const Legend = styled.legend` padding: 0 .75em; `;
+const Legend = styled.legend`
+  font-family: 'Permanent Marker', cursive;
+  padding: 0 .75em;
+`;
 
 export default class Form extends Component {
   state = {
