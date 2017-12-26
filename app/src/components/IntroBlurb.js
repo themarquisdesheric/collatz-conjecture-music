@@ -41,7 +41,7 @@ const IntroBlurb = () => (
         The 
         <A 
           href="https://en.wikipedia.org/wiki/Collatz_conjecture" 
-          target={"_blank"}
+          target="_blank"
         >
           Collatz Conjecture
         </A>

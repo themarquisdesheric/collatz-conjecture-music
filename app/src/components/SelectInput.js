@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { Label } from './Input';
 
@@ -13,7 +14,7 @@ const SelectInput = ({ label, selected, waveTypes, onChange }) => (
     >
       {waveTypes.map( (wave, i) => (
         <option 
-          key={i}
+          key={wave}
           value={wave}
         >
           {wave}
@@ -22,5 +23,12 @@ const SelectInput = ({ label, selected, waveTypes, onChange }) => (
     </Select>
   </Label>
 );
+
+SelectInput.propTypes = {
+  label: PropTypes.string.isRequired,
+  selected: PropTypes.string.isRequired,
+  waveTypes: PropTypes.arrayOf(PropTypes.string).isRequired,
+  onChange: PropTypes.func.isRequired
+};
 
 export default SelectInput;

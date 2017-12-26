@@ -56,3 +56,5 @@ function collatz(num) {
 
   playCollatz(sequence);
 }
+
+collatz(15);

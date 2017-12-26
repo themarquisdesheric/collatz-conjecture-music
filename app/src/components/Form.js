@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import TiArrowLeftOutline from 'react-icons/lib/ti/arrow-left-outline';
 import TiArrowRightOutline from 'react-icons/lib/ti/arrow-right-outline';
@@ -40,15 +41,30 @@ const Legend = styled.legend`
 `;
 
 export default class Form extends Component {
+  static propTypes = {
+    selected: PropTypes.string.isRequired,
+    renderCollatz: PropTypes.func.isRequired,
+    handleWave: PropTypes.func.isRequired,
+    sequence: PropTypes.arrayOf(PropTypes.number).isRequired,
+  }
+
   state = {
     startVal: 15
   };
 
-  handleCollatzChange({ target }) {
-    this.setState({ startVal: target.value });
+  componentDidMount() {
+    window.addEventListener('keydown', this.handleKeyDown.bind(this));
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('keydown', this.handleKeyDown.bind(this));
+  }
+
+  handleCollatzChange = ({ target }) => {
+    this.setState({ startVal: Number(target.value) });
   }
     
-  handleSubmit(e) {
+  handleSubmit = (e) => {
     const { renderCollatz } = this.props;
     const { startVal } = this.state;
 
@@ -67,7 +83,7 @@ export default class Form extends Component {
     else if (key === 'ArrowRight') this.handleIncrement();
   }
 
-  handleDecrement() {
+  handleDecrement = () => {
     let { renderCollatz } = this.props;
     let { startVal } = this.state;
 
@@ -80,20 +96,12 @@ export default class Form extends Component {
     this.setState( (prevState) => ({ startVal: prevState.startVal - 1 }));
   }
   
-  handleIncrement() {
+  handleIncrement = () => {
     let { renderCollatz } = this.props;
     let { startVal } = this.state;
 
-    renderCollatz(Number(startVal) + 1);
+    renderCollatz(startVal + 1);
     this.setState( (prevState) => ({ startVal: Number(prevState.startVal) + 1 }));
-  }
-
-  componentDidMount() {
-    window.addEventListener('keydown', this.handleKeyDown.bind(this));
-  }
-
-  componentWillUnmount() {
-    window.removeEventListener('keydown', this.handleKeyDown.bind(this));
   }
 
   render() {
@@ -104,17 +112,17 @@ export default class Form extends Component {
       <div>
         {sequence.length !== 0 && 
           <Hoverable>
-            <LeftArrow onClick={this.handleDecrement.bind(this)}/>
+            <LeftArrow onClick={this.handleDecrement} />
           </Hoverable>
         }
         
         {sequence.length !== 0 && 
           <Hoverable>
-            <RightArrow onClick={this.handleIncrement.bind(this)}/>
+            <RightArrow onClick={this.handleIncrement} />
           </Hoverable>
         }
 
-        <form onSubmit={this.handleSubmit.bind(this)}>
+        <form onSubmit={this.handleSubmit}>
           <Fieldset>
             <Legend>
               Enter a number to calculate and listen
@@ -129,10 +137,10 @@ export default class Form extends Component {
               label="Start value"
               type="number"
               value={this.state.startVal}
-              onChange={this.handleCollatzChange.bind(this)}
+              onChange={this.handleCollatzChange}
             />
             <Button type="submit">
-              Let's hear it!
+              {"Let's hear it!"}
             </Button>
           </Fieldset>
         </form>

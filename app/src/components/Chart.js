@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import Chart from 'chart.js';
 
@@ -10,6 +11,10 @@ const Div = styled.div`
 
 export default class LineChart extends Component {
   static displayName = 'Chart';
+
+  static propTypes = {
+    data: PropTypes.arrayOf(PropTypes.number).isRequired
+  }
 
   componentDidMount() {
     const { data: sequence } = this.props;
@@ -84,7 +89,7 @@ export default class LineChart extends Component {
   render () {
     return (
       <Div>
-        <canvas ref={(canvas) => this.canvas = canvas}></canvas>
+        <canvas ref={(canvas) => this.canvas = canvas} />
       </Div>
     );
   }
