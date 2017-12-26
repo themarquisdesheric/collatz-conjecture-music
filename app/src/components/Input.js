@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 const SpacedInput = styled.input`
@@ -22,5 +23,12 @@ const Input = ({ label, type, value, onChange }) => (
     />
   </Label>
 );
+
+Input.propTypes = {
+  label: PropTypes.string.isRequired,
+  type: PropTypes.string.isRequired,
+  value: PropTypes.number.isRequired,
+  onChange: PropTypes.func.isRequired
+};
 
 export default Input;

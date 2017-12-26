@@ -1,11 +1,16 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 export default class Hoverable extends Component {
+  static propTypes = {
+    children: PropTypes.node.isRequired
+  }
+
   state = {
     hover: false
   }
 
-  toggleHover() {
+  toggleHover = () => {
     this.setState( (prevState) => ({ hover: !prevState.hover }));
   }
 
@@ -15,8 +20,8 @@ export default class Hoverable extends Component {
     return (
       <div 
         style={{color}}
-        onMouseEnter={this.toggleHover.bind(this)}
-        onMouseLeave={this.toggleHover.bind(this)}  
+        onMouseEnter={this.toggleHover}
+        onMouseLeave={this.toggleHover}  
       >
         {this.props.children}
       </div>

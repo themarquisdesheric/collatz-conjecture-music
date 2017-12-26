@@ -12,13 +12,6 @@ export default class Main extends Component {
     wave: 'sine'
   };
 
-  renderCollatz(startVal) {
-    const sequence = this.calculateCollatz(startVal);
-
-    this.setState({ sequence });
-    this.playCollatz(sequence);
-  }
-
   calculateCollatz(n) {
     let num = Number(n);
     const sequence = [num];
@@ -34,10 +27,6 @@ export default class Main extends Component {
     }
 
     return sequence;
-  }
-
-  handleWave({ target }) {
-    this.setState({ wave: target.value });
   }
 
   playCollatz(sequence) {
@@ -74,13 +63,24 @@ export default class Main extends Component {
     }, 300);
   }
 
+  handleWave = ({ target }) => {
+    this.setState({ wave: target.value });
+  }
+
+  renderCollatz = (startVal) => {
+    const sequence = this.calculateCollatz(startVal);
+
+    this.setState({ sequence });
+    this.playCollatz(sequence);
+  }
+
   render() {
     const { sequence, wave } = this.state;
 
     return (
       <div>
         {sequence.length !== 0 &&
-           <Chart data={sequence} />
+          <Chart data={sequence} />
         }
         
         {sequence.length === 0
@@ -89,9 +89,9 @@ export default class Main extends Component {
         }
 
         <Form
-          renderCollatz={this.renderCollatz.bind(this)}
+          renderCollatz={this.renderCollatz}
           selected={this.state.wave}
-          handleWave={this.handleWave.bind(this)}
+          handleWave={this.handleWave}
           sequence={sequence}
         />
       </div>
