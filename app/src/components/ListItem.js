@@ -23,21 +23,21 @@ export default class ListItem extends Component {
   }
 
   state = {
-    clientx: null,
-    clienty: null
+    x: null,
+    y: null
   }
 
   mouseIn = ({ clientX, clientY }) => {
     this.setState({ 
-      clientx: clientX,
-      clienty: clientY
+      x: clientX,
+      y: clientY
     });
   }
 
   mouseOut = () => {
     this.setState({ 
-      clientx: null,
-      clienty: null
+      x: null,
+      y: null
     });
   }
 
@@ -48,7 +48,7 @@ export default class ListItem extends Component {
         onMouseLeave={this.mouseOut}
       >
         {this.props.children}
-        {this.state.clientx ? <MusicIcon {...this.state} /> : null}
+        {this.state.x ? <MusicIcon {...this.state} /> : null}
       </Li>
     );
   }
