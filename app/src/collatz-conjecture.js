@@ -1,5 +1,6 @@
 function collatz(num) {
   var sequence = [num];
+  var scaledSequence;
 
   function scaleBetween(unscaled, floor, ceiling) {
     const min = Math.min(...unscaled);
@@ -8,10 +9,6 @@ function collatz(num) {
     return unscaled.map( 
       (num) => (ceiling - floor) * (num - min) / (max - min) + floor
     );
-  }
-
-  function logarithmify(num, step = 1.05946, start = 880) {
-    return start * Math.pow(step, num - 1);
   }
 
   function playCollatz(sequence, wave = 'sine') {
@@ -31,7 +28,7 @@ function collatz(num) {
         clearInterval(intervalID);
         osc.disconnect(audioCtx.destination);
       } else {
-        osc.frequency.value = logarithmify(sequence[counter]);
+        osc.frequency.value = sequence[counter];
 
         counter++;
       }
@@ -54,7 +51,10 @@ function collatz(num) {
 
   console.log(num);
 
-  playCollatz(sequence);
+  // scale hz within speaker's capabilities
+  scaledSequence = scaleBetween(sequence, 880, 9000);
+
+  playCollatz(scaledSequence);
 }
 
 collatz(15);

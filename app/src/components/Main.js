@@ -53,14 +53,21 @@ export default class Main extends Component {
         clearInterval(intervalID);
         osc.disconnect(audioCtx.destination);
       } else {
-        // TODO: use logarithmic step, keep working on normalizing audio to human hearing range
-
-        // multiplying frequency by 110 to hear better, and by 1.05946 for the semitones step
-        osc.frequency.value = sequence[counter] * 110 * 1.05946;
+        osc.frequency.value = sequence[counter];
 
         counter++;
       }
     }, 300);
+  }
+
+  // scale to within speaker's capabilities between min/max hz
+  scaleBetween = (unscaled, floor, ceiling) => {
+    const min = Math.min(...unscaled);
+    const max = Math.max(...unscaled);
+  
+    return unscaled.map( 
+      (num) => (ceiling - floor) * (num - min) / (max - min) + floor
+    );
   }
 
   handleWave = ({ target }) => {
@@ -69,9 +76,10 @@ export default class Main extends Component {
 
   renderCollatz = (startVal) => {
     const sequence = this.calculateCollatz(startVal);
+    const scaledSequence = this.scaleBetween(sequence, 880, 9000);
 
     this.setState({ sequence });
-    this.playCollatz(sequence);
+    this.playCollatz(scaledSequence);
   }
 
   render() {
