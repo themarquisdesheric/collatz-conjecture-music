@@ -9,6 +9,7 @@ export default class Main extends Component {
 
   state = {
     sequence: [],
+    scaledSequence: [],
     wave: 'sine'
   };
 
@@ -37,8 +38,7 @@ export default class Main extends Component {
       audioCtx = new AudioContext();
   
       this.setState({ audio: audioCtx });
-    } 
-    else audioCtx = this.state.audio;
+    } else audioCtx = this.state.audio;
 
     const osc = audioCtx.createOscillator();
     let counter = 0;
@@ -78,12 +78,15 @@ export default class Main extends Component {
     const sequence = this.calculateCollatz(startVal);
     const scaledSequence = this.scaleBetween(sequence, 880, 9000);
 
-    this.setState({ sequence });
+    this.setState({ 
+      sequence, 
+      scaledSequence
+    });
     this.playCollatz(scaledSequence);
   }
 
   render() {
-    const { sequence, wave } = this.state;
+    const { sequence, scaledSequence, wave } = this.state;
 
     return (
       <div>
@@ -93,7 +96,11 @@ export default class Main extends Component {
         
         {sequence.length === 0
           ? <IntroBlurb />
-          : <List sequence={sequence} wave={wave} />
+          : <List 
+            sequence={sequence} 
+            wave={wave}
+            scaledSequence={scaledSequence}
+          />
         }
 
         <Form
