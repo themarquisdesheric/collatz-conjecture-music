@@ -1,3 +1,5 @@
+/* eslint no-console: "off" */
+
 function collatz(num) {
   var sequence = [num];
   var scaledSequence;
