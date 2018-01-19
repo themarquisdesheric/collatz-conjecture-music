@@ -19,6 +19,7 @@ export default class List extends Component {
 
   static propTypes = {
     sequence: PropTypes.arrayOf(PropTypes.number).isRequired,
+    scaledSequence: PropTypes.arrayOf(PropTypes.number).isRequired,
     wave: PropTypes.string.isRequired
   }
 
@@ -37,29 +38,30 @@ export default class List extends Component {
     } else audioCtx = this.state.audio;
 
     const osc = audioCtx.createOscillator();
-    // this.setState({ osc });
-  
+    
     osc.type = wave;
     osc.connect(audioCtx.destination);
     osc.start();
-    osc.frequency.value = num * 110 * 1.05946;
+    osc.frequency.value = num;
 
     setTimeout( () => {
       osc.disconnect(audioCtx.destination);
-    }, 300);
+    }, 500);
   }
 
   render() {
-    const { sequence, wave } = this.props;
+    const { sequence, scaledSequence, wave } = this.props;
 
     return (
       <div>
         <Ul>
           {sequence.map( (num, i) => {
+            let scaledNum = scaledSequence[i];
+
             if (i === sequence.length - 1) return (
               <ListItem key={num}>
                 {/* TODO: not happy with how hacky this is, but am crashing everything when passing playTones as a prop to ListItem */}
-                <span onMouseEnter={() => this.playTone(num, wave)}>
+                <span onMouseEnter={() => this.playTone(scaledNum, wave)}>
                   <Odd>{num} has been reached</Odd>
                 </span>
               </ListItem>
@@ -69,7 +71,7 @@ export default class List extends Component {
 
               ? (
                 <ListItem key={num}>
-                  <span onMouseEnter={() => this.playTone(num, wave)}>
+                  <span onMouseEnter={() => this.playTone(scaledNum, wave)}>
                     <Even>{num} is even</Even> so we divide by 2
                   </span>
                 </ListItem>
@@ -77,7 +79,7 @@ export default class List extends Component {
               ) : (
             
                 <ListItem key={num}>
-                  <span onMouseEnter={() => this.playTone(num, wave)}>
+                  <span onMouseEnter={() => this.playTone(scaledNum, wave)}>
                     <Odd>{num} is odd</Odd> so we multiply by 3, then add 1
                   </span>
                 </ListItem>
