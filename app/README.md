@@ -19,3 +19,5 @@ npm install
 ```
 npm start
 ```
+
+Or navigate to https://themarquisdesheric.github.io/collatz-conjecture-music/
