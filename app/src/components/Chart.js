@@ -7,6 +7,10 @@ const Div = styled.div`
   max-width: 43%;
   height: 100%;
   margin: 1.5em auto;
+
+  @media (max-width: 700px) {
+    display: none;
+  }
 `;
 
 export default class LineChart extends Component {

@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import ListItem from './ListItem';
 
 const Ul = styled.ul`
-  width: 40%;
+  width: 400px;
   margin: 1em auto;
   padding-left: 0;
   list-style-type: none;
@@ -57,7 +57,6 @@ export default class List extends Component {
         <Ul>
           {sequence.map( (num, i) => {
             let scaledNum = scaledSequence[i];
-            console.log(scaledNum);
 
             if (i === sequence.length - 1) return (
               <ListItem key={num}>

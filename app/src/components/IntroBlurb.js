@@ -2,15 +2,14 @@ import React from 'react';
 import styled from 'styled-components';
 
 const Div = styled.div`
-  width: 45%;
-  padding: 0 2em;
+  width: 100%;
   margin: 4em auto;
   font-size: 1.1em;
 `;
 
 const Ul = styled.ul`
   margin: 0 auto;
-  padding-left: 0;
+  padding: 0 1em;
   list-style-type: none;
 `;
 
