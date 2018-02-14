@@ -9,12 +9,10 @@ const MusicIcon = styled(FaMusic)`
   color: #0ff;
   position: absolute;
   left: ${({ clientx }) => `${clientx}px` };
-  top: ${({ clienty }) => `${clienty}px` };
 `;
 
 MusicIcon.propTypes = {
-  clientx: PropTypes.number,
-  clienty: PropTypes.number
+  clientx: PropTypes.number
 };
 
 export default class ListItem extends Component {
@@ -23,32 +21,31 @@ export default class ListItem extends Component {
   }
 
   state = {
-    x: null,
-    y: null
+    clientX: null
   }
 
-  mouseIn = ({ clientX, clientY }) => {
+  mouseIn = ({ clientX }) => {
     this.setState({ 
-      x: clientX,
-      y: clientY
+      clientX
     });
   }
 
   mouseOut = () => {
     this.setState({ 
-      x: null,
-      y: null
+      clientX: null
     });
   }
 
   render() {
+    const { clientX } = this.state;
+
     return (
       <Li 
         onMouseEnter={this.mouseIn}
         onMouseLeave={this.mouseOut}
       >
         {this.props.children}
-        {this.state.x ? <MusicIcon {...this.state} /> : null}
+        {clientX ? <MusicIcon clientx={clientX} /> : null}
       </Li>
     );
   }
