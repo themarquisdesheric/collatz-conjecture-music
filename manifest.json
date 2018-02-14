@@ -2,6 +2,13 @@
   "short_name": "Collatz Music",
   "name": "Collatz Music",
   "start_url": "./index.html",
+  "icons": [
+    {
+      "src": "favicon.ico",
+      "sizes": "192x192",
+      "type": "image/png"
+    }
+  ],
   "display": "standalone",
   "theme_color": "#000000",
   "background_color": "#ffffff"
