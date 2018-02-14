@@ -12,6 +12,10 @@ const LeftArrow = styled(TiArrowLeftOutline)`
   position: fixed;
   top: 50%;
   left: 8%;
+
+  @media (max-width: 450px) {
+    left: 2%;
+  }
 `;
   
 const RightArrow = styled(TiArrowRightOutline)`
@@ -19,12 +23,21 @@ const RightArrow = styled(TiArrowRightOutline)`
   position: fixed;
   top: 50%;
   right: 8%;
+
+  @media (max-width: 450px) {
+    right: 2%;
+  }
 `;
   
 const Fieldset = styled.fieldset`
-  width: 46%;
+  width: 600px;
   margin: 0 auto 5em;
   border-radius: 5px;
+
+  @media (max-width: 850px) {
+    max-width: 88%;
+    // margin: 0 1em 5em;
+  }
 `;
 
 const Button = styled.button`
