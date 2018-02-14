@@ -12,8 +12,6 @@ const StyledFooter = styled.footer`
   padding: .5em 0;
 `;
 
-// favicon? 
-
 const Span = styled.span`
   font-weight: bold;
 `;
