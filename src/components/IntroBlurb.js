@@ -20,6 +20,7 @@ const Li = styled.li`
 const StyledLi = styled.li`
   color: rgba(0, 255, 255, 0.8);
   margin: 1em;
+  font-style: italic;
 `;
 
 const A = styled.a`
@@ -38,17 +39,14 @@ const IntroBlurb = () => (
     <Ul>
       <Li>
         The 
-        <A 
-          href="https://en.wikipedia.org/wiki/Collatz_conjecture" 
-          target="_blank"
-        >
+        <A href="https://en.wikipedia.org/wiki/Collatz_conjecture" target="_blank">
           Collatz Conjecture
         </A>
         is an unsolved problem in mathematics.
       </Li>
       <Li>It states that given any positive integer, the sequence will always reach 1 by following two rules:</Li>
-      <StyledLi><i>If the integer is even, divide it by 2</i></StyledLi>
-      <StyledLi><i>Otherwise, multiply it by 3 and add 1</i></StyledLi>
+      <StyledLi>If the integer is even, divide it by 2</StyledLi>
+      <StyledLi>Otherwise, multiply it by 3 and add 1</StyledLi>
     </Ul>
     <CallToAction>
       But how might it sound?

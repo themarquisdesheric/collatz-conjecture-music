@@ -14,8 +14,6 @@ const Div = styled.div`
 `;
 
 export default class LineChart extends Component {
-  static displayName = 'Chart';
-
   static propTypes = {
     data: PropTypes.arrayOf(PropTypes.number).isRequired
   }

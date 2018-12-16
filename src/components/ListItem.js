@@ -22,30 +22,29 @@ export default class ListItem extends Component {
 
   state = {
     clientX: null
-  }
+  };
 
   mouseIn = ({ clientX }) => {
-    this.setState({ 
-      clientX
-    });
+    this.setState({ clientX });
   }
 
   mouseOut = () => {
-    this.setState({ 
-      clientX: null
-    });
+    this.setState({ clientX: null });
   }
 
   render() {
     const { clientX } = this.state;
+    const { playTone } = this.props;
 
     return (
       <Li 
         onMouseEnter={this.mouseIn}
         onMouseLeave={this.mouseOut}
       >
-        {this.props.children}
-        {clientX ? <MusicIcon clientx={clientX} /> : null}
+        <span onMouseEnter={playTone}>
+          {this.props.children}
+          {clientX && <MusicIcon clientx={clientX} />}
+        </span>
       </Li>
     );
   }

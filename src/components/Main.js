@@ -1,56 +1,53 @@
 import React, { Component } from 'react';
+
 import IntroBlurb from './IntroBlurb';
 import Chart from './Chart';
 import Form from './Form';
 import List from './List';
+import createOscillator from '../utils';
 
 export default class Main extends Component {
-  static displayName = 'Main';
-
   state = {
     sequence: [],
     scaledSequence: [],
     wave: 'sine'
   };
 
-  calculateCollatz(n) {
+  calculateCollatz = (n) => {
     let num = Number(n);
     const sequence = [num];
   
     while (num > 1) {
       if (num % 2 === 0) {
         num /= 2;
-        sequence.push(num);
       } else {
         num = num * 3 + 1;
-        sequence.push(num);
       }
+      sequence.push(num);
     }
 
     return sequence;
   }
 
-  playCollatz(sequence) {
+  playCollatz = (sequence) => {
     const AudioContext = window.AudioContext || window.webkitAudioContext;
+    const { audio, wave, } = this.state;
     let audioCtx;
 
-    if (!this.state.audio) {
+    if (!audio) {
       audioCtx = new AudioContext();
   
       this.setState({ audio: audioCtx });
-    } else audioCtx = this.state.audio;
+    } else {
+      audioCtx = audio;
+    }
 
-    const osc = audioCtx.createOscillator();
     let counter = 0;
-    
-    osc.type = this.state.wave;
-    osc.connect(audioCtx.destination);
-    osc.start();
-    osc.frequency.value = 0;
-  
+    const osc = createOscillator(audioCtx, wave);
     const intervalID = setInterval( () => {
       if (counter === sequence.length) {
         clearInterval(intervalID);
+        
         osc.disconnect(audioCtx.destination);
       } else {
         osc.frequency.value = sequence[counter];
@@ -65,8 +62,8 @@ export default class Main extends Component {
     const min = Math.min(...unscaled);
     const max = Math.max(...unscaled);
   
-    return unscaled.map( 
-      (num) => (ceiling - floor) * (num - min) / (max - min) + floor
+    return unscaled.map( (num) => 
+      (ceiling - floor) * (num - min) / (max - min) + floor
     );
   }
 
@@ -82,6 +79,7 @@ export default class Main extends Component {
       sequence, 
       scaledSequence
     });
+
     this.playCollatz(scaledSequence);
   }
 
@@ -90,22 +88,20 @@ export default class Main extends Component {
 
     return (
       <div>
-        {sequence.length !== 0 &&
-          <Chart data={sequence} />
-        }
+        {!!sequence.length && <Chart data={sequence} />}
         
         {sequence.length === 0
           ? <IntroBlurb />
           : <List 
-            sequence={sequence} 
-            wave={wave}
-            scaledSequence={scaledSequence}
-          />
+              sequence={sequence} 
+              wave={wave}
+              scaledSequence={scaledSequence}
+            />
         }
 
         <Form
           renderCollatz={this.renderCollatz}
-          selected={this.state.wave}
+          selected={wave}
           handleWave={this.handleWave}
           sequence={sequence}
         />
