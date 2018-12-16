@@ -8,7 +8,7 @@ export default class Hoverable extends Component {
 
   state = {
     hover: false
-  }
+  };
 
   toggleHover = () => {
     this.setState( (prevState) => ({ hover: !prevState.hover }));

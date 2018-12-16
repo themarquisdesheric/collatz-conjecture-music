@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import TiArrowLeftOutline from 'react-icons/lib/ti/arrow-left-outline';
 import TiArrowRightOutline from 'react-icons/lib/ti/arrow-right-outline';
+
 import Hoverable from './Hoverable';
 import SelectInput from './SelectInput';
 import Input from './Input';
@@ -66,11 +67,11 @@ export default class Form extends Component {
   };
 
   componentDidMount() {
-    window.addEventListener('keydown', this.handleKeyDown.bind(this));
+    window.addEventListener('keydown', this.handleKeyDown);
   }
 
   componentWillUnmount() {
-    window.removeEventListener('keydown', this.handleKeyDown.bind(this));
+    window.removeEventListener('keydown', this.handleKeyDown);
   }
 
   handleCollatzChange = ({ target }) => {
@@ -91,7 +92,7 @@ export default class Form extends Component {
     }
   }
 
-  handleKeyDown({ key }) {
+  handleKeyDown = ({ key }) => {
     if (key === 'ArrowLeft') this.handleDecrement();
     else if (key === 'ArrowRight') this.handleIncrement();
   }
@@ -123,13 +124,13 @@ export default class Form extends Component {
 
     return (
       <div>
-        {sequence.length !== 0 && 
+        {!!sequence.length && 
           <Hoverable>
             <LeftArrow onClick={this.handleDecrement} />
           </Hoverable>
         }
         
-        {sequence.length !== 0 && 
+        {!!sequence.length && 
           <Hoverable>
             <RightArrow onClick={this.handleIncrement} />
           </Hoverable>

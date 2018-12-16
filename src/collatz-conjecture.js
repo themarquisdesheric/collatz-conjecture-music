@@ -1,23 +1,23 @@
 /* eslint no-console: "off" */
 
-function collatz(num) {
-  var sequence = [num];
-  var scaledSequence;
+const collatz = (num) => {
+  const sequence = [num];
+  let scaledSequence;
 
-  function scaleBetween(unscaled, floor, ceiling) {
+  const scaleBetween = (unscaled, floor, ceiling) => {
     const min = Math.min(...unscaled);
     const max = Math.max(...unscaled);
   
-    return unscaled.map( 
-      (num) => (ceiling - floor) * (num - min) / (max - min) + floor
+    return unscaled.map( (num) => 
+      (ceiling - floor) * (num - min) / (max - min) + floor
     );
   }
 
-  function playCollatz(sequence, wave = 'sine') {
-    var AudioContext = window.AudioContext || window.webkitAudioContext;
-    var audioCtx = new AudioContext();
-    var osc = audioCtx.createOscillator();
-    var counter = 0;
+  const playCollatz = (sequence, wave = 'sine') => {
+    const AudioContext = window.AudioContext || window.webkitAudioContext;
+    const audioCtx = new AudioContext();
+    const osc = audioCtx.createOscillator();
+    const counter = 0;
   
     osc.type = wave;
     osc.connect(audioCtx.destination);
@@ -25,7 +25,7 @@ function collatz(num) {
     osc.frequency.value = 0;
     osc.stop(sequence.length);
   
-    var intervalID = setInterval(function() {
+    const intervalID = setInterval( () => {
       if (counter === sequence.length) {
         clearInterval(intervalID);
         osc.disconnect(audioCtx.destination);
@@ -42,13 +42,12 @@ function collatz(num) {
       console.log(num + ' is even, so we divide it by 2.');
 
       num /= 2;
-      sequence.push(num);
     } else {
       console.log(num + ' is odd. Multiplyling by 3 and adding 1');
 
       num = num * 3 + 1;
-      sequence.push(num);
     }
+    sequence.push(num);
   }
 
   console.log(num);

@@ -10,24 +10,27 @@ const StyledFooter = styled.footer`
   background-color: #111;
   border-top: 1px solid #fff;
   padding: .5em 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 
 const Span = styled.span`
   font-weight: bold;
 `;
 
-export default function Footer() {
-  return (
-    <StyledFooter>
-      <small>
-        &copy; 
-        <Span>
-          &nbsp;
-          yuval allweil
-          &nbsp;
-        </Span>
-        2017
-      </small>
-    </StyledFooter>
-  );
-}
+const Footer = () => (
+  <StyledFooter>
+    <small>
+      &copy; 
+      <Span>
+        &nbsp;
+        yuval allweil
+        &nbsp;
+      </Span>
+      2017
+    </small>
+  </StyledFooter>
+);
+
+export default Footer;
