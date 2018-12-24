@@ -2,18 +2,24 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
-import { Label } from './Input';
+export const Label = styled.label`
+  padding-right: 1em;
+  text-transform: lowercase;
+  font-size: .9em;
+`;
 
 const Select = styled.select` margin: 1em .5em .5em; `;
 
-const SelectInput = ({ label, selected, waveTypes, onChange }) => (
+const waveTypes = ['sine', 'sawtooth', 'triangle', 'square'];
+
+const SelectInput = ({ label, selected, onChange }) => (
   <Label>
     {label}
     <Select 
       value={selected}
       onChange={onChange}
     >
-      {waveTypes.map( (wave, i) => (
+      {waveTypes.map( (wave) => (
         <option key={wave} value={wave}>
           {wave}
         </option>
@@ -25,7 +31,6 @@ const SelectInput = ({ label, selected, waveTypes, onChange }) => (
 SelectInput.propTypes = {
   label: PropTypes.string.isRequired,
   selected: PropTypes.string.isRequired,
-  waveTypes: PropTypes.arrayOf(PropTypes.string).isRequired,
   onChange: PropTypes.func.isRequired
 };
 

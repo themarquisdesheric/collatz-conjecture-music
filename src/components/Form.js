@@ -1,35 +1,15 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import TiArrowLeftOutline from 'react-icons/lib/ti/arrow-left-outline';
-import TiArrowRightOutline from 'react-icons/lib/ti/arrow-right-outline';
 
-import Hoverable from './Hoverable';
-import SelectInput from './SelectInput';
-import Input from './Input';
+import Arrows from './Arrows';
+import SelectInput, { Label } from './SelectInput';
 
-const LeftArrow = styled(TiArrowLeftOutline)`
-  font-size: 3em;
-  position: fixed;
-  top: 50%;
-  left: 8%;
+const spacedInputStyles = {
+  margin: '1em .5em',
+  width: '55px'
+};
 
-  @media (max-width: 450px) {
-    left: 2%;
-  }
-`;
-  
-const RightArrow = styled(TiArrowRightOutline)`
-  font-size: 3em;
-  position: fixed;
-  top: 50%;
-  right: 8%;
-
-  @media (max-width: 450px) {
-    right: 2%;
-  }
-`;
-  
 const Fieldset = styled.fieldset`
   width: 600px;
   margin: 0 auto 5em;
@@ -63,32 +43,35 @@ export default class Form extends Component {
   }
 
   state = {
-    startVal: 15
+    startVal: 0
   };
 
   componentDidMount() {
     window.addEventListener('keydown', this.handleKeyDown);
   }
 
+  componentDidUpdate(_prevProps, prevState) {
+    const { startVal } = this.state;
+
+    if (prevState.startVal !== startVal) {
+      this.props.renderCollatz(startVal);
+      window.scrollTo(0, 0);
+    }
+  }
+
   componentWillUnmount() {
     window.removeEventListener('keydown', this.handleKeyDown);
   }
-
-  handleCollatzChange = ({ target }) => {
-    this.setState({ startVal: Number(target.value) });
-  }
     
   handleSubmit = (e) => {
-    const { renderCollatz } = this.props;
-    const { startVal } = this.state;
+    const startVal = Number(this.input.value);
 
     e.preventDefault();
 
     if (startVal < 2) {
       alert('You must enter a number greater than 1');
     } else {
-      renderCollatz(startVal);
-      window.scrollTo(0, 0);
+      this.setState({ startVal });
     }
   }
 
@@ -98,44 +81,32 @@ export default class Form extends Component {
   }
 
   handleDecrement = () => {
-    let { renderCollatz } = this.props;
-    let { startVal } = this.state;
+    const { startVal } = this.state;
 
     if (startVal <= 2) {
       alert('You must enter a number greater than 1');
       return;
     } 
 
-    renderCollatz(startVal - 1);
-    this.setState( (prevState) => ({ startVal: prevState.startVal - 1 }));
+    this.setState({ startVal: startVal - 1 });
   }
   
   handleIncrement = () => {
-    let { renderCollatz } = this.props;
-    let { startVal } = this.state;
-
-    renderCollatz(startVal + 1);
-    this.setState( (prevState) => ({ startVal: Number(prevState.startVal) + 1 }));
+    this.setState({ startVal: this.state.startVal + 1 });
   }
 
   render() {
     const { selected, handleWave, sequence } = this.props;
-    const waveTypes = ['sine', 'sawtooth', 'triangle', 'square'];
 
     return (
       <div>
         {!!sequence.length && 
-          <Hoverable>
-            <LeftArrow onClick={this.handleDecrement} />
-          </Hoverable>
+          <Arrows 
+            handleIncrement={this.handleIncrement}
+            handleDecrement={this.handleDecrement}
+          />
         }
         
-        {!!sequence.length && 
-          <Hoverable>
-            <RightArrow onClick={this.handleIncrement} />
-          </Hoverable>
-        }
-
         <form onSubmit={this.handleSubmit}>
           <Fieldset>
             <Legend>
@@ -144,15 +115,17 @@ export default class Form extends Component {
             <SelectInput 
               label="Wave type"
               selected={selected}
-              waveTypes={waveTypes}
               onChange={handleWave}
             />
-            <Input
-              label="Start value"
-              type="number"
-              value={this.state.startVal}
-              onChange={this.handleCollatzChange}
-            />
+            <Label>
+              {"Start value"}
+              <input 
+                type="number"
+                defaultValue={15}
+                ref={node => this.input = node}
+                style={spacedInputStyles}
+              />
+            </Label>
             <Button type="submit">
               {"Let's hear it!"}
             </Button>
