@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 import ListItem from './ListItem';
-import createOscillator from '../utils';
 
 const Ul = styled.ul`
   width: 400px;
@@ -22,32 +21,12 @@ export default class List extends Component {
     wave: PropTypes.string.isRequired
   }
 
-  state = {
-    audio: null
-  };
-  
-  playTone = (num, wave) => {
-    const AudioContext = window.AudioContext || window.webkitAudioContext;
-    const { audio } = this.state;
-    let audioCtx;
-
-    if (!audio) {
-      audioCtx = new AudioContext();
-  
-      this.setState({ audio: audioCtx });
-    } else {
-      audioCtx = audio;
-    }
-
-    const osc = createOscillator(audioCtx, wave, num);
-    
-    setTimeout( () => {
-      osc.disconnect(audioCtx.destination);
-    }, 500);
-  }
-
   render() {
     const { sequence, scaledSequence, wave } = this.props;
+
+    // ! make list item bold as sequence plays its note
+    // ! use Hoverable for this
+    // ! ListItem should take care of even/odd logic
 
     return (
       <div>
@@ -57,7 +36,8 @@ export default class List extends Component {
 
             if (i === sequence.length - 1) return (
               <ListItem 
-                playTone={() => this.playTone(scaledNum, wave)} 
+                num={scaledNum}
+                wave={wave}
                 key={num} 
               >
                 <Odd>{num} has been reached</Odd>
@@ -67,14 +47,16 @@ export default class List extends Component {
             return (num % 2 === 0)
               ? (
                 <ListItem 
-                  playTone={() => this.playTone(scaledNum, wave)} 
+                  num={scaledNum}
+                  wave={wave}
                   key={num}
                 >
                   <Even>{num} is even</Even> so we divide by 2
                 </ListItem>
               ) : (
                 <ListItem 
-                  playTone={() => this.playTone(scaledNum, wave)} 
+                  num={scaledNum}
+                  wave={wave}
                   key={num}
                 >
                   <Odd>{num} is odd</Odd> so we multiply by 3, then add 1
