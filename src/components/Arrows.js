@@ -1,8 +1,10 @@
-import React, { Component, Fragment } from 'react';
+import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import ArrowLeftOutline from 'react-icons/lib/ti/arrow-left-outline';
 import ArrowRightOutline from 'react-icons/lib/ti/arrow-right-outline';
+
+import Hoverable from './Hoverable';
 
 const ArrowOutline = (direction, component) =>
   styled(component)`
@@ -24,38 +26,22 @@ ArrowOutline.propTypes = {
 const LeftArrow = ArrowOutline('left', ArrowLeftOutline);
 const RightArrow = ArrowOutline('right', ArrowRightOutline);
 
-class HoverableArrow extends Component {
-  static propTypes = {
-    left: PropTypes.bool.isRequired,
-    handleClick: PropTypes.func.isRequired
-  }
-
-  state = {
-    hover: false
-  };
-
-  toggleHover = () => {
-    this.setState({ hover: !this.state.hover });
-  }
-
-  render() {
-    const color = this.state.hover ? '#eee' : 'rgba(238, 238, 238, .1)';
-    const { left, handleClick } = this.props;
-
-    return (
-      <div 
-        style={{ color }}
-        onMouseEnter={this.toggleHover}
-        onMouseLeave={this.toggleHover}  
-      >
-        {left
-          ? <LeftArrow onClick={handleClick} />
-          : <RightArrow onClick={handleClick} />
-        }
-      </div>
-    );
-  }
-}
+export const HoverableArrow = ({ left, handleClick }) => (
+  <Hoverable>
+    {({ hover }) => {
+      const color = hover ? '#eee' : 'rgba(238, 238, 238, .1)';
+  
+      return (
+        <div style={{ color }}>
+          {left
+            ? <LeftArrow onClick={handleClick} />
+            : <RightArrow onClick={handleClick} />
+          }
+        </div>
+      );
+    }}
+  </Hoverable>
+);
 
 const Arrows = ({ handleIncrement, handleDecrement }) => (
   <Fragment>

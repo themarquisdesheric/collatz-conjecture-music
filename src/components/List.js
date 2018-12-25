@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
-import ListItem from './ListItem';
+import { HoverableListItem as ListItem } from './ListItem';
 
 const Ul = styled.ul`
   width: 400px;
@@ -10,9 +10,6 @@ const Ul = styled.ul`
   padding-left: 0;
   list-style-type: none;
 `;
-
-const Even = styled.span` color: #0ff; `;
-const Odd = styled.span` color: #f0f; `;
 
 export default class List extends Component {
   static propTypes = {
@@ -24,44 +21,21 @@ export default class List extends Component {
   render() {
     const { sequence, scaledSequence, wave } = this.props;
 
-    // ! make list item bold as sequence plays its note
-    // ! use Hoverable for this
-    // ! ListItem should take care of even/odd logic
-
     return (
       <div>
         <Ul>
           {sequence.map( (num, i) => {
             let scaledNum = scaledSequence[i];
 
-            if (i === sequence.length - 1) return (
-              <ListItem 
-                num={scaledNum}
-                wave={wave}
-                key={num} 
-              >
-                <Odd>{num} has been reached</Odd>
-              </ListItem>
-            );
-            
-            return (num % 2 === 0)
-              ? (
-                <ListItem 
-                  num={scaledNum}
+            return (i === sequence.length - 1) 
+              ? <ListItem 
+                  num={num}
+                  scaledNum={scaledNum}
                   wave={wave}
+                  finalVal={true}
                   key={num}
-                >
-                  <Even>{num} is even</Even> so we divide by 2
-                </ListItem>
-              ) : (
-                <ListItem 
-                  num={scaledNum}
-                  wave={wave}
-                  key={num}
-                >
-                  <Odd>{num} is odd</Odd> so we multiply by 3, then add 1
-                </ListItem>
-              );   
+                />
+              : <ListItem num={num} scaledNum={scaledNum} wave={wave} key={num} />
           })}
         </Ul>
       </div>
