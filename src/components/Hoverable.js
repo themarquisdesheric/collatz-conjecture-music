@@ -3,27 +3,24 @@ import PropTypes from 'prop-types';
 
 export default class Hoverable extends Component {
   static propTypes = {
-    children: PropTypes.node.isRequired
-  }
+    children: PropTypes.func.isRequired
+  };
 
   state = {
     hover: false
   };
 
   toggleHover = () => {
-    this.setState( (prevState) => ({ hover: !prevState.hover }));
+    this.setState({ hover: !this.state.hover });
   }
 
   render() {
-    let color = this.state.hover ? '#eee' : 'rgba(238, 238, 238, .1)';
-
     return (
       <div 
-        style={{color}}
         onMouseEnter={this.toggleHover}
         onMouseLeave={this.toggleHover}  
       >
-        {this.props.children}
+        {this.props.children({ hover: this.state.hover })}
       </div>
     );
   }
