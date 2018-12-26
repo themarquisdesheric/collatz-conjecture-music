@@ -37,7 +37,7 @@ const Legend = styled.legend`
 export default class Form extends Component {
   static propTypes = {
     selected: PropTypes.string.isRequired,
-    calculateCollatz: PropTypes.func.isRequired,
+    handleCollatz: PropTypes.func.isRequired,
     handleWave: PropTypes.func.isRequired,
     sequence: PropTypes.arrayOf(PropTypes.number).isRequired,
   }
@@ -54,7 +54,7 @@ export default class Form extends Component {
     const { startVal } = this.state;
 
     if (prevState.startVal !== startVal) {
-      this.props.calculateCollatz(startVal);
+      this.props.handleCollatz(startVal);
       window.scrollTo(0, 0);
     }
   }

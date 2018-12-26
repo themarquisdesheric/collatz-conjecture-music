@@ -15,7 +15,7 @@ export default class Main extends Component {
     this.setState({ wave: target.value });
   }
 
-  calculateCollatz = (startVal) => {
+  handleCollatz = (startVal) => {
     const sequence = calculateCollatz(startVal);
 
     this.setState({ sequence });
@@ -32,7 +32,7 @@ export default class Main extends Component {
         }
 
         <Form
-          calculateCollatz={this.calculateCollatz}
+          handleCollatz={this.handleCollatz}
           selected={wave}
           handleWave={this.handleWave}
           sequence={sequence}

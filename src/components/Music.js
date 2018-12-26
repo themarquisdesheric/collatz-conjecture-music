@@ -1,6 +1,8 @@
 import { Component } from 'react';
 import PropTypes from 'prop-types';
 
+import { createOscillator } from '../utils';
+
 export default class Music extends Component {
   static propTypes = {
     sequence: PropTypes.array.isRequired,
@@ -14,27 +16,13 @@ export default class Music extends Component {
   componentDidUpdate(prevProps) {
     const { sequence, wave } = this.props;
 
-    if (prevProps.sequence !== sequence || prevProps.wave !== wave) {
+    if (prevProps.sequence[0] !== sequence[0]) {
       this.playSequence(sequence, wave);
     }
   }
 
-  createOscillator = (
-    wave, 
-    audioCtx = new (window.AudioContext || window.webkitAudioContext)()
-  ) => {
-    const osc = audioCtx.createOscillator();
-  
-    osc.type = wave;
-    osc.connect(audioCtx.destination);
-    osc.start();
-    osc.frequency.value = 0;
-  
-    return [osc, audioCtx];
-  }
-
   playSequence = (sequence, wave) => {
-    const [ osc, audioCtx ] = this.createOscillator(wave);
+    const [ osc, audioCtx ] = createOscillator(wave);
     let counter = 0;
   
     const intervalID = setInterval( () => {

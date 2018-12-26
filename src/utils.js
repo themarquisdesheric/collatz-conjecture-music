@@ -13,8 +13,7 @@ export const createOscillator = (
   return [osc, audioCtx];
 };
 
-export const calculateCollatz = (n) => {
-  let num = Number(n);
+export const calculateCollatz = (num) => {
   const sequence = [num];
 
   while (num > 1) {
