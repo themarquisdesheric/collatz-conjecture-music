@@ -9,10 +9,12 @@ const StyledHeader = styled.header`
 const H2 = styled.h2`
   color: #fff;
   font-family: 'Permanent Marker', cursive;
-  font-size: 3.5em;
+  font-size: 1.65em;
   padding-top: 1.6%;
   margin: 0 0 1.6%;
-`;
+
+  // ! font-size: 3.5em;
+  `;
 
 const Header = () => (
   <StyledHeader>

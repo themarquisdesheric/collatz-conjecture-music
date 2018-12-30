@@ -4,12 +4,24 @@ import styled from 'styled-components';
 import Chart from 'chart.js';
 
 const Div = styled.div`
-  max-width: 43%;
   height: 100%;
   margin: 1.5em auto;
 
-  @media (max-width: 700px) {
-    display: none;
+  // ! if sequence is longer than 5, add ~ 100px for every note
+  // ! width: 500px;
+  // ! overflow-x: scroll;
+  
+  @media (min-width: 400px) {
+    max-width: 85%;
+  }
+
+  @media (min-width: 600px) {
+    max-width: 65%;
+  }
+  
+  @media (min-width: 1000px) {
+    max-width: 45%;
+    overflow-x: unset;
   }
 `;
 
@@ -90,9 +102,11 @@ export default class LineChart extends Component {
 
   render () {
     return (
-      <Div>
-        <canvas ref={(canvas) => this.canvas = canvas} />
-      </Div>
+      <div style={{ position: 'relative' }}>
+        <Div>
+          <canvas ref={(canvas) => this.canvas = canvas} />
+        </Div>
+      </div>
     );
   }
 }

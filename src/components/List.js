@@ -5,7 +5,7 @@ import styled from 'styled-components';
 import { HoverableListItem as ListItem } from './ListItem';
 
 const Ul = styled.ul`
-  width: 400px;
+  max-width: 400px;
   margin: 1em auto;
   padding-left: 0;
   list-style-type: none;

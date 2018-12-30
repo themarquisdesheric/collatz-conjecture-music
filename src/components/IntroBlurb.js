@@ -4,7 +4,10 @@ import styled from 'styled-components';
 const Div = styled.div`
   width: 100%;
   margin: 4em auto;
-  font-size: 1.1em;
+  font-size: 1em;
+
+
+  // ! font-size: 1.1em;
 `;
 
 const Ul = styled.ul`
@@ -29,9 +32,17 @@ const A = styled.a`
 `;
 
 const CallToAction = styled.p`
+  display: inline-block;  
   color: #fff;
-  font-size: 1.7em;
   margin: .56em;
+  font-size: 1em;
+  animation: CTA 2.5s linear infinite;
+
+  @keyframes CTA {
+    50% { transform: scale(1.1); }
+  }
+
+  // ! font-size: 1.7em;
 `;
 
 const IntroBlurb = () => (

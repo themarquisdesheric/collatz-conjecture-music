@@ -10,9 +10,10 @@ const spacedInputStyles = {
   width: '55px'
 };
 
-const Fieldset = styled.fieldset`
+const StyledForm = styled.form`
   width: 600px;
   margin: 0 auto 5em;
+  border: 2px groove threedface;
   border-radius: 5px;
 
   @media (max-width: 850px) {
@@ -27,11 +28,6 @@ const Button = styled.button`
   font-size: .7em;
   cursor: pointer;
   letter-spacing: .4px;
-`;
-
-const Legend = styled.legend`
-  font-family: 'Permanent Marker', cursive;
-  padding: 0 .75em;
 `;
 
 export default class Form extends Component {
@@ -107,30 +103,25 @@ export default class Form extends Component {
           />
         }
         
-        <form onSubmit={this.handleSubmit}>
-          <Fieldset>
-            <Legend>
-              Enter a number to calculate and listen
-            </Legend>
-            <SelectInput 
-              label="Wave type"
-              selected={selected}
-              onChange={handleWave}
+        <StyledForm onSubmit={this.handleSubmit}>
+          <Label>
+            Start value
+            <input 
+              type="number"
+              defaultValue={15}
+              ref={node => this.input = node}
+              style={spacedInputStyles}
             />
-            <Label>
-              {"Start value"}
-              <input 
-                type="number"
-                defaultValue={15}
-                ref={node => this.input = node}
-                style={spacedInputStyles}
-              />
-            </Label>
-            <Button type="submit">
-              {"Let's hear it!"}
-            </Button>
-          </Fieldset>
-        </form>
+          </Label>
+          <SelectInput 
+            label="Wave type"
+            selected={selected}
+            onChange={handleWave}
+          />
+          <Button type="submit">
+            Let's hear it!
+          </Button>
+        </StyledForm>
       </div>
     );
   }
