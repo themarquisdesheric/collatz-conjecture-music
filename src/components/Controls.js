@@ -1,40 +1,10 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
-import styled from 'styled-components';
 
 import Arrows from './Arrows';
-import SelectInput, { Label } from './SelectInput';
+import SelectInput from './SelectInput';
 
-const spacedInputStyles = {
-  margin: '1em .5em',
-  width: '55px'
-};
-
-const Fieldset = styled.fieldset`
-  width: 600px;
-  margin: 0 auto 5em;
-  border-radius: 5px;
-
-  @media (max-width: 850px) {
-    max-width: 88%;
-    // margin: 0 1em 5em;
-  }
-`;
-
-const Button = styled.button`
-  font-family: Oswald;
-  font-weight: bold;
-  font-size: .7em;
-  cursor: pointer;
-  letter-spacing: .4px;
-`;
-
-const Legend = styled.legend`
-  font-family: 'Permanent Marker', cursive;
-  padding: 0 .75em;
-`;
-
-export default class Form extends Component {
+export default class Controls extends Component {
   static propTypes = {
     selected: PropTypes.string.isRequired,
     handleCollatz: PropTypes.func.isRequired,
@@ -48,6 +18,8 @@ export default class Form extends Component {
 
   componentDidMount() {
     window.addEventListener('keydown', this.handleKeyDown);
+    
+    this.input.focus();
   }
 
   componentDidUpdate(_prevProps, prevState) {
@@ -76,6 +48,9 @@ export default class Form extends Component {
   }
 
   handleKeyDown = ({ key }) => {
+    // prevent interfering with navigation arrows
+    if (document.activeElement === this.input) return;
+   
     if (key === 'ArrowLeft') this.handleDecrement();
     else if (key === 'ArrowRight') this.handleIncrement();
   }
@@ -99,7 +74,7 @@ export default class Form extends Component {
     const { selected, handleWave, sequence } = this.props;
 
     return (
-      <div>
+      <Fragment>
         {!!sequence.length && 
           <Arrows 
             handleIncrement={this.handleIncrement}
@@ -107,31 +82,31 @@ export default class Form extends Component {
           />
         }
         
-        <form onSubmit={this.handleSubmit}>
-          <Fieldset>
-            <Legend>
-              Enter a number to calculate and listen
-            </Legend>
+        <div className="controls-wrapper">
+          <form onSubmit={this.handleSubmit}>
+            <label>
+              Start value
+              <input
+                type="number"
+                // ! there is a bug here where the defaultValue doesn't update when using left/right arrows 
+                // ! even though using sequence[0] outside of defaultValue works entirely as expected
+                defaultValue={sequence[0] || 15}
+                ref={node => this.input = node}
+              />
+            </label>
             <SelectInput 
               label="Wave type"
               selected={selected}
               onChange={handleWave}
             />
-            <Label>
-              {"Start value"}
-              <input 
-                type="number"
-                defaultValue={15}
-                ref={node => this.input = node}
-                style={spacedInputStyles}
-              />
-            </Label>
-            <Button type="submit">
-              {"Let's hear it!"}
-            </Button>
-          </Fieldset>
-        </form>
-      </div>
+            <span className="button-wrapper">
+              <button type="submit">
+                ▷ Play
+              </button>
+            </span>
+          </form>
+        </div>
+      </Fragment>
     );
   }
 }

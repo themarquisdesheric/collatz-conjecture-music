@@ -1,17 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import styled from 'styled-components';
 import Chart from 'chart.js';
-
-const Div = styled.div`
-  max-width: 43%;
-  height: 100%;
-  margin: 1.5em auto;
-
-  @media (max-width: 700px) {
-    display: none;
-  }
-`;
 
 export default class LineChart extends Component {
   static propTypes = {
@@ -90,9 +79,11 @@ export default class LineChart extends Component {
 
   render () {
     return (
-      <Div>
-        <canvas ref={(canvas) => this.canvas = canvas} />
-      </Div>
+      <div className="chart">
+        <div>
+          <canvas ref={(canvas) => this.canvas = canvas} />
+        </div>
+      </div>
     );
   }
 }

@@ -10,13 +10,14 @@ const ArrowOutline = (direction, component) =>
   styled(component)`
     font-size: 3em;
     position: fixed;
-    top: 50%;
-    ${direction}: 8%;
-
-    @media (max-width: 450px) {
-      ${direction}: 2%;
+    ${direction}: 2%;
+    top: 75%;
+  
+    @media (min-width: 700px) {
+      top: 60%;
+      ${direction}: 8%;
     }
-`;
+  `;
 
 ArrowOutline.propTypes = {
   direction: PropTypes.string.isRequired,

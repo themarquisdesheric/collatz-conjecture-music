@@ -23,7 +23,9 @@ const CollatzGraph = ({ sequence, wave }) => {
 }
 
 CollatzGraph.propTypes = {
-  sequence: PropTypes.array.isRequired,
+  sequence: PropTypes.arrayOf(
+    PropTypes.number
+  ).isRequired,
   wave: PropTypes.string.isRequired
 };
 
