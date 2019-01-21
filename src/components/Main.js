@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 
-import IntroBlurb from './IntroBlurb';
-import CollatzGraph from './CollatzGraph';
-import Form from './Form';
+import Header from './Header';
+import RenderContent from './RenderContent';
+import Controls from './Controls';
+import Footer from './Footer';
 import { calculateCollatz } from '../utils';
 
 export default class Main extends Component {
@@ -25,18 +26,16 @@ export default class Main extends Component {
     const { sequence, wave } = this.state;
 
     return (
-      <div>
-        {!!sequence.length
-          ? <CollatzGraph sequence={sequence} wave={wave} />
-          : <IntroBlurb />
-        }
-
-        <Form
+      <div id="wrapper">
+        <Header />
+        <RenderContent sequence={sequence} wave={wave} />
+        <Controls
           handleCollatz={this.handleCollatz}
           selected={wave}
           handleWave={this.handleWave}
           sequence={sequence}
         />
+        <Footer />
       </div>
     );
   }

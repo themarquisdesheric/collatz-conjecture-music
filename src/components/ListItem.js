@@ -1,30 +1,21 @@
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
-import styled from 'styled-components';
 
 import Hoverable from './Hoverable';
 import { createOscillator } from '../utils';
 
-const Even = styled.span` color: #0ff; `;
-const Odd = styled.span` color: #f0f; `;
-
 const EvenOrOdd = ({ num }) => 
   (num % 2 === 0)
     ? <Fragment>
-        <Even>{num} is even</Even> so we divide by 2 
+        <span className="even">{num} is even</span> so we divide by 2 
       </Fragment>
     : <Fragment>
-        <Odd>{num} is odd</Odd> so we multiply by 3, then add 1 
+        <span className="odd">{num} is odd</span> so we multiply by 3, then add 1 
       </Fragment>;
 
 EvenOrOdd.propTypes = {
   num: PropTypes.number.isRequired
 };
-
-const Li = styled.li` 
-  padding: .3em 0;
-  transition: transform .3s; 
-`;
 
 class ListItem extends Component {
   static propTypes = {
@@ -87,12 +78,12 @@ class ListItem extends Component {
     const transform = hover ? 'scale(1.1)' : '';
 
     return (
-      <Li style={{ transform }}>
+      <li style={{ transform }}>
         {finalVal
-          ? <Odd>{num} has been reached </Odd>
+          ? <span className="odd">{num} has been reached</span>
           : <EvenOrOdd num={num} />
         }
-      </Li>
+      </li>
     );
   }
 }
@@ -110,4 +101,4 @@ HoverableListItem.propTypes = {
   scaledNum: PropTypes.number.isRequired,
   wave: PropTypes.string.isRequired,
   finalVal: PropTypes.bool
-}
+};

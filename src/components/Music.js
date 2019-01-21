@@ -5,7 +5,9 @@ import { createOscillator } from '../utils';
 
 export default class Music extends Component {
   static propTypes = {
-    sequence: PropTypes.array.isRequired,
+    sequence: PropTypes.arrayOf(
+      PropTypes.number
+    ),
     wave: PropTypes.string.isRequired
   }
 
