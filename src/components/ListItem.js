@@ -25,11 +25,6 @@ class ListItem extends Component {
     hover: PropTypes.bool.isRequired,
     finalVal: PropTypes.bool
   }
-
-  state = {
-    osc: undefined,
-    audio: undefined
-  }
   
   componentDidMount() {
     const [ osc, audioCtx ] = createOscillator(this.props.wave);
