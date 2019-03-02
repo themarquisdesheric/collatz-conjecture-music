@@ -1,8 +1,8 @@
 import React, { Fragment } from 'react';
-import PropTypes from 'prop-types';
 
 import CollatzGraph from './CollatzGraph';
 import IntroBlurb from './IntroBlurb';
+import { arrayOf, number, string } from '../proptypes-constants';
 
 const RenderContent = ({ sequence, wave }) => (
   <Fragment>
@@ -27,10 +27,8 @@ const RenderContent = ({ sequence, wave }) => (
 );
 
 RenderContent.propTypes = {
-  sequence: PropTypes.arrayOf(
-    PropTypes.number
-  ).isRequired,
-  wave: PropTypes.string.isRequired
+  sequence: arrayOf(number).isRequired,
+  wave: string.isRequired
 };
 
 export default RenderContent;

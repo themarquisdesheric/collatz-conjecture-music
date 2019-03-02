@@ -1,7 +1,7 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
 import { HoverableListItem as ListItem } from './ListItem';
+import { arrayOf, number, string } from '../proptypes-constants';
 
 const List = ({ sequence, scaledSequence, wave }) => (
   <div className="sequence-list">
@@ -24,9 +24,9 @@ const List = ({ sequence, scaledSequence, wave }) => (
 );
 
 List.propTypes = {
-  sequence: PropTypes.arrayOf(PropTypes.number).isRequired,
-  scaledSequence: PropTypes.arrayOf(PropTypes.number).isRequired,
-  wave: PropTypes.string.isRequired
+  sequence: arrayOf(number).isRequired,
+  scaledSequence: arrayOf(number).isRequired,
+  wave: string.isRequired
 };
 
 export default List;

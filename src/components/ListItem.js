@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from 'react';
-import PropTypes from 'prop-types';
 
 import Hoverable from './Hoverable';
+import { number, string, bool } from '../proptypes-constants';
 import { createOscillator } from '../utils';
 
 const EvenOrOdd = ({ num }) => 
@@ -14,16 +14,16 @@ const EvenOrOdd = ({ num }) =>
       </Fragment>;
 
 EvenOrOdd.propTypes = {
-  num: PropTypes.number.isRequired
+  num: number.isRequired
 };
 
 class ListItem extends Component {
   static propTypes = {
-    num: PropTypes.number.isRequired,
-    scaledNum: PropTypes.number.isRequired,
-    wave: PropTypes.string.isRequired,
-    hover: PropTypes.bool.isRequired,
-    finalVal: PropTypes.bool
+    num: number.isRequired,
+    scaledNum: number.isRequired,
+    wave: string.isRequired,
+    hover: bool.isRequired,
+    finalVal: bool
   }
   
   componentDidMount() {
@@ -54,16 +54,12 @@ class ListItem extends Component {
     if (!connected) {
       osc.connect(audioCtx.destination);
       
-      this.setState({
-        connected: true
-      });
+      this.setState({ connected: true });
       
       setTimeout( () => {
         osc.disconnect(audioCtx.destination);
         
-        this.setState({
-          connected: false
-        });
+        this.setState({ connected: false });
       }, 500);
     } 
   }
@@ -92,8 +88,8 @@ export const HoverableListItem = (props) => (
 );
 
 HoverableListItem.propTypes = {
-  num: PropTypes.number.isRequired,
-  scaledNum: PropTypes.number.isRequired,
-  wave: PropTypes.string.isRequired,
-  finalVal: PropTypes.bool
+  num: number.isRequired,
+  scaledNum: number.isRequired,
+  wave: string.isRequired,
+  finalVal: bool
 };

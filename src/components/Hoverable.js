@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+
+import { func } from '../proptypes-constants';
 
 export default class Hoverable extends Component {
   static propTypes = {
-    children: PropTypes.func.isRequired
+    children: func.isRequired
   };
 
   state = {
