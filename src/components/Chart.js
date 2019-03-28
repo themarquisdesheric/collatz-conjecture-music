@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+
 import Chart from 'chart.js';
+import { arrayOf, number } from '../proptypes-constants';
 
 export default class LineChart extends Component {
   static propTypes = {
-    data: PropTypes.arrayOf(PropTypes.number).isRequired
+    data: arrayOf(number).isRequired
   }
 
   componentDidMount() {

@@ -4,7 +4,7 @@ const collatz = (num) => {
   const sequence = [num];
   let scaledSequence;
 
-  const scaleBetween = (unscaled, floor, ceiling) => {
+  const scaleSequence = (unscaled, floor, ceiling) => {
     const min = Math.min(...unscaled);
     const max = Math.max(...unscaled);
   
@@ -53,7 +53,7 @@ const collatz = (num) => {
   console.log(num);
 
   // scale hz within speaker's capabilities
-  scaledSequence = scaleBetween(sequence, 880, 9000);
+  scaledSequence = scaleSequence(sequence, 880, 9000);
 
   playCollatz(scaledSequence);
 }

@@ -1,10 +1,10 @@
 import React, { Fragment } from 'react';
-import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import ArrowLeftOutline from 'react-icons/lib/ti/arrow-left-outline';
 import ArrowRightOutline from 'react-icons/lib/ti/arrow-right-outline';
 
 import Hoverable from './Hoverable';
+import { string, func, node } from '../proptypes-constants';
 
 const ArrowOutline = (direction, component) =>
   styled(component)`
@@ -20,8 +20,8 @@ const ArrowOutline = (direction, component) =>
   `;
 
 ArrowOutline.propTypes = {
-  direction: PropTypes.string.isRequired,
-  component: PropTypes.node.isRequired
+  direction: string.isRequired,
+  component: node.isRequired
 };
 
 const LeftArrow = ArrowOutline('left', ArrowLeftOutline);
@@ -52,8 +52,8 @@ const Arrows = ({ handleIncrement, handleDecrement }) => (
 );
 
 Arrows.propTypes = {
-  handleIncrement: PropTypes.func.isRequired,
-  handleDecrement: PropTypes.func.isRequired
+  handleIncrement: func.isRequired,
+  handleDecrement: func.isRequired
 };
 
 export default Arrows;

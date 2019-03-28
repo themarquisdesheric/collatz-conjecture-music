@@ -1,32 +1,18 @@
 import React, { Fragment } from 'react';
-import PropTypes from 'prop-types';
 
 import Chart from './Chart';
 import List from './List';
-import Music from './Music';
-import { scaleBetween } from '../utils';
+import { arrayOf, number } from '../proptypes-constants';
 
-const CollatzGraph = ({ sequence, wave }) => {
-  const scaledSequence = scaleBetween(sequence, 880, 9000);
-
-  return (
-    <Fragment>
-      <Chart data={sequence} />
-      <List 
-        sequence={sequence} 
-        scaledSequence={scaledSequence}
-        wave={wave}
-      />
-      <Music sequence={scaledSequence} wave={wave} />
-    </Fragment>
-  );
-}
+const CollatzGraph = ({ sequence }) => (
+  <Fragment>
+    <Chart data={sequence} />
+    <List sequence={sequence} />
+  </Fragment>
+);
 
 CollatzGraph.propTypes = {
-  sequence: PropTypes.arrayOf(
-    PropTypes.number
-  ).isRequired,
-  wave: PropTypes.string.isRequired
+  sequence: arrayOf(number).isRequired
 };
 
 export default CollatzGraph;

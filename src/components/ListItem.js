@@ -1,8 +1,7 @@
 import React, { Component, Fragment } from 'react';
-import PropTypes from 'prop-types';
 
 import Hoverable from './Hoverable';
-import { createOscillator } from '../utils';
+import { number, bool } from '../proptypes-constants';
 
 const EvenOrOdd = ({ num }) => 
   (num % 2 === 0)
@@ -14,63 +13,14 @@ const EvenOrOdd = ({ num }) =>
       </Fragment>;
 
 EvenOrOdd.propTypes = {
-  num: PropTypes.number.isRequired
+  num: number.isRequired
 };
 
 class ListItem extends Component {
   static propTypes = {
-    num: PropTypes.number.isRequired,
-    scaledNum: PropTypes.number.isRequired,
-    wave: PropTypes.string.isRequired,
-    hover: PropTypes.bool.isRequired,
-    finalVal: PropTypes.bool
-  }
-
-  state = {
-    osc: undefined,
-    audio: undefined
-  }
-  
-  componentDidMount() {
-    const [ osc, audioCtx ] = createOscillator(this.props.wave);
-
-    this.setState({
-      osc,
-      audioCtx,
-      connected: false
-    });
-  }
-
-  componentDidUpdate(prevProps) {
-    const { hover } = this.props;
-
-    if (prevProps.hover !== hover && hover) {
-      this.playTone();
-    }
-  }
-
-  playTone = () => {
-    const { osc, audioCtx, connected } = this.state;
-    const { wave, scaledNum } = this.props;
-
-    osc.type = wave;
-    osc.frequency.value = scaledNum;
-    
-    if (!connected) {
-      osc.connect(audioCtx.destination);
-      
-      this.setState({
-        connected: true
-      });
-      
-      setTimeout( () => {
-        osc.disconnect(audioCtx.destination);
-        
-        this.setState({
-          connected: false
-        });
-      }, 500);
-    } 
+    num: number.isRequired,
+    hover: bool.isRequired,
+    finalVal: bool
   }
 
   render() {
@@ -88,6 +38,8 @@ class ListItem extends Component {
   }
 }
 
+// might go back to making this play a tone on hover again
+
 export const HoverableListItem = (props) => (
   <Hoverable>
     {({ hover }) => (
@@ -97,8 +49,6 @@ export const HoverableListItem = (props) => (
 );
 
 HoverableListItem.propTypes = {
-  num: PropTypes.number.isRequired,
-  scaledNum: PropTypes.number.isRequired,
-  wave: PropTypes.string.isRequired,
-  finalVal: PropTypes.bool
+  num: number.isRequired,
+  finalVal: bool
 };

@@ -29,7 +29,7 @@ export const calculateCollatz = (num) => {
 };
 
 // scale to within speaker's capabilities between min/max hz
-export const scaleBetween = (unscaled, floor = 880, ceiling = 9000) => {
+export const scaleSequence = (unscaled, floor = 880, ceiling = 9000) => {
   const min = Math.min(...unscaled);
   const max = Math.max(...unscaled);
 
