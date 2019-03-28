@@ -1,15 +1,16 @@
 import React, { Component, Fragment } from 'react';
-import PropTypes from 'prop-types';
 
 import Arrows from './Arrows';
 import SelectInput from './SelectInput';
+import { arrayOf, number, string, func, bool } from '../proptypes-constants';
 
 export default class Controls extends Component {
   static propTypes = {
-    selected: PropTypes.string.isRequired,
-    handleCollatz: PropTypes.func.isRequired,
-    handleWave: PropTypes.func.isRequired,
-    sequence: PropTypes.arrayOf(PropTypes.number).isRequired,
+    sequence: arrayOf(number).isRequired,
+    wave: string.isRequired,
+    handleCollatz: func.isRequired,
+    handleWave: func.isRequired,
+    isPlaying: bool.isRequired
   }
 
   state = {
@@ -28,7 +29,7 @@ export default class Controls extends Component {
     if (prevState.startVal !== startVal) {
       this.props.handleCollatz(startVal);
       window.scrollTo(0, 0);
-    }
+    } 
   }
 
   componentWillUnmount() {
@@ -39,6 +40,8 @@ export default class Controls extends Component {
     const startVal = Number(this.input.value);
 
     e.preventDefault();
+
+    if (this.props.isPlaying) return;
 
     if (startVal < 2) {
       alert('You must enter a number greater than 1');
@@ -71,7 +74,7 @@ export default class Controls extends Component {
   }
 
   render() {
-    const { selected, handleWave, sequence } = this.props;
+    const { wave, handleWave, sequence } = this.props;
 
     return (
       <Fragment>
@@ -96,7 +99,7 @@ export default class Controls extends Component {
             </label>
             <SelectInput 
               label="Wave type"
-              selected={selected}
+              wave={wave}
               onChange={handleWave}
             />
             <span className="button-wrapper">

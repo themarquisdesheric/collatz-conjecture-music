@@ -2,13 +2,13 @@ import React, { Fragment } from 'react';
 
 import CollatzGraph from './CollatzGraph';
 import IntroBlurb from './IntroBlurb';
-import { arrayOf, number, string } from '../proptypes-constants';
+import { arrayOf, number } from '../proptypes-constants';
 
-const RenderContent = ({ sequence, wave }) => (
+const RenderContent = ({ sequence }) => (
   <Fragment>
     <main>
       {!!sequence.length
-        ? <CollatzGraph sequence={sequence} wave={wave} />
+        ? <CollatzGraph sequence={sequence} />
         : <IntroBlurb />
       }
     </main>
@@ -27,8 +27,7 @@ const RenderContent = ({ sequence, wave }) => (
 );
 
 RenderContent.propTypes = {
-  sequence: arrayOf(number).isRequired,
-  wave: string.isRequired
+  sequence: arrayOf(number).isRequired
 };
 
 export default RenderContent;

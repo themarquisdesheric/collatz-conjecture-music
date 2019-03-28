@@ -3,13 +3,15 @@ import React, { Component } from 'react';
 import Header from './Header';
 import RenderContent from './RenderContent';
 import Controls from './Controls';
+import Music from './Music';
 import Footer from './Footer';
 import { calculateCollatz } from '../utils';
 
 export default class Main extends Component {
   state = {
     sequence: [],
-    wave: 'sine'
+    wave: 'sine',
+    isPlaying: false
   };
 
   handleWave = ({ target }) => {
@@ -22,18 +24,36 @@ export default class Main extends Component {
     this.setState({ sequence });
   }
 
+  handlePlaybackStart = () => {
+    this.setState({ isPlaying: true });
+  }
+  
+  handlePlaybackEnd = () => {
+    this.setState({ isPlaying: false });
+  }
+
   render() {
-    const { sequence, wave } = this.state;
+    const { sequence, wave, isPlaying } = this.state;
 
     return (
       <div id="wrapper">
         <Header />
-        <RenderContent sequence={sequence} wave={wave} />
+        <RenderContent sequence={sequence} />
         <Controls
-          handleCollatz={this.handleCollatz}
-          selected={wave}
-          handleWave={this.handleWave}
           sequence={sequence}
+          wave={wave}
+          handleCollatz={this.handleCollatz}
+          handleWave={this.handleWave}
+          isPlaying={isPlaying}
+        />
+
+        {/* // ! repeat doesn't work */}
+
+        <Music 
+          sequence={sequence} 
+          wave={wave} 
+          handlePlaybackStart={this.handlePlaybackStart} 
+          handlePlaybackEnd={this.handlePlaybackEnd} 
         />
         <Footer />
       </div>

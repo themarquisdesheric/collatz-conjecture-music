@@ -1,16 +1,14 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+
+import { string, func } from '../proptypes-constants';
 
 const waveTypes = ['sine', 'sawtooth', 'triangle', 'square'];
 
-const SelectInput = ({ label, selected, onChange }) => (
+const SelectInput = ({ label, wave, onChange }) => (
   <label>
     {label}
-    <div>{selected}</div>
-    <select 
-      value={selected}
-      onChange={onChange}
-    >
+    <div>{wave}</div>
+    <select value={wave} onChange={onChange}>
       {waveTypes.map( (wave) => (
         <option key={wave} value={wave}>
           {wave}
@@ -21,9 +19,9 @@ const SelectInput = ({ label, selected, onChange }) => (
 );
 
 SelectInput.propTypes = {
-  label: PropTypes.string.isRequired,
-  selected: PropTypes.string.isRequired,
-  onChange: PropTypes.func.isRequired
+  label: string.isRequired,
+  wave: string.isRequired,
+  onChange: func.isRequired
 };
 
 export default SelectInput;
