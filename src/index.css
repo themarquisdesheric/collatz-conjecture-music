@@ -189,8 +189,6 @@ button {
   width: calc(100% - 6px);
 }
 
-button:hover { color: var(--pink); }
-
 /* ========================================== CHART STYLES ========================================== */
 
 .chart { margin: 1em 0; }

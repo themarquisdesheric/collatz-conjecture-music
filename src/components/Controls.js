@@ -1,4 +1,5 @@
 import React, { Component, Fragment } from 'react';
+import ScaleLoader from 'react-spinners/ScaleLoader';
 
 import Arrows from './Arrows';
 import SelectInput from './SelectInput';
@@ -38,14 +39,17 @@ export default class Controls extends Component {
     
   handleSubmit = (e) => {
     const startVal = Number(this.input.value);
+    const { isPlaying, handlePlaybackStart } = this.props;
 
     e.preventDefault();
 
-    if (this.props.isPlaying) return;
+    if (isPlaying || this.state.startVal === startVal) return;
 
     if (startVal < 2) {
       alert('You must enter a number greater than 1');
     } else {
+      handlePlaybackStart();
+
       this.setState({ startVal });
     }
   }
@@ -64,17 +68,19 @@ export default class Controls extends Component {
     if (startVal <= 2) {
       alert('You must enter a number greater than 1');
       return;
-    } 
+    } else if (this.props.isPlaying) return;
 
     this.setState({ startVal: startVal - 1 });
   }
   
   handleIncrement = () => {
+    if (this.props.isPlaying) return;
+    
     this.setState({ startVal: this.state.startVal + 1 });
   }
-
+  
   render() {
-    const { wave, handleWave, sequence } = this.props;
+    const { wave, handleWave, sequence, isPlaying } = this.props;
 
     return (
       <Fragment>
@@ -104,7 +110,10 @@ export default class Controls extends Component {
             />
             <span className="button-wrapper">
               <button type="submit">
-                ▷ Play
+                {isPlaying
+                  ? <ScaleLoader color="#f0f" height={10} width={2} margin="1px" />
+                  : '▷ Play'
+                }
               </button>
             </span>
           </form>
