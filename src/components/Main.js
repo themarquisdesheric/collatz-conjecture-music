@@ -44,6 +44,7 @@ export default class Main extends Component {
           wave={wave}
           handleCollatz={this.handleCollatz}
           handleWave={this.handleWave}
+          handlePlaybackStart={this.handlePlaybackStart} 
           isPlaying={isPlaying}
         />
 
