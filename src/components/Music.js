@@ -1,50 +1,35 @@
 import { Component } from 'react';
 
 import { arrayOf, number, string, func } from '../proptypes-constants';
-import { createOscillator, scaleSequence } from '../utils';
+import { createOscillator } from '../utils';
 
 export default class Music extends Component {
   static propTypes = {
-    sequence: arrayOf(number),
+    scaledSequence: arrayOf(number),
     wave: string.isRequired,
-    handlePlaybackStart: func.isRequired,
     handlePlaybackEnd: func.isRequired
   }
 
-  state = {
-    scaledSequence: []
-  };
-
-  componentDidUpdate(prevProps) {
-    if (
-      !this.state.scaledSequence.length || 
-      prevProps.sequence[0] !== this.props.sequence[0]
-    ) {
-      this.setState({
-        scaledSequence: scaleSequence(this.props.sequence)
-      });
-      this.playSequence();
-    }
+  componentDidMount() {
+    this.playSequence();  
   }
 
   playSequence = () => {
-    const { sequence, wave, handlePlaybackStart, handlePlaybackEnd } = this.props;
+    const { scaledSequence, wave, handlePlaybackEnd } = this.props;
     const [ osc, audioCtx ] = createOscillator(wave);
     let counter = 0;
-    
-    if (!sequence.length) return;
 
-    handlePlaybackStart();
+    if (!scaledSequence.length) return;
 
     const intervalID = setInterval( () => {
-      if (counter === sequence.length) {
+      if (counter === scaledSequence.length) {
         handlePlaybackEnd();
 
         clearInterval(intervalID);
 
         osc.disconnect(audioCtx.destination);
       } else {
-        osc.frequency.value = this.state.scaledSequence[counter];
+        osc.frequency.value = scaledSequence[counter];
 
         counter++;
       }

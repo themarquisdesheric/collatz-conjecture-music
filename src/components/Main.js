@@ -5,11 +5,12 @@ import RenderContent from './RenderContent';
 import Controls from './Controls';
 import Music from './Music';
 import Footer from './Footer';
-import { calculateCollatz } from '../utils';
+import { calculateCollatz, scaleSequence } from '../utils';
 
 export default class Main extends Component {
   state = {
     sequence: [],
+    scaledSequence: null,
     wave: 'sine',
     isPlaying: false
   };
@@ -21,7 +22,11 @@ export default class Main extends Component {
   handleCollatz = (startVal) => {
     const sequence = calculateCollatz(startVal);
 
-    this.setState({ sequence });
+    this.setState({ 
+      sequence,
+      scaledSequence: scaleSequence(sequence),
+      isPlaying: true
+    });
   }
 
   handlePlaybackStart = () => {
@@ -29,11 +34,20 @@ export default class Main extends Component {
   }
   
   handlePlaybackEnd = () => {
-    this.setState({ isPlaying: false });
+    this.setState({ 
+      isPlaying: false,
+      scaledSequence: null
+    });
+  }
+  
+  handleRepeat = (startVal) => {
+    this.setState({ sequence: [] }, () => {
+      this.handleCollatz(startVal);
+    });
   }
 
   render() {
-    const { sequence, wave, isPlaying } = this.state;
+    const { sequence, scaledSequence, wave, isPlaying } = this.state;
 
     return (
       <div id="wrapper">
@@ -44,18 +58,19 @@ export default class Main extends Component {
           wave={wave}
           handleCollatz={this.handleCollatz}
           handleWave={this.handleWave}
-          handlePlaybackStart={this.handlePlaybackStart} 
+          handleRepeat={this.handleRepeat}
           isPlaying={isPlaying}
         />
 
-        {/* // ! repeat doesn't work */}
-
-        <Music 
-          sequence={sequence} 
-          wave={wave} 
-          handlePlaybackStart={this.handlePlaybackStart} 
-          handlePlaybackEnd={this.handlePlaybackEnd} 
-        />
+        {isPlaying && 
+          scaledSequence && 
+            <Music 
+              scaledSequence={scaledSequence} 
+              wave={wave} 
+              handlePlaybackStart={this.handlePlaybackStart} 
+              handlePlaybackEnd={this.handlePlaybackEnd} 
+            />
+        }
         <Footer />
       </div>
     );
