@@ -11,6 +11,7 @@ export default class Controls extends Component {
     wave: string.isRequired,
     handleCollatz: func.isRequired,
     handleWave: func.isRequired,
+    handleRepeat: func.isRequired,
     isPlaying: bool.isRequired
   }
 
@@ -38,19 +39,22 @@ export default class Controls extends Component {
   }
     
   handleSubmit = (e) => {
+    const { isPlaying, handleRepeat } = this.props;
     const startVal = Number(this.input.value);
-    const { isPlaying, handlePlaybackStart } = this.props;
 
     e.preventDefault();
 
-    if (isPlaying || this.state.startVal === startVal) return;
+    if (isPlaying) return;
 
     if (startVal < 2) {
       alert('You must enter a number greater than 1');
     } else {
-      handlePlaybackStart();
 
-      this.setState({ startVal });
+      if (startVal === this.state.startVal) {
+        handleRepeat(startVal);
+      } else {
+        this.setState({ startVal });
+      }
     }
   }
 
@@ -62,21 +66,26 @@ export default class Controls extends Component {
     else if (key === 'ArrowRight') this.handleIncrement();
   }
 
+  handleInput = (startVal) => {
+    if (this.props.isPlaying) return
+
+    this.input.value = startVal;
+    this.setState({ startVal });
+  }
+
+  handleIncrement = () => {
+    this.handleInput(this.state.startVal + 1);
+  }
+
   handleDecrement = () => {
     const { startVal } = this.state;
 
     if (startVal <= 2) {
       alert('You must enter a number greater than 1');
       return;
-    } else if (this.props.isPlaying) return;
-
-    this.setState({ startVal: startVal - 1 });
-  }
+    } 
   
-  handleIncrement = () => {
-    if (this.props.isPlaying) return;
-    
-    this.setState({ startVal: this.state.startVal + 1 });
+    this.handleInput(startVal - 1);
   }
   
   render() {
@@ -90,16 +99,13 @@ export default class Controls extends Component {
             handleDecrement={this.handleDecrement}
           />
         }
-        
         <div className="controls-wrapper">
           <form onSubmit={this.handleSubmit}>
             <label>
               Start value
               <input
                 type="number"
-                // ! there is a bug here where the defaultValue doesn't update when using left/right arrows 
-                // ! even though using sequence[0] outside of defaultValue works entirely as expected
-                defaultValue={sequence[0] || 15}
+                defaultValue={this.state.startVal || 15}
                 ref={node => this.input = node}
               />
             </label>

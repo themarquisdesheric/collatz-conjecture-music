@@ -186,6 +186,7 @@ button {
   cursor: pointer;
   font-family: Oswald;
   height: 100%;
+  min-width: 52px;
   width: calc(100% - 6px);
 }
 
