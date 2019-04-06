@@ -1,11 +1,8 @@
 import React from 'react';
-import { mount, configure } from 'enzyme';
-import Adapter from 'enzyme-adapter-react-16';
+import { shallow, mount } from 'enzyme';
 import toJson from 'enzyme-to-json';
 
 import Main from './Main';
-
-configure({ adapter: new Adapter() });
 
 jest.mock('./Chart');
 
@@ -21,6 +18,23 @@ describe('app', () => {
 
     wrapper.setState({
       sequence: [8, 4, 2, 1]
+    });
+
+    expect(toJson(wrapper)).toMatchSnapshot();
+  });
+
+  it('should not render Music when isPlaying and scaledSequence are falsey', () => {
+    const wrapper = shallow(<Main />);
+
+    expect(toJson(wrapper)).toMatchSnapshot();
+  });
+  
+  it('should render Music when isPlaying and scaledSequence are true', () => {
+    const wrapper = shallow(<Main />);
+
+    wrapper.setState({
+      scaledSequence: [],
+      isPlaying: true
     });
 
     expect(toJson(wrapper)).toMatchSnapshot();

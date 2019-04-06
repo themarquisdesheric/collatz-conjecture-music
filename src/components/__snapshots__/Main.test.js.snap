@@ -596,3 +596,49 @@ exports[`app should match snapshot for initial load 1`] = `
   </div>
 </Main>
 `;
+
+exports[`app should not render Music when isPlaying and scaledSequence are falsey 1`] = `
+<div
+  id="wrapper"
+>
+  <Header />
+  <RenderContent
+    sequence={Array []}
+  />
+  <Controls
+    handleCollatz={[Function]}
+    handleRepeat={[Function]}
+    handleWave={[Function]}
+    isPlaying={false}
+    sequence={Array []}
+    wave="sine"
+  />
+  <Footer />
+</div>
+`;
+
+exports[`app should render Music when isPlaying and scaledSequence are true 1`] = `
+<div
+  id="wrapper"
+>
+  <Header />
+  <RenderContent
+    sequence={Array []}
+  />
+  <Controls
+    handleCollatz={[Function]}
+    handleRepeat={[Function]}
+    handleWave={[Function]}
+    isPlaying={true}
+    sequence={Array []}
+    wave="sine"
+  />
+  <Music
+    handlePlaybackEnd={[Function]}
+    handlePlaybackStart={[Function]}
+    scaledSequence={Array []}
+    wave="sine"
+  />
+  <Footer />
+</div>
+`;

@@ -1,0 +1,78 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`controls should match snapshot 1`] = `
+<Controls
+  handleCollatz={[MockFunction]}
+  handleRepeat={[MockFunction]}
+  handleWave={[MockFunction]}
+  isPlaying={false}
+  sequence={Array []}
+  wave="sine"
+>
+  <div
+    className="controls-wrapper"
+  >
+    <form
+      onSubmit={[Function]}
+    >
+      <label>
+        Start value
+        <input
+          defaultValue={15}
+          type="number"
+        />
+      </label>
+      <SelectInput
+        label="Wave type"
+        onChange={[MockFunction]}
+        wave="sine"
+      >
+        <label>
+          Wave type
+          <div>
+            sine
+          </div>
+          <select
+            onChange={[MockFunction]}
+            value="sine"
+          >
+            <option
+              key="sine"
+              value="sine"
+            >
+              sine
+            </option>
+            <option
+              key="sawtooth"
+              value="sawtooth"
+            >
+              sawtooth
+            </option>
+            <option
+              key="triangle"
+              value="triangle"
+            >
+              triangle
+            </option>
+            <option
+              key="square"
+              value="square"
+            >
+              square
+            </option>
+          </select>
+        </label>
+      </SelectInput>
+      <span
+        className="button-wrapper"
+      >
+        <button
+          type="submit"
+        >
+          ▷ Play
+        </button>
+      </span>
+    </form>
+  </div>
+</Controls>
+`;
