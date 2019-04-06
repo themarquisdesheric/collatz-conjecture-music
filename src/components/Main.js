@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import Header from './Header';
 import RenderContent from './RenderContent';
 import Controls from './Controls';
+import ErrorBoundary from './ErrorBoundary';
 import Music from './Music';
 import Footer from './Footer';
 import { calculateCollatz, scaleSequence } from '../utils';
@@ -46,6 +47,11 @@ export default class Main extends Component {
     });
   }
 
+  handleError = () => {
+    window.scrollTo(0, 0);
+    this.handlePlaybackEnd();
+  }
+
   render() {
     const { sequence, scaledSequence, wave, isPlaying } = this.state;
 
@@ -63,12 +69,14 @@ export default class Main extends Component {
         />
         {isPlaying && 
           scaledSequence && 
-            <Music 
-              scaledSequence={scaledSequence} 
-              wave={wave} 
-              handlePlaybackStart={this.handlePlaybackStart} 
-              handlePlaybackEnd={this.handlePlaybackEnd} 
-            />
+            <ErrorBoundary handleError={this.handleError}>
+              <Music 
+                scaledSequence={scaledSequence} 
+                wave={wave} 
+                handlePlaybackStart={this.handlePlaybackStart} 
+                handlePlaybackEnd={this.handlePlaybackEnd} 
+              />
+            </ErrorBoundary>
         }
         <Footer />
       </div>

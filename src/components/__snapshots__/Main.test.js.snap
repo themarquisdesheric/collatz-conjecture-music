@@ -633,12 +633,16 @@ exports[`app should render Music when isPlaying and scaledSequence are true 1`] 
     sequence={Array []}
     wave="sine"
   />
-  <Music
-    handlePlaybackEnd={[Function]}
-    handlePlaybackStart={[Function]}
-    scaledSequence={Array []}
-    wave="sine"
-  />
+  <ErrorBoundary
+    handleError={[Function]}
+  >
+    <Music
+      handlePlaybackEnd={[Function]}
+      handlePlaybackStart={[Function]}
+      scaledSequence={Array []}
+      wave="sine"
+    />
+  </ErrorBoundary>
   <Footer />
 </div>
 `;
