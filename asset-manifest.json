@@ -1,6 +1,13 @@
 {
-  "main.css": "static/css/main.517ca998.css",
-  "main.css.map": "static/css/main.517ca998.css.map",
-  "main.js": "static/js/main.4de6a331.js",
-  "main.js.map": "static/js/main.4de6a331.js.map"
+  "main.css": "/collatz-conjecture-music/static/css/main.d0938678.chunk.css",
+  "main.js": "/collatz-conjecture-music/static/js/main.cb8540f7.chunk.js",
+  "main.js.map": "/collatz-conjecture-music/static/js/main.cb8540f7.chunk.js.map",
+  "runtime~main.js": "/collatz-conjecture-music/static/js/runtime~main.0d63de3e.js",
+  "runtime~main.js.map": "/collatz-conjecture-music/static/js/runtime~main.0d63de3e.js.map",
+  "static/js/2.43e5e793.chunk.js": "/collatz-conjecture-music/static/js/2.43e5e793.chunk.js",
+  "static/js/2.43e5e793.chunk.js.map": "/collatz-conjecture-music/static/js/2.43e5e793.chunk.js.map",
+  "index.html": "/collatz-conjecture-music/index.html",
+  "precache-manifest.58f4d1363fe2aaba0ac94f559daa5e34.js": "/collatz-conjecture-music/precache-manifest.58f4d1363fe2aaba0ac94f559daa5e34.js",
+  "service-worker.js": "/collatz-conjecture-music/service-worker.js",
+  "static/css/main.d0938678.chunk.css.map": "/collatz-conjecture-music/static/css/main.d0938678.chunk.css.map"
 }
