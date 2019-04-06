@@ -14,7 +14,7 @@ export default class ErrorBoundary extends Component {
   }
   
   componentDidCatch() {
-    setTimeout(() => this.props.handleError(), 5000);
+    setTimeout(() => this.props.handleError(), 2500);
   }
 
   render() {
@@ -26,7 +26,7 @@ export default class ErrorBoundary extends Component {
               Aw, crap 
               <span role="img" aria-label="dead emoji"> 😵</span>
             </h1>
-            I guess today is The Day the Music Died
+            If this keeps happening, please reload
           </div>;
         </Fragment>
       ) 
