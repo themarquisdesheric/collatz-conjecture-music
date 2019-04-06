@@ -1,0 +1,76 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renderContent should match snapshot 1`] = `
+<RenderContent
+  handleCollatz={[MockFunction]}
+  handleRepeat={[MockFunction]}
+  handleWave={[MockFunction]}
+  isPlaying={false}
+  sequence={Array []}
+  wave="sine"
+>
+  <main>
+    <IntroBlurb>
+      <div
+        className="intro-blurb"
+      >
+        <ul>
+          <li>
+            The
+            <a
+              href="https://en.wikipedia.org/wiki/Collatz_conjecture"
+              rel="noopener noreferrer"
+              target="_blank"
+            >
+              Collatz Conjecture
+            </a>
+            is an unsolved problem in mathematics.
+          </li>
+          <li>
+            It states that given any positive integer, the sequence will always reach 1 by following two rules:
+          </li>
+          <li>
+            If the integer is even,
+            <span
+              className="odd"
+            >
+              divide it by 2
+            </span>
+          </li>
+          <li>
+            Otherwise
+            <span
+              className="odd"
+            >
+              multiply it by 3
+            </span>
+            and
+            <span
+              className="odd"
+            >
+              add 1
+            </span>
+          </li>
+          <li>
+            Then repeat the process until you reach 1
+          </li>
+        </ul>
+      </div>
+    </IntroBlurb>
+  </main>
+  <hr />
+  <p
+    className="pattern-sound"
+  >
+    But how might the resulting pattern sound?
+    <br />
+    <span
+      aria-label="thinking emoji"
+      className="thinking-emoji"
+      role="img"
+    >
+      🤔
+    </span>
+  </p>
+</RenderContent>
+`;
