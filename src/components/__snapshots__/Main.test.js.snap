@@ -1,0 +1,598 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`app should match snapshot for a sequence of 8 1`] = `
+<Main>
+  <div
+    id="wrapper"
+  >
+    <Header>
+      <header>
+        <h2>
+          The Collatz Conjecture
+        </h2>
+        <hr />
+      </header>
+    </Header>
+    <RenderContent
+      sequence={
+        Array [
+          8,
+          4,
+          2,
+          1,
+        ]
+      }
+    >
+      <main>
+        <CollatzGraph
+          sequence={
+            Array [
+              8,
+              4,
+              2,
+              1,
+            ]
+          }
+        >
+          <LineChart
+            data={
+              Array [
+                8,
+                4,
+                2,
+                1,
+              ]
+            }
+          />
+          <List
+            sequence={
+              Array [
+                8,
+                4,
+                2,
+                1,
+              ]
+            }
+          >
+            <div
+              className="sequence-list"
+            >
+              <ul>
+                <HoverableListItem
+                  key="8"
+                  num={8}
+                >
+                  <Hoverable>
+                    <div
+                      onMouseEnter={[Function]}
+                      onMouseLeave={[Function]}
+                    >
+                      <ListItem
+                        hover={false}
+                        num={8}
+                      >
+                        <li
+                          style={
+                            Object {
+                              "transform": "",
+                            }
+                          }
+                        >
+                          <EvenOrOdd
+                            num={8}
+                          >
+                            <span
+                              className="even"
+                            >
+                              8
+                               is even
+                            </span>
+                             so we divide by 2
+                          </EvenOrOdd>
+                        </li>
+                      </ListItem>
+                    </div>
+                  </Hoverable>
+                </HoverableListItem>
+                <HoverableListItem
+                  key="4"
+                  num={4}
+                >
+                  <Hoverable>
+                    <div
+                      onMouseEnter={[Function]}
+                      onMouseLeave={[Function]}
+                    >
+                      <ListItem
+                        hover={false}
+                        num={4}
+                      >
+                        <li
+                          style={
+                            Object {
+                              "transform": "",
+                            }
+                          }
+                        >
+                          <EvenOrOdd
+                            num={4}
+                          >
+                            <span
+                              className="even"
+                            >
+                              4
+                               is even
+                            </span>
+                             so we divide by 2
+                          </EvenOrOdd>
+                        </li>
+                      </ListItem>
+                    </div>
+                  </Hoverable>
+                </HoverableListItem>
+                <HoverableListItem
+                  key="2"
+                  num={2}
+                >
+                  <Hoverable>
+                    <div
+                      onMouseEnter={[Function]}
+                      onMouseLeave={[Function]}
+                    >
+                      <ListItem
+                        hover={false}
+                        num={2}
+                      >
+                        <li
+                          style={
+                            Object {
+                              "transform": "",
+                            }
+                          }
+                        >
+                          <EvenOrOdd
+                            num={2}
+                          >
+                            <span
+                              className="even"
+                            >
+                              2
+                               is even
+                            </span>
+                             so we divide by 2
+                          </EvenOrOdd>
+                        </li>
+                      </ListItem>
+                    </div>
+                  </Hoverable>
+                </HoverableListItem>
+                <HoverableListItem
+                  finalVal={true}
+                  key="1"
+                  num={1}
+                >
+                  <Hoverable>
+                    <div
+                      onMouseEnter={[Function]}
+                      onMouseLeave={[Function]}
+                    >
+                      <ListItem
+                        finalVal={true}
+                        hover={false}
+                        num={1}
+                      >
+                        <li
+                          style={
+                            Object {
+                              "transform": "",
+                            }
+                          }
+                        >
+                          <span
+                            className="odd"
+                          >
+                            1
+                             has been reached
+                          </span>
+                        </li>
+                      </ListItem>
+                    </div>
+                  </Hoverable>
+                </HoverableListItem>
+              </ul>
+            </div>
+          </List>
+        </CollatzGraph>
+      </main>
+    </RenderContent>
+    <Controls
+      handleCollatz={[Function]}
+      handleRepeat={[Function]}
+      handleWave={[Function]}
+      isPlaying={false}
+      sequence={
+        Array [
+          8,
+          4,
+          2,
+          1,
+        ]
+      }
+      wave="sine"
+    >
+      <Arrows
+        handleDecrement={[Function]}
+        handleIncrement={[Function]}
+      >
+        <HoverableArrow
+          handleClick={[Function]}
+          left={true}
+        >
+          <Hoverable>
+            <div
+              onMouseEnter={[Function]}
+              onMouseLeave={[Function]}
+            >
+              <div
+                style={
+                  Object {
+                    "color": "rgba(238, 238, 238, .1)",
+                  }
+                }
+              >
+                <Styled(TiArrowLeftOutline)
+                  onClick={[Function]}
+                >
+                  <TiArrowLeftOutline
+                    className="sc-bdVaJa eCozci"
+                    onClick={[Function]}
+                  >
+                    <IconBase
+                      className="sc-bdVaJa eCozci"
+                      onClick={[Function]}
+                      viewBox="0 0 40 40"
+                    >
+                      <svg
+                        className="sc-bdVaJa eCozci"
+                        fill="currentColor"
+                        height="1em"
+                        onClick={[Function]}
+                        preserveAspectRatio="xMidYMid meet"
+                        style={
+                          Object {
+                            "color": undefined,
+                            "verticalAlign": "middle",
+                          }
+                        }
+                        viewBox="0 0 40 40"
+                        width="1em"
+                      >
+                        <g>
+                          <path
+                            d="m18.2 35c-1.3 0-2.6-0.5-3.5-1.5l-11.9-11.8 11.9-11.9c1.9-1.9 5.2-1.9 7 0 1 0.9 1.5 2.2 1.5 3.5 0 1.3-0.4 2.5-1.3 3.4h8.1c2.8 0 5 2.2 5 5s-2.2 5-5 5h-8.1c0.9 0.9 1.3 2.1 1.3 3.3 0 1.3-0.5 2.6-1.5 3.5-0.9 1-2.2 1.5-3.5 1.5z m-10.7-13.3l9.5 9.5c0.7 0.6 1.8 0.6 2.4 0 0.3-0.3 0.5-0.8 0.5-1.2s-0.2-0.9-0.5-1.2l-5.5-5.5h16.1c0.9 0 1.7-0.7 1.7-1.6s-0.8-1.7-1.7-1.7h-16.1l5.5-5.5c0.3-0.3 0.5-0.7 0.5-1.2s-0.2-0.8-0.5-1.1c-0.6-0.7-1.7-0.7-2.4 0l-9.5 9.5z"
+                          />
+                        </g>
+                      </svg>
+                    </IconBase>
+                  </TiArrowLeftOutline>
+                </Styled(TiArrowLeftOutline)>
+              </div>
+            </div>
+          </Hoverable>
+        </HoverableArrow>
+        <HoverableArrow
+          handleClick={[Function]}
+          left={false}
+        >
+          <Hoverable>
+            <div
+              onMouseEnter={[Function]}
+              onMouseLeave={[Function]}
+            >
+              <div
+                style={
+                  Object {
+                    "color": "rgba(238, 238, 238, .1)",
+                  }
+                }
+              >
+                <Styled(TiArrowRightOutline)
+                  onClick={[Function]}
+                >
+                  <TiArrowRightOutline
+                    className="sc-bwzfXH glnyFM"
+                    onClick={[Function]}
+                  >
+                    <IconBase
+                      className="sc-bwzfXH glnyFM"
+                      onClick={[Function]}
+                      viewBox="0 0 40 40"
+                    >
+                      <svg
+                        className="sc-bwzfXH glnyFM"
+                        fill="currentColor"
+                        height="1em"
+                        onClick={[Function]}
+                        preserveAspectRatio="xMidYMid meet"
+                        style={
+                          Object {
+                            "color": undefined,
+                            "verticalAlign": "middle",
+                          }
+                        }
+                        viewBox="0 0 40 40"
+                        width="1em"
+                      >
+                        <g>
+                          <path
+                            d="m20 35c-1.3 0-2.6-0.5-3.5-1.5s-1.5-2.2-1.5-3.5c0-1.2 0.5-1.7 1.3-3.3h-8.1c-2.7 0-5-2.3-5-5 0-2.8 2.3-5 5-5h8.1c-0.9-1.7-1.3-2.1-1.3-3.4 0-1.3 0.5-2.6 1.5-3.5 1.9-1.9 5.1-1.9 7 0l11.9 11.9-11.9 11.8c-0.9 1-2.2 1.5-3.5 1.5z m-11.8-15c-0.9 0-1.7 0.7-1.7 1.7s0.8 1.6 1.7 1.6h16.1l-5.5 5.5c-0.3 0.3-0.5 0.8-0.5 1.2 0 0.4 0.2 0.9 0.5 1.2 0.7 0.6 1.7 0.6 2.4 0l9.5-9.5-9.5-9.5c-0.7-0.7-1.7-0.7-2.4 0-0.3 0.3-0.5 0.7-0.5 1.1 0 0.5 0.2 0.9 0.5 1.2l5.5 5.5h-16.1z"
+                          />
+                        </g>
+                      </svg>
+                    </IconBase>
+                  </TiArrowRightOutline>
+                </Styled(TiArrowRightOutline)>
+              </div>
+            </div>
+          </Hoverable>
+        </HoverableArrow>
+      </Arrows>
+      <div
+        className="controls-wrapper"
+      >
+        <form
+          onSubmit={[Function]}
+        >
+          <label>
+            Start value
+            <input
+              defaultValue={15}
+              type="number"
+            />
+          </label>
+          <SelectInput
+            label="Wave type"
+            onChange={[Function]}
+            wave="sine"
+          >
+            <label>
+              Wave type
+              <div>
+                sine
+              </div>
+              <select
+                onChange={[Function]}
+                value="sine"
+              >
+                <option
+                  key="sine"
+                  value="sine"
+                >
+                  sine
+                </option>
+                <option
+                  key="sawtooth"
+                  value="sawtooth"
+                >
+                  sawtooth
+                </option>
+                <option
+                  key="triangle"
+                  value="triangle"
+                >
+                  triangle
+                </option>
+                <option
+                  key="square"
+                  value="square"
+                >
+                  square
+                </option>
+              </select>
+            </label>
+          </SelectInput>
+          <span
+            className="button-wrapper"
+          >
+            <button
+              type="submit"
+            >
+              ▷ Play
+            </button>
+          </span>
+        </form>
+      </div>
+    </Controls>
+    <Footer>
+      <footer>
+        <hr />
+        <small>
+          ©
+          <a
+            href="https://www.whoisyuval.com"
+            rel="noopener noreferrer"
+            target="_blank"
+          >
+            yuval allweil
+          </a>
+          2019
+        </small>
+      </footer>
+    </Footer>
+  </div>
+</Main>
+`;
+
+exports[`app should match snapshot for initial load 1`] = `
+<Main>
+  <div
+    id="wrapper"
+  >
+    <Header>
+      <header>
+        <h2>
+          The Collatz Conjecture
+        </h2>
+        <hr />
+      </header>
+    </Header>
+    <RenderContent
+      sequence={Array []}
+    >
+      <main>
+        <IntroBlurb>
+          <div
+            className="intro-blurb"
+          >
+            <ul>
+              <li>
+                The
+                <a
+                  href="https://en.wikipedia.org/wiki/Collatz_conjecture"
+                  rel="noopener noreferrer"
+                  target="_blank"
+                >
+                  Collatz Conjecture
+                </a>
+                is an unsolved problem in mathematics.
+              </li>
+              <li>
+                It states that given any positive integer, the sequence will always reach 1 by following two rules:
+              </li>
+              <li>
+                If the integer is even,
+                <span
+                  className="odd"
+                >
+                  divide it by 2
+                </span>
+              </li>
+              <li>
+                Otherwise
+                <span
+                  className="odd"
+                >
+                  multiply it by 3
+                </span>
+                and
+                <span
+                  className="odd"
+                >
+                  add 1
+                </span>
+              </li>
+              <li>
+                Then repeat the process until you reach 1
+              </li>
+            </ul>
+          </div>
+        </IntroBlurb>
+      </main>
+      <hr />
+      <p
+        className="pattern-sound"
+      >
+        But how might the resulting pattern sound?
+        <br />
+        <span
+          aria-label="thinking emoji"
+          className="thinking-emoji"
+          role="img"
+        >
+          🤔
+        </span>
+      </p>
+    </RenderContent>
+    <Controls
+      handleCollatz={[Function]}
+      handleRepeat={[Function]}
+      handleWave={[Function]}
+      isPlaying={false}
+      sequence={Array []}
+      wave="sine"
+    >
+      <div
+        className="controls-wrapper"
+      >
+        <form
+          onSubmit={[Function]}
+        >
+          <label>
+            Start value
+            <input
+              defaultValue={15}
+              type="number"
+            />
+          </label>
+          <SelectInput
+            label="Wave type"
+            onChange={[Function]}
+            wave="sine"
+          >
+            <label>
+              Wave type
+              <div>
+                sine
+              </div>
+              <select
+                onChange={[Function]}
+                value="sine"
+              >
+                <option
+                  key="sine"
+                  value="sine"
+                >
+                  sine
+                </option>
+                <option
+                  key="sawtooth"
+                  value="sawtooth"
+                >
+                  sawtooth
+                </option>
+                <option
+                  key="triangle"
+                  value="triangle"
+                >
+                  triangle
+                </option>
+                <option
+                  key="square"
+                  value="square"
+                >
+                  square
+                </option>
+              </select>
+            </label>
+          </SelectInput>
+          <span
+            className="button-wrapper"
+          >
+            <button
+              type="submit"
+            >
+              ▷ Play
+            </button>
+          </span>
+        </form>
+      </div>
+    </Controls>
+    <Footer>
+      <footer>
+        <hr />
+        <small>
+          ©
+          <a
+            href="https://www.whoisyuval.com"
+            rel="noopener noreferrer"
+            target="_blank"
+          >
+            yuval allweil
+          </a>
+          2019
+        </small>
+      </footer>
+    </Footer>
+  </div>
+</Main>
+`;

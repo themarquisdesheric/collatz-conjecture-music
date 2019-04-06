@@ -61,7 +61,6 @@ export default class Main extends Component {
           handleRepeat={this.handleRepeat}
           isPlaying={isPlaying}
         />
-
         {isPlaying && 
           scaledSequence && 
             <Music 
