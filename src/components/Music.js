@@ -11,25 +11,30 @@ export default class Music extends Component {
   }
 
   componentDidMount() {
+    const [ osc, audioCtx ] = createOscillator(this.props.wave);
+
+    this.osc = osc;
+    this.audioCtx = audioCtx;
     this.playSequence();  
   }
 
+  componentWillUnmount() {
+    this.osc.disconnect(this.audioCtx.destination);
+    this.audioCtx.close();
+  }
+
   playSequence = () => {
-    const { scaledSequence, wave, handlePlaybackEnd } = this.props;
-    const [ osc, audioCtx ] = createOscillator(wave);
+    const { scaledSequence, handlePlaybackEnd } = this.props;
     let counter = 0;
 
     if (!scaledSequence.length) return;
 
     const intervalID = setInterval( () => {
       if (counter === scaledSequence.length) {
-        handlePlaybackEnd();
-
         clearInterval(intervalID);
-
-        osc.disconnect(audioCtx.destination);
+        handlePlaybackEnd();
       } else {
-        osc.frequency.value = scaledSequence[counter];
+        this.osc.frequency.value = scaledSequence[counter];
 
         counter++;
       }
