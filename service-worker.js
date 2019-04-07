@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 importScripts(
-  "/collatz-conjecture-music/precache-manifest.13afd72d7b01772b61e8cb9471ffae54.js"
+  "/collatz-conjecture-music/precache-manifest.5ab6b9d857c685745d3e8e7ff36e2f68.js"
 );
 
 workbox.clientsClaim();
