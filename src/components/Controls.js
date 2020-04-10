@@ -93,7 +93,7 @@ export default class Controls extends Component {
 
     return (
       <Fragment>
-        {!!sequence.length && 
+        {!!sequence.length && !isPlaying && 
           <Arrows 
             handleIncrement={this.handleIncrement}
             handleDecrement={this.handleDecrement}

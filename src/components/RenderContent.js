@@ -17,10 +17,13 @@ const RenderContent = ({ sequence }) => (
         <hr />
         <p className="pattern-sound">
           But how might the resulting pattern sound?<br />
-          <span className="thinking-emoji" role="img" aria-label="thinking emoji">
+        </p>
+        <p className="thinking-emoji">
+          <span role="img" aria-label="thinking emoji">
             🤔
           </span>
         </p>
+        <small>(make sure your speakers are on, but not too loud)</small>
       </Fragment>
     }
   </Fragment>

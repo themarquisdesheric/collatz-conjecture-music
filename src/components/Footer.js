@@ -8,7 +8,7 @@ const Footer = () => (
       <a href="https://www.whoisyuval.com" target="_blank" rel="noopener noreferrer">
         yuval allweil
       </a>
-      2019
+      {new Date().getFullYear()}
     </small>
   </footer>
 );

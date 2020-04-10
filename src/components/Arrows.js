@@ -30,7 +30,7 @@ const RightArrow = ArrowOutline('right', ArrowRightOutline);
 export const HoverableArrow = ({ left, handleClick }) => (
   <Hoverable>
     {({ hover }) => {
-      const color = hover ? '#eee' : 'rgba(238, 238, 238, .1)';
+      const color = hover ? '#eee' : 'rgba(238, 238, 238, .5)';
   
       return (
         <div style={{ color }}>
