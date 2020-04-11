@@ -17,11 +17,25 @@ export default class Main extends Component {
   };
 
   handleWave = ({ target }) => {
-    this.setState({ wave: target.value });
+    const wave = target.value;
+    
+    window.gtag('event', 'Update Wave Type', {
+      'event_category': 'Collatz Conjecture',
+      'event_label': wave,
+      'value': 1
+    });
+
+    this.setState({ wave });
   }
 
   handleCollatz = (startVal) => {
     const sequence = calculateCollatz(startVal);
+    
+    window.gtag('event', 'Calculate Collatz', {
+      'event_category': 'Collatz Conjecture',
+      'event_label': startVal,
+      'value': 1
+    });
 
     this.setState({ 
       sequence,

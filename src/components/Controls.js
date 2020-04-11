@@ -77,18 +77,33 @@ export default class Controls extends Component {
   }
 
   handleIncrement = () => {
-    this.handleInput(this.state.startVal + 1);
+    const newStartValue = this.state.startVal + 1;
+    
+    window.gtag('event', 'Increment Collatz', {
+      'event_category': 'Collatz Conjecture',
+      'event_label': newStartValue,
+      'value': 1
+    });
+
+    this.handleInput(newStartValue);
   }
 
   handleDecrement = () => {
     const { startVal } = this.state;
+    const newStartValue = startVal - 1;
 
     if (startVal <= 2) {
       alert('You must enter a number greater than 1');
       return;
     } 
+    
+    window.gtag('event', 'Decrement Collatz', {
+      'event_category': 'Collatz Conjecture',
+      'event_label': newStartValue,
+      'value': 1
+    });
   
-    this.handleInput(startVal - 1);
+    this.handleInput(newStartValue);
   }
   
   render() {
