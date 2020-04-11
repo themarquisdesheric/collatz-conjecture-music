@@ -65,6 +65,7 @@ export default class Main extends Component {
           handleCollatz={this.handleCollatz}
           handleWave={this.handleWave}
           handleRepeat={this.handleRepeat}
+          handlePlaybackEnd={this.handlePlaybackEnd}
           isPlaying={isPlaying}
         />
         {isPlaying && 
@@ -74,7 +75,7 @@ export default class Main extends Component {
                 scaledSequence={scaledSequence} 
                 wave={wave} 
                 handlePlaybackStart={this.handlePlaybackStart} 
-                handlePlaybackEnd={this.handlePlaybackEnd} 
+                handlePlaybackEnd={this.handlePlaybackEnd}
               />
             </ErrorBoundary>
         }

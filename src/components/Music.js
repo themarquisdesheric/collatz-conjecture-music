@@ -19,6 +19,8 @@ export default class Music extends Component {
   }
 
   componentWillUnmount() {
+    clearInterval(this.intervalID);
+
     this.osc.disconnect(this.audioCtx.destination);
     this.audioCtx.close();
   }
@@ -29,9 +31,9 @@ export default class Music extends Component {
 
     if (!scaledSequence.length) return;
 
-    const intervalID = setInterval( () => {
+    this.intervalID = setInterval( () => {
       if (counter === scaledSequence.length) {
-        clearInterval(intervalID);
+        clearInterval(this.intervalID);
         handlePlaybackEnd();
       } else {
         this.osc.frequency.value = scaledSequence[counter];

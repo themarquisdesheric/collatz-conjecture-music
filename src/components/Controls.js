@@ -12,6 +12,7 @@ export default class Controls extends Component {
     handleCollatz: func.isRequired,
     handleWave: func.isRequired,
     handleRepeat: func.isRequired,
+    handlePlaybackEnd: func.isRequired,
     isPlaying: bool.isRequired
   }
 
@@ -39,12 +40,12 @@ export default class Controls extends Component {
   }
     
   handleSubmit = (e) => {
-    const { isPlaying, handleRepeat } = this.props;
+    const { isPlaying, handlePlaybackEnd, handleRepeat } = this.props;
     const startVal = Number(this.input.value);
 
     e.preventDefault();
 
-    if (isPlaying) return;
+    if (isPlaying) handlePlaybackEnd();
 
     if (startVal < 2) {
       alert('You must enter a number greater than 1');
@@ -67,7 +68,9 @@ export default class Controls extends Component {
   }
 
   handleInput = (startVal) => {
-    if (this.props.isPlaying) return
+    if (this.props.isPlaying) {
+      this.props.handlePlaybackEnd();
+    }
 
     this.input.value = startVal;
     this.setState({ startVal });
@@ -93,7 +96,7 @@ export default class Controls extends Component {
 
     return (
       <Fragment>
-        {!!sequence.length && !isPlaying && 
+        {!!sequence.length && 
           <Arrows 
             handleIncrement={this.handleIncrement}
             handleDecrement={this.handleDecrement}
