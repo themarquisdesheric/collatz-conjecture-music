@@ -11,21 +11,11 @@ const IntroBlurb = () => (
         is an unsolved problem in mathematics.
       </li>
       <li>It states that given any positive integer, the sequence will always reach 1 by following two rules:</li>
-      <li>
-        If the integer is even,
-        <span className="odd">
-          divide it by 2
-        </span>
+      <li className="italics">
+        If the integer is even, divide it by 2
       </li>
-      <li>
-        Otherwise 
-        <span className="odd">
-          multiply it by 3 
-        </span>
-        and  
-        <span className="odd">
-          add 1
-        </span>
+      <li className="italics">
+        Otherwise multiply it by 3 and add 1
       </li>
       <li>Then repeat the process until you reach 1</li>
     </ul>

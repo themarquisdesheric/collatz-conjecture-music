@@ -93,14 +93,17 @@ small {
 
 .intro-blurb li:first-of-type { margin-top: 1em; }
 
-.pattern-sound { 
-  font-weight: 400;
-  margin-bottom: 0;
+.intro-blurb a,
+.pattern-sound { color: var(--pink); }
+
+.pattern-sound { margin-bottom: 0; }
+
+.italics { font-style: italic; }
+
+.thinking-emoji {
+  font-size: 2em;
+  margin: 1rem 0 0;
 }
-
-.thinking-emoji { font-size: 2em; }
-
-a:hover { color: var(--blue); }
 
 /* ========================================== CONTROLS STYLES ========================================== */
 

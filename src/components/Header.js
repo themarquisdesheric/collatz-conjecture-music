@@ -2,7 +2,7 @@ import React from 'react';
 
 const Header = () => (
   <header>
-    <h2>The Collatz Conjecture</h2>
+    <h2>Collatz Music</h2>
     <hr />
   </header>
 );
