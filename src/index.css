@@ -65,7 +65,10 @@ hr {
 a { 
   color: var(--white);
   margin: 0 .2em;
+  text-decoration: none;
 }
+
+a:visited { color: var(--white); }
 
 a,
 button { transition: 150ms; }
@@ -93,7 +96,6 @@ small {
 
 .intro-blurb li:first-of-type { margin-top: 1em; }
 
-.intro-blurb a,
 .pattern-sound { color: var(--pink); }
 
 .pattern-sound { margin-bottom: 0; }
@@ -215,10 +217,7 @@ button {
   margin: 0 0 1em;
 }
 
-footer a { 
-  text-decoration: none;
-  font-weight: 400;
-}
+footer a { font-weight: 400; }
 
 .even,
 .odd { margin: 0 .25rem; }

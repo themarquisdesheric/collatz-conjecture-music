@@ -4,7 +4,6 @@ const Footer = () => (
   <footer>
     <hr />
     <small>
-      &copy; 
       <a href="https://www.whoisyuval.com" target="_blank" rel="noopener noreferrer">
         yuval allweil
       </a>

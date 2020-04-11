@@ -8,7 +8,11 @@ exports[`app should match snapshot for a sequence of 8 1`] = `
     <Header>
       <header>
         <h2>
-          The Collatz Conjecture
+          <a
+            href="/"
+          >
+            Collatz Music
+          </a>
         </h2>
         <hr />
       </header>
@@ -207,6 +211,7 @@ exports[`app should match snapshot for a sequence of 8 1`] = `
     </RenderContent>
     <Controls
       handleCollatz={[Function]}
+      handlePlaybackEnd={[Function]}
       handleRepeat={[Function]}
       handleWave={[Function]}
       isPlaying={false}
@@ -236,7 +241,7 @@ exports[`app should match snapshot for a sequence of 8 1`] = `
               <div
                 style={
                   Object {
-                    "color": "rgba(238, 238, 238, .1)",
+                    "color": "rgba(238, 238, 238, .5)",
                   }
                 }
               >
@@ -292,7 +297,7 @@ exports[`app should match snapshot for a sequence of 8 1`] = `
               <div
                 style={
                   Object {
-                    "color": "rgba(238, 238, 238, .1)",
+                    "color": "rgba(238, 238, 238, .5)",
                   }
                 }
               >
@@ -407,7 +412,6 @@ exports[`app should match snapshot for a sequence of 8 1`] = `
       <footer>
         <hr />
         <small>
-          ©
           <a
             href="https://www.whoisyuval.com"
             rel="noopener noreferrer"
@@ -415,7 +419,7 @@ exports[`app should match snapshot for a sequence of 8 1`] = `
           >
             yuval allweil
           </a>
-          2019
+          2020
         </small>
       </footer>
     </Footer>
@@ -431,7 +435,11 @@ exports[`app should match snapshot for initial load 1`] = `
     <Header>
       <header>
         <h2>
-          The Collatz Conjecture
+          <a
+            href="/"
+          >
+            Collatz Music
+          </a>
         </h2>
         <hr />
       </header>
@@ -459,27 +467,15 @@ exports[`app should match snapshot for initial load 1`] = `
               <li>
                 It states that given any positive integer, the sequence will always reach 1 by following two rules:
               </li>
-              <li>
-                If the integer is even,
-                <span
-                  className="odd"
-                >
-                  divide it by 2
-                </span>
+              <li
+                className="italics"
+              >
+                If the integer is even, divide it by 2
               </li>
-              <li>
-                Otherwise
-                <span
-                  className="odd"
-                >
-                  multiply it by 3
-                </span>
-                and
-                <span
-                  className="odd"
-                >
-                  add 1
-                </span>
+              <li
+                className="italics"
+              >
+                Otherwise multiply it by 3 and add 1
               </li>
               <li>
                 Then repeat the process until you reach 1
@@ -494,17 +490,24 @@ exports[`app should match snapshot for initial load 1`] = `
       >
         But how might the resulting pattern sound?
         <br />
+      </p>
+      <p
+        className="thinking-emoji"
+      >
         <span
           aria-label="thinking emoji"
-          className="thinking-emoji"
           role="img"
         >
           🤔
         </span>
       </p>
+      <small>
+        (make sure your speakers are on, but not too loud)
+      </small>
     </RenderContent>
     <Controls
       handleCollatz={[Function]}
+      handlePlaybackEnd={[Function]}
       handleRepeat={[Function]}
       handleWave={[Function]}
       isPlaying={false}
@@ -581,7 +584,6 @@ exports[`app should match snapshot for initial load 1`] = `
       <footer>
         <hr />
         <small>
-          ©
           <a
             href="https://www.whoisyuval.com"
             rel="noopener noreferrer"
@@ -589,7 +591,7 @@ exports[`app should match snapshot for initial load 1`] = `
           >
             yuval allweil
           </a>
-          2019
+          2020
         </small>
       </footer>
     </Footer>
@@ -607,6 +609,7 @@ exports[`app should not render Music when isPlaying and scaledSequence are false
   />
   <Controls
     handleCollatz={[Function]}
+    handlePlaybackEnd={[Function]}
     handleRepeat={[Function]}
     handleWave={[Function]}
     isPlaying={false}
@@ -627,6 +630,7 @@ exports[`app should render Music when isPlaying and scaledSequence are true 1`] 
   />
   <Controls
     handleCollatz={[Function]}
+    handlePlaybackEnd={[Function]}
     handleRepeat={[Function]}
     handleWave={[Function]}
     isPlaying={true}

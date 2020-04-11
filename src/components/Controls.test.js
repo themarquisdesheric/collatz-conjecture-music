@@ -11,7 +11,8 @@ describe('controls', () => {
     isPlaying: false,
     handleCollatz: jest.fn(),
     handleWave: jest.fn(),
-    handleRepeat: jest.fn()
+    handleRepeat: jest.fn(),
+    handlePlaybackEnd: jest.fn()
   }
   
   let wrapper = mount(<Controls {...props} />);

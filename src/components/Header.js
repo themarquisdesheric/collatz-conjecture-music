@@ -2,7 +2,9 @@ import React from 'react';
 
 const Header = () => (
   <header>
-    <h2>Collatz Music</h2>
+    <h2>
+      <a href="/">Collatz Music</a>
+    </h2>
     <hr />
   </header>
 );

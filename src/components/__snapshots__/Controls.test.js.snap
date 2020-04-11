@@ -3,6 +3,7 @@
 exports[`controls should match snapshot 1`] = `
 <Controls
   handleCollatz={[MockFunction]}
+  handlePlaybackEnd={[MockFunction]}
   handleRepeat={[MockFunction]}
   handleWave={[MockFunction]}
   isPlaying={false}
