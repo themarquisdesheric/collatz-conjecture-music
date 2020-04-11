@@ -31,7 +31,7 @@
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   },
-  "homepage": "https://themarquisdesheric.github.io/collatz-conjecture-music",
+  "homepage": "https://epic-northcutt-0aa8f8.netlify.com/",
   "browserslist": [
     ">0.2%",
     "not dead",
