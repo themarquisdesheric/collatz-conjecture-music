@@ -20,21 +20,10 @@ Enzyme https://airbnb.io/enzyme/
 
 ## Usage
 
-To use the app, clone it and navigate to the `app` directory, then run 
-```
-yarn
-```
+Clone this repository and navigate to the `app` directory. 
 
-to install the dependencies, then
-```
-yarn start
-```
-
-Or navigate to https://themarquisdesheric.github.io/collatz-conjecture-music/
+To install the dependencies, run `yarn` then `yarn start`, or navigate to https://www.collatzmusic.com/
 
 ## Tests
 
-This app is unit tested with Jest and Enzyme. To run tests, run 
-```
-yarn test
-```
+This app is unit tested with Jest and Enzyme. To run tests, run `yarn test`

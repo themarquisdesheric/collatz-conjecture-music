@@ -14,6 +14,12 @@ export default class ErrorBoundary extends Component {
   }
   
   componentDidCatch() {
+    window.gtag('event', 'Error', {
+      'event_category': 'Collatz Conjecture',
+      'event_label': 'Error',
+      'value': 1
+    });
+
     setTimeout(() => this.props.handleError(), 2500);
   }
 
