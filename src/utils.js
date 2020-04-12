@@ -44,7 +44,7 @@ export const dispatchAnalytics = (action, label) => {
 
   window.gtag('event', action, {
     'event_category': 'Collatz Conjecture',
-    'event_label': label,
+    'event_label': `${action}: ${label}`,
     'value': 1
   });
 };

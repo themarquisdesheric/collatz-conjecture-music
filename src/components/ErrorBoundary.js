@@ -1,6 +1,7 @@
 import React, { Component, Fragment } from 'react';
 
 import { func } from '../proptypes-constants';
+import { dispatchAnalytics } from '../utils';
 
 export default class ErrorBoundary extends Component {
   static propTypes = {
@@ -14,12 +15,7 @@ export default class ErrorBoundary extends Component {
   }
   
   componentDidCatch() {
-    window.gtag('event', 'Error', {
-      'event_category': 'Collatz Conjecture',
-      'event_label': 'Error',
-      'value': 1
-    });
-
+    dispatchAnalytics('Error', 'Playback Error');
     setTimeout(() => this.props.handleError(), 2500);
   }
 
