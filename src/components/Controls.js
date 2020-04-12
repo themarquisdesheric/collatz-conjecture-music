@@ -22,9 +22,7 @@ export default class Controls extends Component {
   };
 
   componentDidMount() {
-    window.addEventListener('keydown', this.handleKeyDown);
-    
-    this.input.focus();
+    window.addEventListener('keydown', this.handleKeyDown); 
   }
 
   componentDidUpdate(_prevProps, prevState) {
