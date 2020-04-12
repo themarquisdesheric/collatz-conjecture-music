@@ -6,7 +6,7 @@ import Controls from './Controls';
 import ErrorBoundary from './ErrorBoundary';
 import Music from './Music';
 import Footer from './Footer';
-import { calculateCollatz, scaleSequence } from '../utils';
+import { calculateCollatz, scaleSequence, dispatchAnalytics } from '../utils';
 
 export default class Main extends Component {
   state = {
@@ -18,25 +18,15 @@ export default class Main extends Component {
 
   handleWave = ({ target }) => {
     const wave = target.value;
-    
-    window.gtag('event', 'Update Wave Type', {
-      'event_category': 'Collatz Conjecture',
-      'event_label': wave,
-      'value': 1
-    });
 
+    dispatchAnalytics('Update Wave Type', wave);
     this.setState({ wave });
   }
 
   handleCollatz = (startVal) => {
     const sequence = calculateCollatz(startVal);
     
-    window.gtag('event', 'Calculate Collatz', {
-      'event_category': 'Collatz Conjecture',
-      'event_label': startVal,
-      'value': 1
-    });
-
+    dispatchAnalytics('Calculate Collatz', startVal);
     this.setState({ 
       sequence,
       scaledSequence: scaleSequence(sequence),
@@ -56,6 +46,7 @@ export default class Main extends Component {
   }
   
   handleRepeat = (startVal) => {
+    dispatchAnalytics('Sequence Repeated', startVal);
     this.setState({ sequence: [] }, () => {
       this.handleCollatz(startVal);
     });

@@ -4,6 +4,7 @@ import ScaleLoader from 'react-spinners/ScaleLoader';
 import Arrows from './Arrows';
 import SelectInput from './SelectInput';
 import { arrayOf, number, string, func, bool } from '../proptypes-constants';
+import { dispatchAnalytics } from '../utils';
 
 export default class Controls extends Component {
   static propTypes = {
@@ -78,13 +79,8 @@ export default class Controls extends Component {
 
   handleIncrement = () => {
     const newStartValue = this.state.startVal + 1;
-    
-    window.gtag('event', 'Increment Collatz', {
-      'event_category': 'Collatz Conjecture',
-      'event_label': newStartValue,
-      'value': 1
-    });
 
+    dispatchAnalytics('Increment Collatz', newStartValue);
     this.handleInput(newStartValue);
   }
 
@@ -95,14 +91,9 @@ export default class Controls extends Component {
     if (startVal <= 2) {
       alert('You must enter a number greater than 1');
       return;
-    } 
+    }
     
-    window.gtag('event', 'Decrement Collatz', {
-      'event_category': 'Collatz Conjecture',
-      'event_label': newStartValue,
-      'value': 1
-    });
-  
+    dispatchAnalytics('Decrement Collatz', newStartValue);
     this.handleInput(newStartValue);
   }
   

@@ -37,3 +37,14 @@ export const scaleSequence = (unscaled, floor = 880, ceiling = 9000) => {
     (ceiling - floor) * (num - min) / (max - min) + floor
   );
 };
+
+// dispatch google analytics event
+export const dispatchAnalytics = (action, label) => {
+  if (!window.gtag) return;
+
+  window.gtag('event', action, {
+    'event_category': 'Collatz Conjecture',
+    'event_label': label,
+    'value': 1
+  });
+};
