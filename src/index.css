@@ -11,8 +11,7 @@ body {
   margin: 0;
   padding: 0;
   text-align: center;
-  /* background pattern by Isabelle Schniermanni */
-  background: url("https://www.toptal.com/designers/subtlepatterns/patterns/darkness.png");
+  background-color: #000;
   font-family: 'Oswald', sans-serif;
   font-weight: 300;
   color: var(--white);
