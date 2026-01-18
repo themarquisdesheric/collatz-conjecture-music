@@ -7,7 +7,7 @@ import { arrayOf, number } from '../proptypes-constants';
 const RenderContent = ({ sequence }) => (
   <Fragment>
     <main>
-      {!!sequence.length
+      {sequence.length
         ? <CollatzGraph sequence={sequence} />
         : <IntroBlurb />
       }

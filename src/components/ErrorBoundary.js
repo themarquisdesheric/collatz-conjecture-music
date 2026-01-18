@@ -6,7 +6,7 @@ import { dispatchAnalytics } from '../utils';
 export default class ErrorBoundary extends Component {
   static propTypes = {
     handleError: func.isRequired
-  }
+  };
 
   state = { hasError: false };
 

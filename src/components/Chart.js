@@ -6,7 +6,7 @@ import { arrayOf, number } from '../proptypes-constants';
 export default class LineChart extends Component {
   static propTypes = {
     data: arrayOf(number).isRequired
-  }
+  };
 
   componentDidMount() {
     const { data: sequence } = this.props;

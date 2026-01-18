@@ -8,7 +8,7 @@ export default class Music extends Component {
     scaledSequence: arrayOf(number),
     wave: string.isRequired,
     handlePlaybackEnd: func.isRequired
-  }
+  };
 
   componentDidMount() {
     const [ osc, audioCtx ] = createOscillator(this.props.wave);
@@ -41,7 +41,7 @@ export default class Music extends Component {
         counter++;
       }
     }, 300);
-  }
+  };
 
   render() {
     return null;

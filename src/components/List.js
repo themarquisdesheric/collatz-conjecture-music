@@ -8,12 +8,13 @@ const List = ({ sequence }) => (
     <ul>
       {sequence.map( (num, i) => 
         (i === sequence.length - 1) 
-          ? <ListItem 
+          ? (
+            <ListItem 
               num={num}
               finalVal={true}
               key={num}
             />
-          : <ListItem num={num} key={num} />
+          ) : <ListItem num={num} key={num} />
       )}
     </ul>
   </div>

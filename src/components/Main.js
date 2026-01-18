@@ -21,7 +21,7 @@ export default class Main extends Component {
 
     dispatchAnalytics('Update Wave Type', wave);
     this.setState({ wave });
-  }
+  };
 
   handleCollatz = (startVal) => {
     const sequence = calculateCollatz(startVal);
@@ -32,30 +32,30 @@ export default class Main extends Component {
       scaledSequence: scaleSequence(sequence),
       isPlaying: true
     });
-  }
+  };
 
   handlePlaybackStart = () => {
     this.setState({ isPlaying: true });
-  }
+  };
   
   handlePlaybackEnd = () => {
     this.setState({ 
       isPlaying: false,
       scaledSequence: null
     });
-  }
+  };
   
   handleRepeat = (startVal) => {
     dispatchAnalytics('Sequence Repeated', startVal);
     this.setState({ sequence: [] }, () => {
       this.handleCollatz(startVal);
     });
-  }
+  };
 
   handleError = () => {
     window.scrollTo(0, 0);
     this.handlePlaybackEnd();
-  }
+  };
 
   render() {
     const { sequence, scaledSequence, wave, isPlaying } = this.state;

@@ -6,11 +6,11 @@ import { number, bool } from '../proptypes-constants';
 const EvenOrOdd = ({ num }) => 
   (num % 2 === 0)
     ? <Fragment>
-        <span className="even">{num} is even</span> so we divide by 2 
-      </Fragment>
+      <span className="even">{num} is even</span> so we divide by 2 
+    </Fragment>
     : <Fragment>
-        <span className="odd">{num} is odd</span> so we multiply by 3, then add 1 
-      </Fragment>;
+      <span className="odd">{num} is odd</span> so we multiply by 3, then add 1 
+    </Fragment>;
 
 EvenOrOdd.propTypes = {
   num: number.isRequired
@@ -21,7 +21,7 @@ class ListItem extends Component {
     num: number.isRequired,
     hover: bool.isRequired,
     finalVal: bool
-  }
+  };
 
   render() {
     const { hover, num, finalVal } = this.props;

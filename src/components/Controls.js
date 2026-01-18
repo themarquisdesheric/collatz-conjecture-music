@@ -15,7 +15,7 @@ export default class Controls extends Component {
     handleRepeat: func.isRequired,
     handlePlaybackEnd: func.isRequired,
     isPlaying: bool.isRequired
-  }
+  };
 
   state = {
     startVal: 0
@@ -56,7 +56,7 @@ export default class Controls extends Component {
         this.setState({ startVal });
       }
     }
-  }
+  };
 
   handleKeyDown = ({ key }) => {
     // prevent interfering with navigation arrows
@@ -64,7 +64,7 @@ export default class Controls extends Component {
    
     if (key === 'ArrowLeft') this.handleDecrement();
     else if (key === 'ArrowRight') this.handleIncrement();
-  }
+  };
 
   handleInput = (startVal) => {
     if (this.props.isPlaying) {
@@ -73,14 +73,14 @@ export default class Controls extends Component {
 
     this.input.value = startVal;
     this.setState({ startVal });
-  }
+  };
 
   handleIncrement = () => {
     const newStartValue = this.state.startVal + 1;
 
     dispatchAnalytics('Increment Collatz', newStartValue);
     this.handleInput(newStartValue);
-  }
+  };
 
   handleDecrement = () => {
     const { startVal } = this.state;
@@ -93,7 +93,7 @@ export default class Controls extends Component {
     
     dispatchAnalytics('Decrement Collatz', newStartValue);
     this.handleInput(newStartValue);
-  }
+  };
   
   render() {
     const { wave, handleWave, sequence, isPlaying } = this.props;
